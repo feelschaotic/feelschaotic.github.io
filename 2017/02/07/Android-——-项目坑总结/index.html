@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | FeelsChaotic</title>
+  <title>Android-——-项目坑总结 | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端,设计模式,面试笔试分享,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FeelsChaotic">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="需求：定时任务  处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。 原因：在官方文档中指出， AsyncTasks should ideally be used for short operations， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-——-项目坑总结">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/Android-——-项目坑总结/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
+<meta property="og:description" content="需求：定时任务  处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。 原因：在官方文档中指出， AsyncTasks should ideally be used for short operations， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.">
+<meta property="og:updated_time" content="2017-08-06T10:50:21.118Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FeelsChaotic">
+<meta name="twitter:title" content="Android-——-项目坑总结">
+<meta name="twitter:description" content="需求：定时任务  处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。 原因：在官方文档中指出， AsyncTasks should ideally be used for short operations， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.">
   
   
     <link rel="icon" href="/favicon.png">
@@ -144,74 +148,95 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android-——-项目坑总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/" class="archive-article-date">
-  	<time datetime="2017-03-08T09:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/">Android细节问题-——-有了Intent，为什么还要有Bundle？</a>
+    <h1 class="article-title" itemprop="name">
+      Android-——-项目坑总结
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
+        
+        <a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
   	<time datetime="2017-02-07T03:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/Android-——-项目坑总结/">Android-——-项目坑总结</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><ul>
+<li>需求：定时任务 </li>
+<li>处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。</li>
+<li>原因：<br>在官方文档中指出， <code>AsyncTasks should ideally be used for short operations</code>， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.0之后， 默认情况下， 同一时间只能有一个AsyncTask在运行， 也就是说所有的task都是串行运行的。所以如果某个task执行时间很长， 会导致后面的task长时间等待， 当然也可以通过调<code>executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)</code>， 可以同时运行5个Task。<br>如果最大同时运行5个Task不能满足要求，就要自己使用线程池了。</li>
+</ul>
+</li>
+<li><ul>
+<li>需求：加载大图防止内存溢出问题</li>
+<li>问题：decodeStream解析图片一直为null</li>
+<li>原因：Android 的一个bug，input 流不能用两次 可以把流转换成数组，然后再用<a href="http://blog.csdn.net/andypan1314/article/details/6670320" target="_blank" rel="external">该方法</a></li>
+</ul>
+</li>
+<li><ul>
+<li>需求：科大讯飞语音转文字</li>
+<li>问题：<br>1.组件加载失败<br>解决：so包缺失<br>2.用户校验失败<br>解决：<code>libmsc.so</code>一定要用自己id下载的SDK，因为SDK和appid是绑定的，拷贝旧项目的so是不行的！</li>
+</ul>
+</li>
+<li><ul>
+<li>问题：<code>mImageView.getDrawingCache()</code>取值为空</li>
+<li>解决：<br><code>setImageBitmap()/setImageDrawable</code>设置图片的方式才可以取到缓存<br><code>setImageResource</code>方法设置图片则缓存取值为null。<br>官方建议用<code>setImageDrawable</code>代替<code>setImageBitmap</code>，这样可以减少new的对象。实际上<code>setImageBitmap</code>方法就是把Bitmap对象封装成Drawable对象,然后调用setImageDrawable</li>
+</ul>
+</li>
+<li><ul>
+<li>需求：文件传输</li>
+<li>问题：新文件发过来后在系统媒体库中找不到新文件记录，必须得重启才能更新</li>
+<li>解决：自己手动把新文件信息插入媒体库</li>
+</ul>
+</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/ali_pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wchat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -223,19 +248,108 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/07/Android-——-项目坑总结/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android细节问题-——-有了Intent，为什么还要有Bundle？
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -258,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-22T09:18:58.204Z</updated>
+  <updated>2017-08-06T10:51:21.621Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,43 +16,110 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>first page</title>
-    <link href="http://yoursite.com/2017/07/22/first-page/"/>
-    <id>http://yoursite.com/2017/07/22/first-page/</id>
-    <published>2017-07-22T09:18:58.000Z</published>
-    <updated>2017-07-22T09:18:58.204Z</updated>
+    <title>Android细节问题-——-有了Intent，为什么还要有Bundle？</title>
+    <link href="http://yoursite.com/2017/03/08/Android%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98-%E2%80%94%E2%80%94-%E6%9C%89%E4%BA%86Intent%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E6%9C%89Bundle%EF%BC%9F/"/>
+    <id>http://yoursite.com/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/</id>
+    <published>2017-03-08T09:53:00.000Z</published>
+    <updated>2017-08-06T10:51:21.621Z</updated>
     
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/07/22/hello-world/"/>
-    <id>http://yoursite.com/2017/07/22/hello-world/</id>
-    <published>2017-07-22T08:30:41.125Z</published>
-    <updated>2017-07-22T08:30:41.125Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<blockquote>
+<p>Intent本身就可以传递参数（Intent.putExtra(“key”, value)）为何还要用Bundle呢？</p>
+</blockquote>
+<h4 id="两者比较"><a href="#两者比较" class="headerlink" title="两者比较"></a>两者比较</h4><ol>
+<li>Bundle只是一个信息的载体，内部其实就是维护了一个Map<string,object>。 </string,object></li>
+<li><p>Intent负责Activity之间的交互，内部是持有一个Bundle的。</p>
+<ul>
+<li><p>putExtra()方法的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public Intent putExtra(String name, boolean value) &#123;</div><div class="line">        if (mExtras == null) &#123;</div><div class="line">            mExtras = new Bundle();</div><div class="line">        &#125;</div><div class="line">        mExtras.putBoolean(name, value);</div><div class="line">        return this;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>putExtras(Bundle bundle)：会将Intent的内部Bundle替换成参数bundle。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
+<li><p>例1：<br>从A界面跳转到B界面或者C界面<br>这样的话 我就需要写2个Intent  如果你还要涉及的传值的话 你的Intent就要写两遍添加值的方法。那么，如果我用1个Bundle，直接先存值，然后再存到Intent中 不就更简洁吗？</p>
+</li>
+<li><p>例2：<br>现在要把值通过Activity A经过Activity B传给Activity C。</p>
+<p>如果用Intent的话，A-B先写一遍，再在B中都取出来 然后在把值塞到Intent中，再跳到C。<br>如果在A中用了 Bundle 的话，把Bundle传给B，在B中再转传到C，C就可以直接去取了。 </p>
+</li>
+</ul>
+<h4 id="bundle使用场景"><a href="#bundle使用场景" class="headerlink" title="bundle使用场景"></a>bundle使用场景</h4><ul>
+<li>在设备旋转时保存数据</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> // 自定义View旋转时保存数据</div><div class="line">public class CustomView extends View &#123;</div><div class="line">    @Override</div><div class="line">    protected Parcelable onSaveInstanceState() &#123;</div><div class="line">        super.onSaveInstanceState();</div><div class="line">        Bundle bundle = new Bundle();</div><div class="line">        bundle.put...</div><div class="line">        return bundle;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  // Activity旋转时保存数据</div><div class="line">public class CustomActivity extends Activity &#123;</div><div class="line">  </div><div class="line">    @Override</div><div class="line">    protected void onSaveInstanceState(Bundle savedInstanceState) &#123;</div><div class="line">        super.onSaveInstanceState(savedInstanceState);</div><div class="line">        savedInstanceState.put...</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Fragment之间传递数据<br>比如，某个Fragment中点击按钮弹出一个DialogFragment。<br>最便捷的方式就是通过Fragment.setArguments(args)传递参数。</li>
+</ul>
+<p>所以，Bundle是不可替代的。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;blockquote&gt;
+&lt;p&gt;Intent本身就可以传递参数（Intent.putExtra(“key”, value)）为何还要用Bundle呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;两者比较&quot;&gt;&lt;a href=&quot;#两者比较&quot; class=&quot;headerlin
     
     </summary>
     
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android-——-项目坑总结</title>
+    <link href="http://yoursite.com/2017/02/07/Android-%E2%80%94%E2%80%94-%E9%A1%B9%E7%9B%AE%E5%9D%91%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2017/02/07/Android-——-项目坑总结/</id>
+    <published>2017-02-07T03:32:58.000Z</published>
+    <updated>2017-08-06T10:50:21.118Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li><ul>
+<li>需求：定时任务 </li>
+<li>处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。</li>
+<li>原因：<br>在官方文档中指出， <code>AsyncTasks should ideally be used for short operations</code>， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.0之后， 默认情况下， 同一时间只能有一个AsyncTask在运行， 也就是说所有的task都是串行运行的。所以如果某个task执行时间很长， 会导致后面的task长时间等待， 当然也可以通过调<code>executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)</code>， 可以同时运行5个Task。<br>如果最大同时运行5个Task不能满足要求，就要自己使用线程池了。</li>
+</ul>
+</li>
+<li><ul>
+<li>需求：加载大图防止内存溢出问题</li>
+<li>问题：decodeStream解析图片一直为null</li>
+<li>原因：Android 的一个bug，input 流不能用两次 可以把流转换成数组，然后再用<a href="http://blog.csdn.net/andypan1314/article/details/6670320" target="_blank" rel="external">该方法</a></li>
+</ul>
+</li>
+<li><ul>
+<li>需求：科大讯飞语音转文字</li>
+<li>问题：<br>1.组件加载失败<br>解决：so包缺失<br>2.用户校验失败<br>解决：<code>libmsc.so</code>一定要用自己id下载的SDK，因为SDK和appid是绑定的，拷贝旧项目的so是不行的！</li>
+</ul>
+</li>
+<li><ul>
+<li>问题：<code>mImageView.getDrawingCache()</code>取值为空</li>
+<li>解决：<br><code>setImageBitmap()/setImageDrawable</code>设置图片的方式才可以取到缓存<br><code>setImageResource</code>方法设置图片则缓存取值为null。<br>官方建议用<code>setImageDrawable</code>代替<code>setImageBitmap</code>，这样可以减少new的对象。实际上<code>setImageBitmap</code>方法就是把Bitmap对象封装成Drawable对象,然后调用setImageDrawable</li>
+</ul>
+</li>
+<li><ul>
+<li>需求：文件传输</li>
+<li>问题：新文件发过来后在系统媒体库中找不到新文件记录，必须得重启才能更新</li>
+<li>解决：自己手动把新文件信息插入媒体库</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;需求：定时任务 &lt;/li&gt;
+&lt;li&gt;处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。&lt;/li&gt;
+&lt;li&gt;原因：&lt;br&gt;在官方文档中指出， &lt;code
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
