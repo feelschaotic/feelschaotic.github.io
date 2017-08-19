@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-06T10:51:21.621Z</updated>
+  <updated>2017-08-19T14:17:15.626Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,114 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_DISPLAY)</title>
+    <link href="http://yoursite.com/2017/07/24/Android-%E2%80%94%E2%80%94-%E7%BD%91%E6%98%93%E6%98%93%E7%9B%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E5%BC%82%E5%B8%B8-libEGL--validate_display-99-error-3008-(EGL_BAD_D/"/>
+    <id>http://yoursite.com/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/</id>
+    <published>2017-07-24T08:00:00.000Z</published>
+    <updated>2017-08-19T14:17:15.626Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>前提：WebView在 Android 5.1 测试机上正常显示，在 Android 7.0 上无法显示，一直 loading 。（注：url 为 htts 协议）</p>
+</blockquote>
+<p>考虑到验证码的 Webview 和 Listener 都是自己重写，可能漏掉了什么，果然在细细翻看官方源码的时候，发现了 WebViewClient 多复写了 onReceivedSslError 监听，初步判断是遇到证书问题。</p>
+<p>解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebViewClient(new WebViewClient() &#123;</div><div class="line">           @Override</div><div class="line">           public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) &#123;</div><div class="line">               handler.proceed(); // Ignore SSL certificate errors</div><div class="line">           // fix for: SSL Error. Failed to validate the certificate chain </div><div class="line">           //不要调用super.xxxx</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure></p>
+<p>原因：</p>
+<p>在 Android 中，WebView 可以用来加载 http 和 https 网页到本地应用的控件。在默认情况下，通过 <code>loadUrl(String url)</code> 方法，可以顺利  <code>loadUrl(&quot;http://www.baidu.com&quot;)</code>之类的页面。但是，当 load 通过 ssl 加密的 https 页面，且这个网站的安全证书在 Android 无法得到认证时，WebView就会变成一个空白页，而并不会像自带的浏览器一样弹出提示。因此，我们必须针对这种情况进行处理。</p>
+<p>拓展：</p>
+<p>不过如果在 <code>onReceivedSslError</code> 方法中实现调用了 <code>handler.proceed()</code>来忽略该证书错误，则会受到中间人攻击的威胁，可能导致隐私泄露。可以采用默认的处理方法<code>handler.cancel()</code>，停止加载问题页面。<br>（鉴于项目需求，所以仍然采用<code>handler.proceed();</code>）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;前提：WebView在 Android 5.1 测试机上正常显示，在 Android 7.0 上无法显示，一直 loading 。（注：url 为 htts 协议）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;考虑到验证码的 Webview 和 Li
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常</title>
+    <link href="http://yoursite.com/2017/07/20/Android-%E2%80%94%E2%80%94-%E6%89%93%E5%8C%85INSTALL_PARSE_FAILED_NO_CERTIFICATES%E5%BC%82%E5%B8%B8/"/>
+    <id>http://yoursite.com/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/</id>
+    <published>2017-07-20T03:43:00.000Z</published>
+    <updated>2017-08-19T14:18:44.392Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>前提：明明已经签名，在安装时却提示 <code>INSTALL_PARSE_FAILED_NO_CERTIFICATES</code> 异常</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-6b4e49bade94fed1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="安装失败情形"></p>
+<p>排查：</p>
+<p>安装的测试机系统为 5.0，只采用了 v2 签名</p>
+<p>解决：</p>
+<p>改为安装在 7.0 手机或者选择 v1 + v2 签名。</p>
+<p>原因：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-ae621be14c406309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>在 Android 7.0 以上版本的设备上，APK 可以根据Full Apk Signature（v2 方案） 或者 JAR-signed（ v1方案）进行验证； 而对于7.0以下版本的设备其会忽略 v2 版本的签名，<strong>只验证 v1 签名</strong></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-74f969787e7d154a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="验证的流程.png"></p>
+<p>结论：</p>
+<ul>
+<li>一定可行的方案： 只使用 v1 方案</li>
+<li>不一定可行的方案：同时使用 v1 和 v2 方案</li>
+<li>对 7.0 以下<strong>一定不行</strong>的方案：只使用 v2 方案</li>
+</ul>
+<p>如果要支持 Android 7.0 以下版本，那么尽量同时选择两种签名方式，但是一旦遇到签名问题，可以只使用 v1 签名方案</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;前提：明明已经签名，在安装时却提示 &lt;code&gt;INSTALL_PARSE_FAILED_NO_CERTIFICATES&lt;/code&gt; 异常&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.j
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android-——-输入手机号时自动添加空白（全情况考虑）</title>
+    <link href="http://yoursite.com/2017/05/19/Android-%E2%80%94%E2%80%94-%E8%BE%93%E5%85%A5%E6%89%8B%E6%9C%BA%E5%8F%B7%E6%97%B6%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%A9%BA%E7%99%BD%EF%BC%88%E5%85%A8%E6%83%85%E5%86%B5%E8%80%83%E8%99%91%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/05/19/Android-——-输入手机号时自动添加空白（全情况考虑）/</id>
+    <published>2017-05-19T02:46:00.000Z</published>
+    <updated>2017-08-19T14:18:03.831Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>不想重复造轮子，但是查阅后发现网上大部分的博文缺少了考虑的情况。<br>要么粘贴的手机号无法格式化，要么删除时空格也占一个字符。<br>只能自己动手写了个全情况考虑的watcher</p>
+</blockquote>
+<p>优化：</p>
+<ul>
+<li>删除时，空格自动删除</li>
+<li>手机号粘贴时自动格式化</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line">public class FormatPhoneNumberWatcher implements TextWatcher &#123;</div><div class="line">    private Context context;</div><div class="line">    private EditText editText;</div><div class="line"></div><div class="line">    public FormatPhoneNumberWatcher(Context context, EditText editText) &#123;</div><div class="line">        this.context = context;</div><div class="line">        this.editText = editText;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void beforeTextChanged(CharSequence s, int start, int count, int after) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onTextChanged(CharSequence s, int start, int before, int count) &#123;</div><div class="line">        if (s == null || s.length() == 0)</div><div class="line">            return;</div><div class="line">      /**</div><div class="line">        分两种情况考虑：编辑情况和粘贴情况</div><div class="line">      */</div><div class="line">        if (count == 1 || count == 0) &#123;</div><div class="line">            inputSituation(s);</div><div class="line">        &#125; else &#123;</div><div class="line">            pasteSituation(s, start, before);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void inputSituation(CharSequence s) &#123;</div><div class="line">        String tel = editText.getText().toString().replace(&quot; &quot;, &quot;&quot;);</div><div class="line">        if (tel.length() &lt;= 3 &amp;&amp; s.toString().length() == 4) &#123;</div><div class="line">            editText.setText(tel);</div><div class="line">        &#125;</div><div class="line">        if (tel.length() &gt; 3 &amp;&amp; tel.length() &lt; 8) &#123;</div><div class="line">            editText.setText(tel.substring(0, 3) + &quot; &quot; + tel.substring(3, tel.length()));</div><div class="line">        &#125;</div><div class="line">        if (tel.length() &gt; 7) &#123;</div><div class="line">            editText.setText(tel.substring(0, 3) + &quot; &quot; + tel.substring(3, 7) + &quot; &quot; + tel.substring(7, tel.length()));</div><div class="line">        &#125;</div><div class="line">        editText.setSelection(editText.getText().toString().length());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void pasteSituation(CharSequence s, int start, int before) &#123;</div><div class="line">        StringBuilder sb = new StringBuilder();</div><div class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</div><div class="line">            if (!(i != 3 &amp;&amp; i != 8 &amp;&amp; s.charAt(i) == &apos; &apos;)) &#123;</div><div class="line">                sb.append(s.charAt(i));</div><div class="line">                if ((sb.length() == 4 || sb.length() == 9) &amp;&amp; sb.charAt(sb.length() - 1) != &apos; &apos;) &#123;</div><div class="line">                    sb.insert(sb.length() - 1, &apos; &apos;);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if (!sb.toString().equals(s.toString())) &#123;</div><div class="line">            int index = start + 1;</div><div class="line">            if (sb.charAt(start) == &apos; &apos;) &#123;</div><div class="line">                if (before == 0) &#123;</div><div class="line">                    index++;</div><div class="line">                &#125; else &#123;</div><div class="line">                    index--;</div><div class="line">                &#125;</div><div class="line">            &#125; else &#123;</div><div class="line">                if (before == 1) &#123;</div><div class="line">                    index--;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            editText.setText(sb.toString());</div><div class="line">            editText.setSelection(sb.toString().length());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void afterTextChanged(Editable s) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有BUG可及时反馈，不胜感激。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;不想重复造轮子，但是查阅后发现网上大部分的博文缺少了考虑的情况。&lt;br&gt;要么粘贴的手机号无法格式化，要么删除时空格也占一个字符。&lt;br&gt;只能自己动手写了个全情况考虑的watcher&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;优化：&lt;/p&gt;
+&lt;ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android细节问题-——-有了Intent，为什么还要有Bundle？</title>
@@ -66,6 +174,185 @@
     
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试之线程和线程池</title>
+    <link href="http://yoursite.com/2017/03/06/Android%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>http://yoursite.com/2017/03/06/Android面试之线程和线程池/</id>
+    <published>2017-03-06T09:51:00.000Z</published>
+    <updated>2017-08-19T14:22:45.717Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Android中的线程形态"><a href="#Android中的线程形态" class="headerlink" title="Android中的线程形态"></a>Android中的线程形态</h4><ol>
+<li><p>AsyncTask<br>底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。</p>
+<p>AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加载，否则同一个进程中的AsyncTask都无法正常工作。</p>
+<blockquote>
+<p>注意：从Android 3.0开始，默认情况下AsyncTask是串行执行的。但在Android 3.0之前是并行执行的。  </p>
+</blockquote>
+</li>
+<li><p>IntentService<br>底层直接使用了线程，IntentService是一个服务，系统对其进行了封装使其可以更方便地执行后台任务，IntentService内部采用HandlerThread来执行任务，当任务执行完毕后IntentService会自动退出。</p>
+<p>特殊的Service，它继承了Service并且它是抽象类。IntentService可用于执行后台耗时的任务，当任务执行后它会自动停止，同时由于IntentService是服务的原因，这导致他的优先级比单纯的线程要高很多，所以IntentService比较适合执行一些高优先级的后台任务。</p>
+</li>
+<li><p>HandlerThread<br>底层直接使用了线程，HandlerThread是一中消息循环的线程，在它的内部可以使用Handler。  </p>
+<p>HandlerThread继承了Thread，它是一种可以使用Handler的Thread，它的实现很简单，就在run方法中通过Looper.prepare()来创建消息队列，并通过Looper.loop()来开启消息循环，这样在实际的使用中就允许在HandlerThread中创建Handler。</p>
+</li>
+</ol>
+<h4 id="Android中的线程池"><a href="#Android中的线程池" class="headerlink" title="Android中的线程池"></a>Android中的线程池</h4><ol>
+<li><p>线程池的优点：</p>
+<ul>
+<li>重用线程池中的线程，避免因为线程的创建和销毁所带来的性能开销。</li>
+<li>能有效控制线程池中的最大并发数，避免大量的线程之间因为互相抢占系统资源而导致的阻塞现象。</li>
+<li>能够对线程进行简单的管理，并提供定时执行以及指定间隔循环执行等功能。</li>
+</ul>
+</li>
+<li><p>Android中的线程池的概念来源于Java中的Executor，Executor是一个接口，真正的线程池的实现为ThreadPoolExecutor。</p>
+<p>ThreadPoolExecutor提供一系列参数来配置线程池，通过不同的参数可以创建不同的线程池，从线程池的功能特性来说，线程池主要分为4类。</p>
+<p>ThreadPoolExecutor执行任务时大致遵循以下规则：</p>
+<ul>
+<li>如果线程池中的线程数量未达到核心线程的数量，那么会直接启动一个核心线程来执行任务。</li>
+<li>如果线程中的线程数量已经达到或者超过核心线程的数量，那么任务会被插入到任务队列中排队等待执行。</li>
+<li>如果在步骤2中无法将任务插入到任务队列中，这往往是由于任务队列已经满了， 这个时候如果线程数量未达到线程池规定的最大值，那么会立刻启动一个非核心线程来执行任务。</li>
+<li>如果步骤3的中线程数量已经达到线程池规定的最大值，那么就拒绝执行此任务，ThreadPoolExecutor会调用RejectedExecutionHandler的rejectedExecution方法来通知调用者。</li>
+</ul>
+</li>
+<li>线程池主要有4类：<ul>
+<li>FixThreadPool：这是一种线程数量固定的线程池，当线程处于空闲的时候，并不会被回收，除非线程池被关闭了。</li>
+<li>CachedThreadPool：这是一种线程数量不定的线程池，它只有非核心线程，并且最大线程数为Integer.MAX_VALUE。</li>
+<li>ScheduledThreadPool：它的核心线程数量是固定的，而非核心线程数是没有限制的，并且当非核心线程闲置时会被立即回收。</li>
+<li>SingleThreadExecutor：这类线程池内部只有一个核心线程，它确保所有的任务都在同一个线程中按顺序执行。</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;Android中的线程形态&quot;&gt;&lt;a href=&quot;#Android中的线程形态&quot; class=&quot;headerlink&quot; title=&quot;Android中的线程形态&quot;&gt;&lt;/a&gt;Android中的线程形态&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;AsyncTask&lt;br&gt;底层用到
+    
+    </summary>
+    
+    
+      <category term="Android、面试笔试分享" scheme="http://yoursite.com/tags/Android%E3%80%81%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试总结之缓存</title>
+    <link href="http://yoursite.com/2017/03/02/Android%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%E4%B9%8B%E7%BC%93%E5%AD%98/"/>
+    <id>http://yoursite.com/2017/03/02/Android面试总结之缓存/</id>
+    <published>2017-03-02T09:14:00.000Z</published>
+    <updated>2017-08-19T14:22:52.021Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h5><p>程序中除了图片缓存（三级缓存），还有信息缓存。当用户无法联网时，app会默认显示缓存的数据。</p>
+<h5 id="缓存方式"><a href="#缓存方式" class="headerlink" title="缓存方式"></a>缓存方式</h5><ul>
+<li><p>SQLite<br>下载完数据文件后，把文件的相关信息如url，路经，下载时间，过期时间等存放到数据库，把url作为唯一的标识。下次下载的时候根据url先从数据库中查询，如果查询到当前时间并未过期，就根据路径读取本地文件，从而实现缓存的效果。  </p>
+</li>
+<li><p>文件缓存<br>使用File.lastModified()方法得到文件的最后修改时间，与当前时间判断是否过期，从而实现缓存效果。数据格式为JSON。  </p>
+</li>
+</ul>
+<blockquote>
+<p>缓存方式两点说明</p>
+<ol>
+<li>不同类型的文件的缓存时间不一样。<br>笼统的说，不变文件的缓存时间是永久，变化文件的缓存时间是最大忍受不变时间。说白点，图片文件内容是不变的，一般存在SD卡上直到被清理，我们是可以永远读取缓存的。配置文件内容是可能更新的，需要设置一个可接受的缓存时间。</li>
+<li>不同环境下的缓存时间标准不一样。<br>无网络环境下，我们只能读取缓存文件，为了应用有东西显示，没有什么过期之说了。<br>WiFi网络环境下，缓存时间可以设置短一点，一是网速较快，而是流量不要钱。<br>3G流量环境下，缓存时间可以设置长一点，节省流量，而且用户体验也更好。    </li>
+</ol>
+</blockquote>
+<h5 id="缓存时间"><a href="#缓存时间" class="headerlink" title="缓存时间"></a>缓存时间</h5><p>app中多个页面的缓存时间是不一样的，对实时性要求高的页面缓存时间较短。而http消息头中包含有缓存时间，android端无需自己记录/规定缓存时间，读取即可。</p>
+<h6 id="http协议对缓存的支持"><a href="#http协议对缓存的支持" class="headerlink" title="http协议对缓存的支持"></a>http协议对缓存的支持</h6><p>Expires &amp; Cache-Control</p>
+<p>Expires响应首部给出了响应失效的绝对时间,这样客户端就可以缓存一份副本,在这个时间到期之前,<br>不用去询问服务器它是否有效了。http1.0引入。 例:Expires: Thu, 03 Oct 1997 17:15:00 GMT</p>
+<p>Cache-Control首部用于传输对象的缓存信息。http1.1引入。它的值是一个缓存指令，给出了与某个对象可缓存性有关的特有指令。这个首部可以出现在请求或者响应头中。例如:Cache-Control: no-cache<br>CacheControl有两个字段表达响应的过期时间：max-age和max-stale </p>
+<ul>
+<li>前者表示：max-age秒内，网页再有请求，你不要来我服务端，直接取你本地缓存的结果好了 </li>
+<li>后者表示：max-stale秒内的请求，你可以使用本地缓存的，但还是要来我服务端问问，到底行不行，当然，这里要带上Last Modified等信息 ，如果服务端返回了304，那说明你本地缓存继续用吧，我不给你响应体200的话，自然就带上了响应体。 </li>
+</ul>
+<p>Expires和Cache-Control作用一致，都是指当前资源的有效期，控制是直接从缓存获取数据还是重新发送请求到服务器取数据。</p>
+<h5 id="缓存算法"><a href="#缓存算法" class="headerlink" title="缓存算法"></a>缓存算法</h5><ol>
+<li><p>LRU - 最近最少使用（最后访问时间）<br>替换掉最近被请求最少的文档。这一传统策略在实际中应用最广。在CPU缓存淘汰和虚拟内存系统中效果较好。  </p>
+</li>
+<li><p>LRU-K<br>LRU-K中的K代表最近使用的次数，也可以认为是LRU-1。LRU-K的主要目的是为了解决LRU算法“缓存污染”的问题，其核心思想是将“最近使用过1次”的判断标准扩展为“最近使用过K次”。<br>相比LRU，LRU-K需要多维护一个队列，用于记录所有缓存数据被访问的历史。只有当数据的访问次数达到K次的时候，才将数据放入缓存。当需要淘汰数据时，LRU-K会淘汰第K次访问时间距当前时间最大的数据。如下：<br><img src="http://upload-images.jianshu.io/upload_images/3167794-efc0f5b183b53a39?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>LFU - 最不经常使用（访问次数）<br>替换掉访问次数最少的。这一策略意图保留最常用的、最流行的对象，替换掉很少使用的那些。<br>LFU的每个数据块都有一个引用计数，所有数据块按照引用计数排序，具有相同引用计数的数据块则按照时间排序。<br>如下：<br><img src="http://upload-images.jianshu.io/upload_images/3167794-607be40d1b32a620?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li>SIZE（缓存大小）<br>替换size最大的对象。这一策略通过淘汰一个大对象而不是多个小对象来提高命中率。不过，可能有些进入缓存的小对象永远不会再被访问。SIZE策略没有提供淘汰这类对象的机制，会导致“缓存污染”（大量偶发性的数据访问让内存中存放大量冷数据,也即是缓存污染）。</li>
+<li>以上算法结合使用….</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h5&gt;&lt;p&gt;程序中除了图片缓存（三级缓存），还有信息缓存。当用户无法联网时，app会默认显示缓存的数据。&lt;/p&gt;
+&lt;h5 id=&quot;缓存方式&quot;&gt;&lt;a hr
+    
+    </summary>
+    
+    
+      <category term="Android、面试笔试分享" scheme="http://yoursite.com/tags/Android%E3%80%81%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android面试总结之接口维护（版本控制）</title>
+    <link href="http://yoursite.com/2017/03/02/Android%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%E4%B9%8B%E6%8E%A5%E5%8F%A3%E7%BB%B4%E6%8A%A4%EF%BC%88%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/02/Android面试总结之接口维护（版本控制）/</id>
+    <published>2017-03-02T08:32:00.000Z</published>
+    <updated>2017-08-19T14:22:57.704Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。<br>有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。<br>就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。</p>
+</blockquote>
+<h5 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h5><h5 id="一、-客户端做兼容，接口不用做兼容"><a href="#一、-客户端做兼容，接口不用做兼容" class="headerlink" title="一、 客户端做兼容，接口不用做兼容"></a>一、 客户端做兼容，接口不用做兼容</h5><ol>
+<li><p><strong>APP强制更新（不建议）</strong><br>接口URL：api.xxx.com/v1.0/xxxx.java<br>接口的URL中加入版本号，如上：v1.0。<br>采用灰度服务器 部署正在审核中的 接口版本（如：v1.1）。等审核通过后，将老版本的APP设置强制更新，然后把线上服务器重新部署上最新的代码，再去掉灰度服务器。这样APP接口全部访问正式的线上服务器。</p>
+</li>
+<li><p><strong>热更新</strong><br>紧急的小需求可以用热更新，大的需求建议还是用原生的代码，因为你用热更新修改完（用JS或Lua），最后还要在原生代码里修改。<br>网游用热更新的比较多，因为网游的APP太大，不可能加个小关卡 就要求用户重新下载，并且游戏更新比企业级APP更频繁，用热更新可以不断新加关卡、场景、活动推广。  </p>
+</li>
+<li><strong>React Native 和Weex</strong><br>没接触过 可以自己了解</li>
+</ol>
+<h5 id="二、-服务端做版本兼容"><a href="#二、-服务端做版本兼容" class="headerlink" title="二、 服务端做版本兼容"></a>二、 服务端做版本兼容</h5><ol>
+<li><strong>App 请求服务器接口的时候携带接口版本字段</strong><br>服务器根据接口版本调用相应的方法，每个接口逻辑里 加if 判断（不推荐）<br>接口URL：api.xxx.com/api?version=v1&amp;..<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (version == ‘1.5.0’) &#123;</div><div class="line">　　//do_something</div><div class="line">&#125; else if (version ==‘1.4.0&apos;) &#123;</div><div class="line">　　//do_something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>不同版本的逻辑都在一个方法里，在于容易造成代码混乱，不利于维护。</p>
+<ol>
+<li><p><strong>一个版本一个文件</strong><br>相当于每个接口版本都是一个独立的项目。放到服务器的独立文件夹里。使用什么版本接口写到客户端配置里面或者通过一个接口获取就行。<br>例：<br>1.0版本：<a href="http://x.x.x.x:xx/xxapi/v1.0/xxx" target="_blank" rel="external">http://x.x.x.x:xx/xxapi/v1.0/xxx</a><br>1.2版本：<a href="http://x.x.x.x:xx/xxapi/v1.2/xxx" target="_blank" rel="external">http://x.x.x.x:xx/xxapi/v1.2/xxx</a><br>文件夹位置：Controller/V1.0/<br>—————–/xxxx.php<br>文件夹位置：Controller/V1.2/<br>—————–/xxxx.php<br>优点：版本逻辑分开维护。看url就能知道哪个版本。删除多余版本 不用修改代码。<br>缺点：同个接口不同版本 文件是重复的。并且 如果有个接口前几版就有问题，一直遗留到现在，就需要改好几套一样的代码。</p>
+</li>
+<li><p><strong>token代替版本号</strong><br><img src="http://upload-images.jianshu.io/upload_images/3167794-202e7e6133579549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/3167794-3e0112e31dc00261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>几个要点：<br>a. 客户端发送请求时token是固定不变的，使用token间接的标记请求的接口版本。<br>b. server保存了token和对应接口的版本号，请求来了之后会先根据这个寻找对应的接口版本。<br>c. 每个目录对应一个版本，根据请求的接口读取对应目录下的接口配置文件，找到最终要执行的具体接口。<br>例如：<a href="http://xxxx.xxxx.com/module/controller/list?token=6918b5e0567c7d47314c10ed413e3f95" target="_blank" rel="external">http://xxxx.xxxx.com/module/controller/list?token=6918b5e0567c7d47314c10ed413e3f95</a> 这个请求最终会打到listv2这个接口。<br>d. 这样就可以在服务端灵活的配置接口了，客户端只要每次请求的时候带上默认的token参数，就可以得到自己想要的了，完全不需要关心版本的问题。</p>
+</li>
+<li><p><strong>继承的方式</strong><br>ControllerV1<br>ControllerV2 extends ControllerV1<br>采用继承的方式，既可以利用之前的接口代码，又可以采用override的方式修改部分接口的实现。<br>缺点：如果上个版本（也就是父类）修改了代码，就会影响后面的所有版本。  </p>
+</li>
+<li><p><strong>不同版本使用不同的域名/不同服务器</strong><br>不同版本不同分支，部署在不同的服务器上。如果某个版本用不到了，直接干掉服务就好了。<br>例如我现在的API要从1.x升到不兼容的2.0版本了，那就给当前的发布分支打个Tag。等哪天1.x版的API需要fix bug，就能很简单地从这个Tag切一个1.x的分支出来fix bug后进行测试发布，而且这个分支不会合并到任何分支，所以不会影响其他版本。<br>优点：部署的过程不会影响其他版本api的使用，并且可以减轻单台服务器的负担。<br>缺点：如果2.0也有同样bug的话，也要在2.0分支上改一遍。如果版本很多的话，工作量大。所以呢，一般不会同时发布两个以上的版本。另外，如果要兼容过多的版本，服务器也需要够多才行。同时，因为老版本的人用的少，也就是有的服务器访问量很少，有的服务器访问量很多。不能真正的负载均衡，浪费了服务器资源。</p>
+</li>
+</ol>
+<p>最后做下版本使用监控。当观察到所有用户都使用新版本的客户端的时候，并保持一段时间的时候。放弃对老版本的维护，继而下掉老版本的资源。</p>
+<hr>
+<h4 id="版本更新"><a href="#版本更新" class="headerlink" title="版本更新"></a>版本更新</h4><p>开启APP-&gt;请求初始化接口-&gt;检测是否需要更新? 否-&gt;首页Or 是-&gt;更新  </p>
+<p>在初始化接口的时候，需要客户端发送几个数据：</p>
+<pre><code>app_id            客户端id，比如： 1，安卓手机 2，iphone手机
+
+version_id        大版本号id
+
+version_mini      小版本号id
+
+did               用户客户端信息（客户端工程师会获取这个数据）
+
+encrypt_did       did加密后的字符串（did 加上 APP设备数据表中的key，然后md5）
+</code></pre><p>数据库方面：需要两张表。一张是记录升级版本信息的表，记录着设备的id，版本号信息，下载地址等。另外一张表是记录的设备的信息，比如安卓手机的信息，版本信息表中有一个外键app_id，关联的就是设备信息表的主键。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//设备信息表，记录了各种客户端的信息</div><div class="line">  CREATE TABLE IF NOT EXISTS `app_table` (</div><div class="line">    `app_id` smallint(6) NOT NULL AUTO_INCREMENT COMMENT &apos;主键&apos;,</div><div class="line">    `name` varchar(10) NOT NULL COMMENT &apos;设备名称&apos;,</div><div class="line">    `is_encryption` tinyint(1) NOT NULL COMMENT &apos;是否加密&apos;,</div><div class="line">    `key` varchar(10) NOT NULL COMMENT &apos;加密key&apos;,</div><div class="line">    `image_size` text NOT NULL COMMENT &apos;按照json来存储&apos;,</div><div class="line">    `create_time` int(11) NOT NULL COMMENT &apos;添加时间&apos;,</div><div class="line">    `update_time` int(11) NOT NULL COMMENT &apos;修改时间&apos;,</div><div class="line">    `status` tinyint(1) NOT NULL COMMENT &apos;状态 1正常0删除&apos;,</div><div class="line">    PRIMARY KEY (`app_id`)</div><div class="line">  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT=&apos;app设备表&apos; AUTO_INCREMENT=2 ;</div><div class="line">  </div><div class="line">  //版本升级信息表，存放了各种版本的信息</div><div class="line">  CREATE TABLE IF NOT EXISTS `version_upgrade` (</div><div class="line">    `id` smallint(4) NOT NULL AUTO_INCREMENT COMMENT &apos;主键&apos;,</div><div class="line">    `app_id` smallint(4) NOT NULL COMMENT &apos;客户端设备id&apos;,</div><div class="line">    `version_id` smallint(4) NOT NULL COMMENT &apos;大版本号id&apos;,</div><div class="line">    `version_mini` mediumint(8) NOT NULL COMMENT &apos;小版本号&apos;,</div><div class="line">    `version_code` varchar(10) NOT NULL COMMENT &apos;版本标识1.2&apos;,</div><div class="line">    `type` tinyint(4) NOT NULL COMMENT &apos;是否升级1是0否&apos;,</div><div class="line">    `apk_url` varchar(255) NOT NULL COMMENT &apos;下载链接地址&apos;,</div><div class="line">    `upgrade_point` varchar(255) NOT NULL COMMENT &apos;升级提示&apos;,</div><div class="line">    `status` tinyint(4) NOT NULL,</div><div class="line">    `create_time` int(11) NOT NULL COMMENT &apos;添加时间&apos;,</div><div class="line">    `update_time` int(11) NOT NULL COMMENT &apos;修改时间&apos;,</div><div class="line">    PRIMARY KEY (`id`)</div><div class="line">  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT=&apos;软件升级信息表&apos; AUTO_INCREMENT=2 ;</div></pre></td></tr></table></figure></p>
+<p>通过app的版本信息与服务器信息对比，看是否要进行版本升级</p>
+<blockquote>
+<p>参考文章<br><a href="http://www.cnblogs.com/dahe007/p/6255401.html" target="_blank" rel="external">http://www.cnblogs.com/dahe007/p/6255401.html</a><br><a href="https://my.oschina.net/woshixiaomayi/blog/519783" target="_blank" rel="external">https://my.oschina.net/woshixiaomayi/blog/519783</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。&lt;br&gt;有的公司每次发布完
+    
+    </summary>
+    
+    
+      <category term="Android、面试笔试分享" scheme="http://yoursite.com/tags/Android%E3%80%81%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AF%95%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   

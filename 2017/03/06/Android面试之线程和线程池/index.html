@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | FeelsChaotic</title>
+  <title>Android面试之线程和线程池 | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端,设计模式,面试笔试分享,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FeelsChaotic">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="Android中的线程形态 AsyncTask底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。 AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加">
+<meta name="keywords" content="Android、面试笔试分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android面试之线程和线程池">
+<meta property="og:url" content="http://yoursite.com/2017/03/06/Android面试之线程和线程池/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
+<meta property="og:description" content="Android中的线程形态 AsyncTask底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。 AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加">
+<meta property="og:updated_time" content="2017-08-19T14:22:45.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FeelsChaotic">
+<meta name="twitter:title" content="Android面试之线程和线程池">
+<meta name="twitter:description" content="Android中的线程形态 AsyncTask底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。 AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -158,188 +162,105 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android面试之线程和线程池" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/" class="archive-article-date">
-  	<time datetime="2017-07-24T08:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/">Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_DISPLAY)</a>
+    <h1 class="article-title" itemprop="name">
+      Android面试之线程和线程池
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/" class="archive-article-date">
-  	<time datetime="2017-07-20T03:43:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/">Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/19/Android-——-输入手机号时自动添加空白（全情况考虑）/" class="archive-article-date">
-  	<time datetime="2017-05-19T02:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/19/Android-——-输入手机号时自动添加空白（全情况考虑）/">Android-——-输入手机号时自动添加空白（全情况考虑）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/" class="archive-article-date">
-  	<time datetime="2017-03-08T09:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/">Android细节问题-——-有了Intent，为什么还要有Bundle？</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/06/Android面试之线程和线程池/" class="archive-article-date">
+        
+        <a href="/2017/03/06/Android面试之线程和线程池/" class="archive-article-date">
   	<time datetime="2017-03-06T09:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/06/Android面试之线程和线程池/">Android面试之线程和线程池</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Android中的线程形态"><a href="#Android中的线程形态" class="headerlink" title="Android中的线程形态"></a>Android中的线程形态</h4><ol>
+<li><p>AsyncTask<br>底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。</p>
+<p>AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加载，否则同一个进程中的AsyncTask都无法正常工作。</p>
+<blockquote>
+<p>注意：从Android 3.0开始，默认情况下AsyncTask是串行执行的。但在Android 3.0之前是并行执行的。  </p>
+</blockquote>
+</li>
+<li><p>IntentService<br>底层直接使用了线程，IntentService是一个服务，系统对其进行了封装使其可以更方便地执行后台任务，IntentService内部采用HandlerThread来执行任务，当任务执行完毕后IntentService会自动退出。</p>
+<p>特殊的Service，它继承了Service并且它是抽象类。IntentService可用于执行后台耗时的任务，当任务执行后它会自动停止，同时由于IntentService是服务的原因，这导致他的优先级比单纯的线程要高很多，所以IntentService比较适合执行一些高优先级的后台任务。</p>
+</li>
+<li><p>HandlerThread<br>底层直接使用了线程，HandlerThread是一中消息循环的线程，在它的内部可以使用Handler。  </p>
+<p>HandlerThread继承了Thread，它是一种可以使用Handler的Thread，它的实现很简单，就在run方法中通过Looper.prepare()来创建消息队列，并通过Looper.loop()来开启消息循环，这样在实际的使用中就允许在HandlerThread中创建Handler。</p>
+</li>
+</ol>
+<h4 id="Android中的线程池"><a href="#Android中的线程池" class="headerlink" title="Android中的线程池"></a>Android中的线程池</h4><ol>
+<li><p>线程池的优点：</p>
+<ul>
+<li>重用线程池中的线程，避免因为线程的创建和销毁所带来的性能开销。</li>
+<li>能有效控制线程池中的最大并发数，避免大量的线程之间因为互相抢占系统资源而导致的阻塞现象。</li>
+<li>能够对线程进行简单的管理，并提供定时执行以及指定间隔循环执行等功能。</li>
+</ul>
+</li>
+<li><p>Android中的线程池的概念来源于Java中的Executor，Executor是一个接口，真正的线程池的实现为ThreadPoolExecutor。</p>
+<p>ThreadPoolExecutor提供一系列参数来配置线程池，通过不同的参数可以创建不同的线程池，从线程池的功能特性来说，线程池主要分为4类。</p>
+<p>ThreadPoolExecutor执行任务时大致遵循以下规则：</p>
+<ul>
+<li>如果线程池中的线程数量未达到核心线程的数量，那么会直接启动一个核心线程来执行任务。</li>
+<li>如果线程中的线程数量已经达到或者超过核心线程的数量，那么任务会被插入到任务队列中排队等待执行。</li>
+<li>如果在步骤2中无法将任务插入到任务队列中，这往往是由于任务队列已经满了， 这个时候如果线程数量未达到线程池规定的最大值，那么会立刻启动一个非核心线程来执行任务。</li>
+<li>如果步骤3的中线程数量已经达到线程池规定的最大值，那么就拒绝执行此任务，ThreadPoolExecutor会调用RejectedExecutionHandler的rejectedExecution方法来通知调用者。</li>
+</ul>
+</li>
+<li>线程池主要有4类：<ul>
+<li>FixThreadPool：这是一种线程数量固定的线程池，当线程处于空闲的时候，并不会被回收，除非线程池被关闭了。</li>
+<li>CachedThreadPool：这是一种线程数量不定的线程池，它只有非核心线程，并且最大线程数为Integer.MAX_VALUE。</li>
+<li>ScheduledThreadPool：它的核心线程数量是固定的，而非核心线程数是没有限制的，并且当非核心线程闲置时会被立即回收。</li>
+<li>SingleThreadExecutor：这类线程池内部只有一个核心线程，它确保所有的任务都在同一个线程中按顺序执行。</li>
+</ul>
+</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/ali_pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wchat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -351,133 +272,126 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/06/Android面试之线程和线程池/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/Android面试总结之缓存/" class="archive-article-date">
-  	<time datetime="2017-03-02T09:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android细节问题-——-有了Intent，为什么还要有Bundle？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/02/Android面试总结之缓存/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android面试总结之缓存</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/Android面试总结之缓存/">Android面试总结之缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android、面试笔试分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Android中的线程形态"><span class="toc-number">1.</span> <span class="toc-text">Android中的线程形态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Android中的线程池"><span class="toc-number">2.</span> <span class="toc-text">Android中的线程池</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/Android面试总结之接口维护（版本控制）/" class="archive-article-date">
-  	<time datetime="2017-03-02T08:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/Android面试总结之接口维护（版本控制）/">Android面试总结之接口维护（版本控制）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android、面试笔试分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
-  	<time datetime="2017-02-07T03:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/Android-——-项目坑总结/">Android-——-项目坑总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -500,8 +414,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

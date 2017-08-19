@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | FeelsChaotic</title>
+  <title>Android面试总结之接口维护（版本控制） | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端,设计模式,面试笔试分享,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FeelsChaotic">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  处理方法一、 客户端做兼容，接">
+<meta name="keywords" content="Android、面试笔试分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android面试总结之接口维护（版本控制）">
+<meta property="og:url" content="http://yoursite.com/2017/03/02/Android面试总结之接口维护（版本控制）/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
+<meta property="og:description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  处理方法一、 客户端做兼容，接">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-202e7e6133579549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-3e0112e31dc00261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-19T14:22:57.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FeelsChaotic">
+<meta name="twitter:title" content="Android面试总结之接口维护（版本控制）">
+<meta name="twitter:description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  处理方法一、 客户端做兼容，接">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3167794-202e7e6133579549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -158,264 +165,108 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android面试总结之接口维护（版本控制）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/" class="archive-article-date">
-  	<time datetime="2017-07-24T08:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/">Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_DISPLAY)</a>
+    <h1 class="article-title" itemprop="name">
+      Android面试总结之接口维护（版本控制）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/" class="archive-article-date">
-  	<time datetime="2017-07-20T03:43:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/">Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/19/Android-——-输入手机号时自动添加空白（全情况考虑）/" class="archive-article-date">
-  	<time datetime="2017-05-19T02:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/19/Android-——-输入手机号时自动添加空白（全情况考虑）/">Android-——-输入手机号时自动添加空白（全情况考虑）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/" class="archive-article-date">
-  	<time datetime="2017-03-08T09:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/">Android细节问题-——-有了Intent，为什么还要有Bundle？</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/06/Android面试之线程和线程池/" class="archive-article-date">
-  	<time datetime="2017-03-06T09:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/06/Android面试之线程和线程池/">Android面试之线程和线程池</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android、面试笔试分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/Android面试总结之缓存/" class="archive-article-date">
-  	<time datetime="2017-03-02T09:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/Android面试总结之缓存/">Android面试总结之缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Android、面试笔试分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/02/Android面试总结之接口维护（版本控制）/" class="archive-article-date">
+        
+        <a href="/2017/03/02/Android面试总结之接口维护（版本控制）/" class="archive-article-date">
   	<time datetime="2017-03-02T08:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/02/Android面试总结之接口维护（版本控制）/">Android面试总结之接口维护（版本控制）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。<br>有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。<br>就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。</p>
+</blockquote>
+<h5 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h5><h5 id="一、-客户端做兼容，接口不用做兼容"><a href="#一、-客户端做兼容，接口不用做兼容" class="headerlink" title="一、 客户端做兼容，接口不用做兼容"></a>一、 客户端做兼容，接口不用做兼容</h5><ol>
+<li><p><strong>APP强制更新（不建议）</strong><br>接口URL：api.xxx.com/v1.0/xxxx.java<br>接口的URL中加入版本号，如上：v1.0。<br>采用灰度服务器 部署正在审核中的 接口版本（如：v1.1）。等审核通过后，将老版本的APP设置强制更新，然后把线上服务器重新部署上最新的代码，再去掉灰度服务器。这样APP接口全部访问正式的线上服务器。</p>
+</li>
+<li><p><strong>热更新</strong><br>紧急的小需求可以用热更新，大的需求建议还是用原生的代码，因为你用热更新修改完（用JS或Lua），最后还要在原生代码里修改。<br>网游用热更新的比较多，因为网游的APP太大，不可能加个小关卡 就要求用户重新下载，并且游戏更新比企业级APP更频繁，用热更新可以不断新加关卡、场景、活动推广。  </p>
+</li>
+<li><strong>React Native 和Weex</strong><br>没接触过 可以自己了解</li>
+</ol>
+<h5 id="二、-服务端做版本兼容"><a href="#二、-服务端做版本兼容" class="headerlink" title="二、 服务端做版本兼容"></a>二、 服务端做版本兼容</h5><ol>
+<li><strong>App 请求服务器接口的时候携带接口版本字段</strong><br>服务器根据接口版本调用相应的方法，每个接口逻辑里 加if 判断（不推荐）<br>接口URL：api.xxx.com/api?version=v1&amp;..<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (version == ‘1.5.0’) &#123;</div><div class="line">　　//do_something</div><div class="line">&#125; else if (version ==‘1.4.0&apos;) &#123;</div><div class="line">　　//do_something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>不同版本的逻辑都在一个方法里，在于容易造成代码混乱，不利于维护。</p>
+<ol>
+<li><p><strong>一个版本一个文件</strong><br>相当于每个接口版本都是一个独立的项目。放到服务器的独立文件夹里。使用什么版本接口写到客户端配置里面或者通过一个接口获取就行。<br>例：<br>1.0版本：<a href="http://x.x.x.x:xx/xxapi/v1.0/xxx" target="_blank" rel="external">http://x.x.x.x:xx/xxapi/v1.0/xxx</a><br>1.2版本：<a href="http://x.x.x.x:xx/xxapi/v1.2/xxx" target="_blank" rel="external">http://x.x.x.x:xx/xxapi/v1.2/xxx</a><br>文件夹位置：Controller/V1.0/<br>—————–/xxxx.php<br>文件夹位置：Controller/V1.2/<br>—————–/xxxx.php<br>优点：版本逻辑分开维护。看url就能知道哪个版本。删除多余版本 不用修改代码。<br>缺点：同个接口不同版本 文件是重复的。并且 如果有个接口前几版就有问题，一直遗留到现在，就需要改好几套一样的代码。</p>
+</li>
+<li><p><strong>token代替版本号</strong><br><img src="http://upload-images.jianshu.io/upload_images/3167794-202e7e6133579549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/3167794-3e0112e31dc00261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>几个要点：<br>a. 客户端发送请求时token是固定不变的，使用token间接的标记请求的接口版本。<br>b. server保存了token和对应接口的版本号，请求来了之后会先根据这个寻找对应的接口版本。<br>c. 每个目录对应一个版本，根据请求的接口读取对应目录下的接口配置文件，找到最终要执行的具体接口。<br>例如：<a href="http://xxxx.xxxx.com/module/controller/list?token=6918b5e0567c7d47314c10ed413e3f95" target="_blank" rel="external">http://xxxx.xxxx.com/module/controller/list?token=6918b5e0567c7d47314c10ed413e3f95</a> 这个请求最终会打到listv2这个接口。<br>d. 这样就可以在服务端灵活的配置接口了，客户端只要每次请求的时候带上默认的token参数，就可以得到自己想要的了，完全不需要关心版本的问题。</p>
+</li>
+<li><p><strong>继承的方式</strong><br>ControllerV1<br>ControllerV2 extends ControllerV1<br>采用继承的方式，既可以利用之前的接口代码，又可以采用override的方式修改部分接口的实现。<br>缺点：如果上个版本（也就是父类）修改了代码，就会影响后面的所有版本。  </p>
+</li>
+<li><p><strong>不同版本使用不同的域名/不同服务器</strong><br>不同版本不同分支，部署在不同的服务器上。如果某个版本用不到了，直接干掉服务就好了。<br>例如我现在的API要从1.x升到不兼容的2.0版本了，那就给当前的发布分支打个Tag。等哪天1.x版的API需要fix bug，就能很简单地从这个Tag切一个1.x的分支出来fix bug后进行测试发布，而且这个分支不会合并到任何分支，所以不会影响其他版本。<br>优点：部署的过程不会影响其他版本api的使用，并且可以减轻单台服务器的负担。<br>缺点：如果2.0也有同样bug的话，也要在2.0分支上改一遍。如果版本很多的话，工作量大。所以呢，一般不会同时发布两个以上的版本。另外，如果要兼容过多的版本，服务器也需要够多才行。同时，因为老版本的人用的少，也就是有的服务器访问量很少，有的服务器访问量很多。不能真正的负载均衡，浪费了服务器资源。</p>
+</li>
+</ol>
+<p>最后做下版本使用监控。当观察到所有用户都使用新版本的客户端的时候，并保持一段时间的时候。放弃对老版本的维护，继而下掉老版本的资源。</p>
+<hr>
+<h4 id="版本更新"><a href="#版本更新" class="headerlink" title="版本更新"></a>版本更新</h4><p>开启APP-&gt;请求初始化接口-&gt;检测是否需要更新? 否-&gt;首页Or 是-&gt;更新  </p>
+<p>在初始化接口的时候，需要客户端发送几个数据：</p>
+<pre><code>app_id            客户端id，比如： 1，安卓手机 2，iphone手机
 
-        <div class="article-info info-on-right">
-          
+version_id        大版本号id
+
+version_mini      小版本号id
+
+did               用户客户端信息（客户端工程师会获取这个数据）
+
+encrypt_did       did加密后的字符串（did 加上 APP设备数据表中的key，然后md5）
+</code></pre><p>数据库方面：需要两张表。一张是记录升级版本信息的表，记录着设备的id，版本号信息，下载地址等。另外一张表是记录的设备的信息，比如安卓手机的信息，版本信息表中有一个外键app_id，关联的就是设备信息表的主键。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//设备信息表，记录了各种客户端的信息</div><div class="line">  CREATE TABLE IF NOT EXISTS `app_table` (</div><div class="line">    `app_id` smallint(6) NOT NULL AUTO_INCREMENT COMMENT &apos;主键&apos;,</div><div class="line">    `name` varchar(10) NOT NULL COMMENT &apos;设备名称&apos;,</div><div class="line">    `is_encryption` tinyint(1) NOT NULL COMMENT &apos;是否加密&apos;,</div><div class="line">    `key` varchar(10) NOT NULL COMMENT &apos;加密key&apos;,</div><div class="line">    `image_size` text NOT NULL COMMENT &apos;按照json来存储&apos;,</div><div class="line">    `create_time` int(11) NOT NULL COMMENT &apos;添加时间&apos;,</div><div class="line">    `update_time` int(11) NOT NULL COMMENT &apos;修改时间&apos;,</div><div class="line">    `status` tinyint(1) NOT NULL COMMENT &apos;状态 1正常0删除&apos;,</div><div class="line">    PRIMARY KEY (`app_id`)</div><div class="line">  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT=&apos;app设备表&apos; AUTO_INCREMENT=2 ;</div><div class="line">  </div><div class="line">  //版本升级信息表，存放了各种版本的信息</div><div class="line">  CREATE TABLE IF NOT EXISTS `version_upgrade` (</div><div class="line">    `id` smallint(4) NOT NULL AUTO_INCREMENT COMMENT &apos;主键&apos;,</div><div class="line">    `app_id` smallint(4) NOT NULL COMMENT &apos;客户端设备id&apos;,</div><div class="line">    `version_id` smallint(4) NOT NULL COMMENT &apos;大版本号id&apos;,</div><div class="line">    `version_mini` mediumint(8) NOT NULL COMMENT &apos;小版本号&apos;,</div><div class="line">    `version_code` varchar(10) NOT NULL COMMENT &apos;版本标识1.2&apos;,</div><div class="line">    `type` tinyint(4) NOT NULL COMMENT &apos;是否升级1是0否&apos;,</div><div class="line">    `apk_url` varchar(255) NOT NULL COMMENT &apos;下载链接地址&apos;,</div><div class="line">    `upgrade_point` varchar(255) NOT NULL COMMENT &apos;升级提示&apos;,</div><div class="line">    `status` tinyint(4) NOT NULL,</div><div class="line">    `create_time` int(11) NOT NULL COMMENT &apos;添加时间&apos;,</div><div class="line">    `update_time` int(11) NOT NULL COMMENT &apos;修改时间&apos;,</div><div class="line">    PRIMARY KEY (`id`)</div><div class="line">  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT=&apos;软件升级信息表&apos; AUTO_INCREMENT=2 ;</div></pre></td></tr></table></figure></p>
+<p>通过app的版本信息与服务器信息对比，看是否要进行版本升级</p>
+<blockquote>
+<p>参考文章<br><a href="http://www.cnblogs.com/dahe007/p/6255401.html" target="_blank" rel="external">http://www.cnblogs.com/dahe007/p/6255401.html</a><br><a href="https://my.oschina.net/woshixiaomayi/blog/519783" target="_blank" rel="external">https://my.oschina.net/woshixiaomayi/blog/519783</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/ali_pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wchat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -427,57 +278,126 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/02/Android面试总结之接口维护（版本控制）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
-  	<time datetime="2017-02-07T03:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/03/02/Android面试总结之缓存/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android面试总结之缓存
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/07/Android-——-项目坑总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android-——-项目坑总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/Android-——-项目坑总结/">Android-——-项目坑总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#处理方法"><span class="toc-number">1.</span> <span class="toc-text">处理方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#一、-客户端做兼容，接口不用做兼容"><span class="toc-number">2.</span> <span class="toc-text">一、 客户端做兼容，接口不用做兼容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、-服务端做版本兼容"><span class="toc-number">3.</span> <span class="toc-text">二、 服务端做版本兼容</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#版本更新"><span class="toc-number"></span> <span class="toc-text">版本更新</span></a>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -500,8 +420,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
