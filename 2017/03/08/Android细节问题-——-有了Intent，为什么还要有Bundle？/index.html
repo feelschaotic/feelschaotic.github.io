@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/08/Android细节问题-——-有了Intent，为什么还要有Bundle？/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
 <meta property="og:description" content="Intent本身就可以传递参数（Intent.putExtra(“key”, value)）为何还要用Bundle呢？  两者比较 Bundle只是一个信息的载体，内部其实就是维护了一个Map。  Intent负责Activity之间的交互，内部是持有一个Bundle的。  putExtra()方法的源码 1234567public Intent putExtra(String name, bo">
-<meta property="og:updated_time" content="2017-08-06T10:51:21.621Z">
+<meta property="og:updated_time" content="2017-08-20T04:27:18.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android细节问题-——-有了Intent，为什么还要有Bundle？">
 <meta name="twitter:description" content="Intent本身就可以传递参数（Intent.putExtra(“key”, value)）为何还要用Bundle呢？  两者比较 Bundle只是一个信息的载体，内部其实就是维护了一个Map。  Intent负责Activity之间的交互，内部是持有一个Bundle的。  putExtra()方法的源码 1234567public Intent putExtra(String name, bo">
@@ -197,6 +197,7 @@ var _hmt = _hmt || [];
 </ul>
 </li>
 </ol>
+<a id="more"></a>
 <h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
 <li><p>例1：<br>从A界面跳转到B界面或者C界面<br>这样的话 我就需要写2个Intent  如果你还要涉及的传值的话 你的Intent就要写两遍添加值的方法。那么，如果我用1个Bundle，直接先存值，然后再存到Intent中 不就更简洁吗？</p>
 </li>

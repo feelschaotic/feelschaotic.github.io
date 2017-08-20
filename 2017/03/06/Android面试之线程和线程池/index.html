@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/06/Android面试之线程和线程池/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
 <meta property="og:description" content="Android中的线程形态 AsyncTask底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。 AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加">
-<meta property="og:updated_time" content="2017-08-19T14:42:19.598Z">
+<meta property="og:updated_time" content="2017-08-20T04:27:59.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试之线程和线程池">
 <meta name="twitter:description" content="Android中的线程形态 AsyncTask底层用到了线程池。AsyncTask封装了线程池和Handler，它主要是为了方便开发者在子线程中更新UI。 AsyncTask内的Handler是一个静态的Handler对象，为了能够将执行环境切换到主线程，这就要求Handler这个对象必须在主线程中创建。由于静态成员会在加载类的时候进行初始化，因此这就变相要求AsyncTask的类必须在主线程中加">
@@ -196,6 +196,7 @@ var _hmt = _hmt || [];
 <p>HandlerThread继承了Thread，它是一种可以使用Handler的Thread，它的实现很简单，就在run方法中通过Looper.prepare()来创建消息队列，并通过Looper.loop()来开启消息循环，这样在实际的使用中就允许在HandlerThread中创建Handler。</p>
 </li>
 </ol>
+<a id="more"></a>  
 <h4 id="Android中的线程池"><a href="#Android中的线程池" class="headerlink" title="Android中的线程池"></a>Android中的线程池</h4><ol>
 <li><p>线程池的优点：</p>
 <ul>

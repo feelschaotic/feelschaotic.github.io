@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常 | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前提：明明已经签名，在安装时却提示 INSTALL_PARSE_FAILED_NO_CERTIFICATES 异常   排查： 安装的测试机系统为 5.0，只采用了 v2 签名 解决： 改为安装在 7.0 手机或者选择 v1 + v2 签名。 原因：  在 Android 7.0 以上版本的设备上，APK 可以根据Full Apk Signature（v2 方案） 或者 JAR-signed（">
+  <meta name="description" content="前提：明明已经签名，在安装时却提示 INSTALL_PARSE_FAILED_NO_CERTIFICATES 异常   排查： 安装的测试机系统为 5.0，只采用了 v2 签名">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常">
 <meta property="og:url" content="http://yoursite.com/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
-<meta property="og:description" content="前提：明明已经签名，在安装时却提示 INSTALL_PARSE_FAILED_NO_CERTIFICATES 异常   排查： 安装的测试机系统为 5.0，只采用了 v2 签名 解决： 改为安装在 7.0 手机或者选择 v1 + v2 签名。 原因：  在 Android 7.0 以上版本的设备上，APK 可以根据Full Apk Signature（v2 方案） 或者 JAR-signed（">
+<meta property="og:description" content="前提：明明已经签名，在安装时却提示 INSTALL_PARSE_FAILED_NO_CERTIFICATES 异常   排查： 安装的测试机系统为 5.0，只采用了 v2 签名">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-6b4e49bade94fed1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-ae621be14c406309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-74f969787e7d154a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-19T14:18:44.392Z">
+<meta property="og:updated_time" content="2017-08-20T04:28:14.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常">
-<meta name="twitter:description" content="前提：明明已经签名，在安装时却提示 INSTALL_PARSE_FAILED_NO_CERTIFICATES 异常   排查： 安装的测试机系统为 5.0，只采用了 v2 签名 解决： 改为安装在 7.0 手机或者选择 v1 + v2 签名。 原因：  在 Android 7.0 以上版本的设备上，APK 可以根据Full Apk Signature（v2 方案） 或者 JAR-signed（">
+<meta name="twitter:description" content="前提：明明已经签名，在安装时却提示 INSTALL_PARSE_FAILED_NO_CERTIFICATES 异常   排查： 安装的测试机系统为 5.0，只采用了 v2 签名">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3167794-6b4e49bade94fed1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
   
@@ -192,6 +192,7 @@ var _hmt = _hmt || [];
 <p><img src="http://upload-images.jianshu.io/upload_images/3167794-6b4e49bade94fed1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="安装失败情形"></p>
 <p>排查：</p>
 <p>安装的测试机系统为 5.0，只采用了 v2 签名</p>
+<a id="more"></a>
 <p>解决：</p>
 <p>改为安装在 7.0 手机或者选择 v1 + v2 签名。</p>
 <p>原因：</p>

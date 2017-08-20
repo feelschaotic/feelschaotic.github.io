@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
 <meta property="og:description" content="前提：WebView在 Android 5.1 测试机上正常显示，在 Android 7.0 上无法显示，一直 loading 。（注：url 为 htts 协议）  考虑到验证码的 Webview 和 Listener 都是自己重写，可能漏掉了什么，果然在细细翻看官方源码的时候，发现了 WebViewClient 多复写了 onReceivedSslError 监听，初步判断是遇到证书问题。">
-<meta property="og:updated_time" content="2017-08-19T14:17:15.626Z">
+<meta property="og:updated_time" content="2017-08-20T04:27:26.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_DISPLAY)">
 <meta name="twitter:description" content="前提：WebView在 Android 5.1 测试机上正常显示，在 Android 7.0 上无法显示，一直 loading 。（注：url 为 htts 协议）  考虑到验证码的 Webview 和 Listener 都是自己重写，可能漏掉了什么，果然在细细翻看官方源码的时候，发现了 WebViewClient 多复写了 onReceivedSslError 监听，初步判断是遇到证书问题。">
@@ -187,6 +187,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>考虑到验证码的 Webview 和 Listener 都是自己重写，可能漏掉了什么，果然在细细翻看官方源码的时候，发现了 WebViewClient 多复写了 onReceivedSslError 监听，初步判断是遇到证书问题。</p>
 <p>解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebViewClient(new WebViewClient() &#123;</div><div class="line">           @Override</div><div class="line">           public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) &#123;</div><div class="line">               handler.proceed(); // Ignore SSL certificate errors</div><div class="line">           // fix for: SSL Error. Failed to validate the certificate chain </div><div class="line">           //不要调用super.xxxx</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>原因：</p>
 <p>在 Android 中，WebView 可以用来加载 http 和 https 网页到本地应用的控件。在默认情况下，通过 <code>loadUrl(String url)</code> 方法，可以顺利  <code>loadUrl(&quot;http://www.baidu.com&quot;)</code>之类的页面。但是，当 load 通过 ssl 加密的 https 页面，且这个网站的安全证书在 Android 无法得到认证时，WebView就会变成一个空白页，而并不会像自带的浏览器一样弹出提示。因此，我们必须针对这种情况进行处理。</p>
 <p>拓展：</p>

@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Android面试总结之接口维护（版本控制） | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  处理方法一、 客户端做兼容，接">
+  <meta name="description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。">
 <meta name="keywords" content="Android,面试笔试分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android面试总结之接口维护（版本控制）">
 <meta property="og:url" content="http://yoursite.com/2017/03/02/Android面试总结之接口维护（版本控制）/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
-<meta property="og:description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  处理方法一、 客户端做兼容，接">
+<meta property="og:description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-202e7e6133579549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-3e0112e31dc00261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-19T14:42:41.618Z">
+<meta property="og:updated_time" content="2017-08-20T04:27:39.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试总结之接口维护（版本控制）">
-<meta name="twitter:description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  处理方法一、 客户端做兼容，接">
+<meta name="twitter:description" content="一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3167794-202e7e6133579549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
   
@@ -186,8 +186,9 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。<br>有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。<br>就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。</p>
+<p>一般情况下，APP中会有大量的接口，再加上版本的变化，接口的升级，可能会衍生出很多个稍有差异的接口，这个时候接口如果维护的不好，后边会乱为一锅粥，客户端不同版本使用不同的接口名（xxxv1,xxxv2,xxxv3…..）。<br>有的公司每次发布完APP，就强制用户更新。不推荐这样，用户体验太差。<br>就算是强制更新，在苹果审核期间，新的APP接口和老的接口也必须能同时使用。  </p>
 </blockquote>
+<a id="more"></a>
 <h5 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h5><h5 id="一、-客户端做兼容，接口不用做兼容"><a href="#一、-客户端做兼容，接口不用做兼容" class="headerlink" title="一、 客户端做兼容，接口不用做兼容"></a>一、 客户端做兼容，接口不用做兼容</h5><ol>
 <li><p><strong>APP强制更新（不建议）</strong><br>接口URL：api.xxx.com/v1.0/xxxx.java<br>接口的URL中加入版本号，如上：v1.0。<br>采用灰度服务器 部署正在审核中的 接口版本（如：v1.1）。等审核通过后，将老版本的APP设置强制更新，然后把线上服务器重新部署上最新的代码，再去掉灰度服务器。这样APP接口全部访问正式的线上服务器。</p>
 </li>

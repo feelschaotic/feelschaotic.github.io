@@ -17,7 +17,7 @@
 <meta property="og:description" content="引入程序中除了图片缓存（三级缓存），还有信息缓存。当用户无法联网时，app会默认显示缓存的数据。 缓存方式 SQLite下载完数据文件后，把文件的相关信息如url，路经，下载时间，过期时间等存放到数据库，把url作为唯一的标识。下次下载的时候根据url先从数据库中查询，如果查询到当前时间并未过期，就根据路径读取本地文件，从而实现缓存的效果。    文件缓存使用File.lastModified()">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-efc0f5b183b53a39?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-607be40d1b32a620?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-19T14:42:34.132Z">
+<meta property="og:updated_time" content="2017-08-20T04:27:48.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android面试总结之缓存">
 <meta name="twitter:description" content="引入程序中除了图片缓存（三级缓存），还有信息缓存。当用户无法联网时，app会默认显示缓存的数据。 缓存方式 SQLite下载完数据文件后，把文件的相关信息如url，路经，下载时间，过期时间等存放到数据库，把url作为唯一的标识。下次下载的时候根据url先从数据库中查询，如果查询到当前时间并未过期，就根据路径读取本地文件，从而实现缓存的效果。    文件缓存使用File.lastModified()">
@@ -192,6 +192,7 @@ var _hmt = _hmt || [];
 <li><p>文件缓存<br>使用File.lastModified()方法得到文件的最后修改时间，与当前时间判断是否过期，从而实现缓存效果。数据格式为JSON。  </p>
 </li>
 </ul>
+<a id="more"></a>
 <blockquote>
 <p>缓存方式两点说明</p>
 <ol>
