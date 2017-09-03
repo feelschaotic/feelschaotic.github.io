@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/2 | FeelsChaotic</title>
+  <title>Tag: Java | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="前端,设计模式,面试笔试分享,开发者,极客,编程,代码,开源,IT网站,Kotlin,Android,Coder,用户体验">
 <meta property="og:type" content="website">
 <meta property="og:title" content="FeelsChaotic">
-<meta property="og:url" content="http://yoursite.com/archives/2017/02/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Java/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FeelsChaotic">
@@ -160,90 +160,63 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Android-——-项目坑总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/07/13/Kotlin-和Java的型变/" class="archive-article-date">
+  	<time datetime="2017-07-13T07:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/Android-——-项目坑总结/">Android-——-项目坑总结</a>
+      <a class="archive-article-title" href="/2017/07/13/Kotlin-和Java的型变/">Kotlin 和Java的型变</a>
     </h1>
   
 
-        
-        <a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
-  	<time datetime="2017-02-07T03:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><ul>
-<li>需求：定时任务 </li>
-<li>处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。</li>
-<li>原因：<br>在官方文档中指出， <code>AsyncTasks should ideally be used for short operations</code>， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.0之后， 默认情况下， 同一时间只能有一个AsyncTask在运行， 也就是说所有的task都是串行运行的。所以如果某个task执行时间很长， 会导致后面的task长时间等待， 当然也可以通过调<code>executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)</code>， 可以同时运行5个Task。<br>如果最大同时运行5个Task不能满足要求，就要自己使用线程池了。  </li>
-</ul>
-</li>
-</ol>
-        
-          <a class="article-more-a" href="/2017/02/07/Android-——-项目坑总结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/07/Android-——-项目坑总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
+    </div></section>
+  
+
+    
+
 
           </div>
         </div>
@@ -266,8 +239,8 @@ var _hmt = _hmt || [];
 		mathjax: false,
 		isHome: false,
 		isPost: false,
-		isArchive: true,
-		isTag: false,
+		isArchive: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,

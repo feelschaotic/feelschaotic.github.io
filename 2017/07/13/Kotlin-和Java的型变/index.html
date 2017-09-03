@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/2 | FeelsChaotic</title>
+  <title>Kotlin 和Java的型变 | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端,设计模式,面试笔试分享,开发者,极客,编程,代码,开源,IT网站,Kotlin,Android,Coder,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FeelsChaotic">
-<meta property="og:url" content="http://yoursite.com/archives/2017/02/index.html">
+  <meta name="description" content="1. Java 的型变如果 Parent 是 Child 的父类，那么 List&amp;lt;Parent&amp;gt; 和List&amp;lt;Child&amp;gt; 的关系是什么呢？对于 Java 来说，没有关系。">
+<meta name="keywords" content="Java,Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 和Java的型变">
+<meta property="og:url" content="http://yoursite.com/2017/07/13/Kotlin-和Java的型变/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
+<meta property="og:description" content="1. Java 的型变如果 Parent 是 Child 的父类，那么 List&amp;lt;Parent&amp;gt; 和List&amp;lt;Child&amp;gt; 的关系是什么呢？对于 Java 来说，没有关系。">
+<meta property="og:updated_time" content="2017-09-03T09:00:10.599Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FeelsChaotic">
+<meta name="twitter:title" content="Kotlin 和Java的型变">
+<meta name="twitter:description" content="1. Java 的型变如果 Parent 是 Child 的父类，那么 List&amp;lt;Parent&amp;gt; 和List&amp;lt;Child&amp;gt; 的关系是什么呢？对于 Java 来说，没有关系。">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -158,41 +162,95 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Android-——-项目坑总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Kotlin-和Java的型变" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/Android-——-项目坑总结/">Android-——-项目坑总结</a>
+    <h1 class="article-title" itemprop="name">
+      Kotlin 和Java的型变
     </h1>
   
 
         
-        <a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
-  	<time datetime="2017-02-07T03:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+        <a href="/2017/07/13/Kotlin-和Java的型变/" class="archive-article-date">
+  	<time datetime="2017-07-13T07:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><ul>
-<li>需求：定时任务 </li>
-<li>处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。</li>
-<li>原因：<br>在官方文档中指出， <code>AsyncTasks should ideally be used for short operations</code>， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.0之后， 默认情况下， 同一时间只能有一个AsyncTask在运行， 也就是说所有的task都是串行运行的。所以如果某个task执行时间很长， 会导致后面的task长时间等待， 当然也可以通过调<code>executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)</code>， 可以同时运行5个Task。<br>如果最大同时运行5个Task不能满足要求，就要自己使用线程池了。  </li>
-</ul>
-</li>
-</ol>
-        
-          <a class="article-more-a" href="/2017/02/07/Android-——-项目坑总结/#more">more >></a>
-        
+        <h3 id="1-Java-的型变"><a href="#1-Java-的型变" class="headerlink" title="1. Java 的型变"></a>1. Java 的型变</h3><p>如果 Parent 是 Child 的父类，那么 <code>List&lt;Parent&gt;</code> 和<code>List&lt;Child&gt;</code> 的关系是什么呢？对于 Java 来说，没有关系。<br><a id="more"></a><br>也就是说下面的代码是无法编译的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;Number&gt; numbers = new ArrayList&lt;Integer&gt;(); //ERROR!</div></pre></td></tr></table></figure>
+<p>不过 numbers 中可以添加 Number 类型的对象，所以我添加个 Integer 可以不呢？可以的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">numbers.add(1);</div></pre></td></tr></table></figure></p>
+<p>那么我要想添加一堆 Integer 呢？用 addAll 是吧？注意看下 addAll 的签名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">boolean addAll(Collection&lt;? extends E&gt; c);</div></pre></td></tr></table></figure></p>
+<p>这个泛型参数又是什么鬼？如果我把这个签名写成下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">boolean addAll(Collection&lt;E&gt; c);</div></pre></td></tr></table></figure></p>
+<p>我想要在 numbers 当中<code>addAll</code> 一个 <code>ArrayList&lt;Integer&gt;</code>，那就不可能了，因为我们说过，<code>ArrayList&lt;Number&gt;</code> 和 <code>ArrayList&lt;Integer&gt;</code>是两个不同的类型，毛关系都没有。</p>
+<p><code>? extends E</code> 其实就是使用点协变，允许传入的参数可以是泛型参数类型为<code>Number</code> 子类的任意类型。</p>
+<p>当然，也有 <code>? super E</code>的用法，这表示元素类型为<code>E</code> 及其父类，这个通常也叫作逆变。</p>
+<h3 id="2-Kotlin-的型变"><a href="#2-Kotlin-的型变" class="headerlink" title="2. Kotlin 的型变"></a>2. Kotlin 的型变</h3><blockquote>
+<p>型变包括协变、逆变、不变三种</p>
+</blockquote>
+<p>下面我们看看 Kotlin 是怎么支持这个特性的。Kotlin 支持声明点型变，我们直接看 Collection 接口的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Collection&lt;out E&gt; : Iterable&lt;E&gt; &#123; </div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>out E</code> 就是型变的定义，表明 Collection 的元素类型是协变的，即 <code>Collection&lt;Number&gt;</code> 也是 <code>Collection&lt;Int&gt;</code> 的父类。</p>
+<p>而对于 <code>MutableList</code> 来说，它的元素类型就是不变的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface MutableCollection&lt;E&gt; : Collection&lt;E&gt;, MutableIterable&lt;E&gt; &#123; </div><div class="line">   ... </div><div class="line">   public fun addAll(elements: Collection&lt;E&gt;): Boolean </div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>换言之，<code>MutableCollection&lt;Number&gt;</code> 与<code>MutableCollection&lt;Int&gt;</code> 没有什么关系。</p>
+<p>那么请注意看 addAll 的声明，参数是 <code>Collection&lt;E&gt;</code>，而 Collection 是协变的，所以传入的参数可以是任意 E 或者其子类的集合。</p>
+<p>逆变的写法也简单一些： <code>Collection&lt;in E&gt;</code>。</p>
+<p>那么 Kotlin 是否支持使用点型变呢？当然支持。</p>
+<p>我们刚才说 <code>MutableCollection</code> 是不变的，那么如果下面的参数改成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public fun addAll(elements: MutableCollection&lt;E&gt;): Boolean</div></pre></td></tr></table></figure>
+<p>结果就是，当 E 为 Number 时，addAll 无法接类受似<code>ArrayList&lt;Int&gt;</code>的参数。而为了接受这样的参数，我们可以修改一下签名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public fun addAll(elements: MutableCollection&lt;out E&gt;): Boolean</div></pre></td></tr></table></figure>
+<p>这其实就与 Java 的型变完全一致了。</p>
+<h3 id="3-UnsafeVariance"><a href="#3-UnsafeVariance" class="headerlink" title="3. @UnsafeVariance"></a>3. @UnsafeVariance</h3><p>型变是一个让人费解的话题，很多人接触这东西的时候一开始都会比较晕，我们来看看下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class MyCollection&lt;out T&gt;&#123; </div><div class="line">    fun add(t: T)&#123; // ERROR! </div><div class="line">       ... </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为什么会报错呢？因为 T 是协变的，所以外部传入的参数类型如果是 T 的话，会出问题，不信你看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var myList: MyCollection&lt;Number&gt; = MyCollection&lt;Int&gt;() </div><div class="line">myList.add(3.0)</div></pre></td></tr></table></figure></p>
+<p>上面的代码毫无疑问可以编译，但运行时就会比较尴尬，因为 <code>MyCollection&lt;Int&gt;</code> 希望接受的是 <code>Int</code>，没想到来了一个 <code>Double</code>。。</p>
+<p>对于协变的类型，通常我们是不允许将泛型类型作为传入参数的类型的，或者说，对于协变类型，我们通常是不允许其涉及泛型参数的部分被改变的。这也很容易解释为什么 MutableCollection 是不变的，而 Collection 是协变的，因为在 Kotlin 当中，前者是可被修改的，后者是不可被修改的。</p>
+<p>逆变的情形正好相反，即不可以将泛型参数作为方法的返回值。</p>
+<p>但实际上有些情况下，我们不得已需要在协变的情况下使用泛型参数类型作为方法参数的类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface Collection&lt;out E&gt; : Iterable&lt;E&gt; &#123; </div><div class="line">   ... </div><div class="line">    public operator fun contains(element: @UnsafeVariance E): Boolean </div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比如这种情形，为了让编译器放过一马，我们就可以用 @UnsafeVariance 来告诉编译器：“我知道我在干啥，保证不会出错，你不用担心”。</p>
+<p>最后再给大家提一个点，现在你们知道为什么 in 表示逆变，out 表示协变了吗？</p>
+<blockquote>
+<p>节选自：<a href="https://mp.weixin.qq.com/s/WUoanF3_OAP0dRoxBQu_bQ" target="_blank" rel="external">https://mp.weixin.qq.com/s/WUoanF3_OAP0dRoxBQu_bQ</a></p>
+</blockquote>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/ali_pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wchat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -203,7 +261,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
         		</li>
       		
 		</ul>
@@ -212,16 +274,84 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/07/Android-——-项目坑总结/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/13/Kotlin-和Java的型变/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/19/Android-——-输入手机号时自动添加空白（全情况考虑）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android-——-输入手机号时自动添加空白（全情况考虑）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -236,14 +366,32 @@ var _hmt = _hmt || [];
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java-的型变"><span class="toc-number">1.</span> <span class="toc-text">1. Java 的型变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Kotlin-的型变"><span class="toc-number">2.</span> <span class="toc-text">2. Kotlin 的型变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-UnsafeVariance"><span class="toc-number">3.</span> <span class="toc-text">3. @UnsafeVariance</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
   
+
 
           </div>
         </div>
@@ -265,8 +413,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
