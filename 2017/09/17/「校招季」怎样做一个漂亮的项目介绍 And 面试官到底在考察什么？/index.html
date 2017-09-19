@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Android-——-项目坑总结 | FeelsChaotic</title>
+  <title>「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？ | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="需求：定时任务  处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。 原因：在官方文档中指出， AsyncTasks should ideally be used for short operations， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.">
-<meta name="keywords" content="Android">
+  <meta name="description" content="为什么要重视项目介绍？你可以尝试着讲一遍你的项目经历。我第一次讲的时候就挺乱的，卡壳、专业词汇匮乏、逻辑混乱、用词不当、没有介绍到项目重点……">
+<meta name="keywords" content="校招,面试,项目介绍,系列文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android-——-项目坑总结">
-<meta property="og:url" content="http://yoursite.com/2017/02/07/Android-——-项目坑总结/index.html">
+<meta property="og:title" content="「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
-<meta property="og:description" content="需求：定时任务  处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。 原因：在官方文档中指出， AsyncTasks should ideally be used for short operations， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.">
-<meta property="og:updated_time" content="2017-08-20T04:27:08.127Z">
+<meta property="og:description" content="为什么要重视项目介绍？你可以尝试着讲一遍你的项目经历。我第一次讲的时候就挺乱的，卡壳、专业词汇匮乏、逻辑混乱、用词不当、没有介绍到项目重点……">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-8809ace0ffc907bf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-19T15:17:40.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android-——-项目坑总结">
-<meta name="twitter:description" content="需求：定时任务  处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。 原因：在官方文档中指出， AsyncTasks should ideally be used for short operations， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.">
+<meta name="twitter:title" content="「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？">
+<meta name="twitter:description" content="为什么要重视项目介绍？你可以尝试着讲一遍你的项目经历。我第一次讲的时候就挺乱的，卡壳、专业词汇匮乏、逻辑混乱、用词不当、没有介绍到项目重点……">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3167794-8809ace0ffc907bf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -162,59 +164,157 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Android-——-项目坑总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Android-——-项目坑总结
+      「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？
     </h1>
   
 
         
-        <a href="/2017/02/07/Android-——-项目坑总结/" class="archive-article-date">
-  	<time datetime="2017-02-07T03:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+        <a href="/2017/09/17/「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？/" class="archive-article-date">
+  	<time datetime="2017-09-17T12:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><ul>
-<li>需求：定时任务 </li>
-<li>处理：不能在service中循环调用 AsyncTask执行长时间任务，会造成堵塞。要改用Thread或CachedThreadPool线程池。</li>
-<li>原因：<br>在官方文档中指出， <code>AsyncTasks should ideally be used for short operations</code>， 就是说AsyncTask执行的任务应该是一些短时间内可以完成的任务， 因为在Android3.0之后， 默认情况下， 同一时间只能有一个AsyncTask在运行， 也就是说所有的task都是串行运行的。所以如果某个task执行时间很长， 会导致后面的task长时间等待， 当然也可以通过调<code>executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)</code>， 可以同时运行5个Task。<br>如果最大同时运行5个Task不能满足要求，就要自己使用线程池了。  </li>
-</ul>
-</li>
-</ol>
-<a id="more"></a>
+        <p><img src="http://upload-images.jianshu.io/upload_images/3167794-8809ace0ffc907bf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="为什么要重视项目介绍？"><a href="#为什么要重视项目介绍？" class="headerlink" title="为什么要重视项目介绍？"></a>为什么要重视项目介绍？</h4><p>你可以尝试着讲一遍你的项目经历。我第一次讲的时候就挺乱的，卡壳、专业词汇匮乏、逻辑混乱、用词不当、没有介绍到项目重点……<br><a id="more"></a></p>
+<p>项目经验面试在面试中占很大比重，面试官通过一些专业性的技术问题来了解你的技术水平，问题从哪来？要么来源于结构化面试题库（每个面试者的问题都一样，多出现在校招一面），要么，就是从你的简历中项目经验来。所以对项目整体而深入复习的重要性不言而喻。</p>
+<p>介绍项目时面试官会考察应聘者的沟通能力和思考能力，我们大部分情况都是做产品的一个功能或一个模块，但是即使是这样，自己有没有把整个系统架构或产品搞清楚，并能介绍清楚，为什么做这个系统？这个系统的价值是什么？这个系统有哪些功能？优缺点有哪些？如果让你重新设计这个系统你会如何设计？这些都是值得你好好思考的。</p>
+<h4 id="项目介绍思路"><a href="#项目介绍思路" class="headerlink" title="项目介绍思路"></a>项目介绍思路</h4><p>这部分技巧对简历上的项目介绍也是通用的。</p>
 <ol>
-<li><ul>
-<li>需求：加载大图防止内存溢出问题</li>
-<li>问题：decodeStream解析图片一直为null</li>
-<li>原因：Android 的一个bug，input 流不能用两次 可以把流转换成数组，然后再用<a href="http://blog.csdn.net/andypan1314/article/details/6670320" target="_blank" rel="external">该方法</a></li>
-</ul>
+<li><p>首先用一句话介绍这个项目做了什么，打个比方，我使用XX 框架实现了一个 XX</p>
 </li>
-<li><ul>
-<li>需求：科大讯飞语音转文字</li>
-<li>问题：<br>1.组件加载失败<br>解决：so包缺失<br>2.用户校验失败<br>解决：<code>libmsc.so</code>一定要用自己id下载的SDK，因为SDK和appid是绑定的，拷贝旧项目的so是不行的！</li>
-</ul>
+<li><p>主要功能  </p>
+<p> 挑亮点和创新点讲，细碎的功能点一句带过。 </p>
 </li>
-<li><ul>
-<li>问题：<code>mImageView.getDrawingCache()</code>取值为空</li>
-<li>解决：<br><code>setImageBitmap()/setImageDrawable</code>设置图片的方式才可以取到缓存<br><code>setImageResource</code>方法设置图片则缓存取值为null。<br>官方建议用<code>setImageDrawable</code>代替<code>setImageBitmap</code>，这样可以减少new的对象。实际上<code>setImageBitmap</code>方法就是把Bitmap对象封装成Drawable对象,然后调用setImageDrawable</li>
-</ul>
+<li><p>然后讲基本的实现：主要运用到的技术点有XXX。  </p>
+<p> （这里面试官从你介绍的技术点切入考察，所以要好好回顾复习项目中运用到的技术点细节。）</p>
 </li>
-<li><ul>
-<li>需求：文件传输</li>
-<li>问题：新文件发过来后在系统媒体库中找不到新文件记录，必须得重启才能更新</li>
-<li>解决：自己手动把新文件信息插入媒体库</li>
-</ul>
+<li><p>架构</p>
+<p>（面试官还会问一问为什么你选了这样的架构／方法来实现。）</p>
+</li>
+<li><p>我在项目中的角色</p>
+<p> 主要介绍项目中的职责和作用，是多面手 or 组长 or 技术 。这点主要凸显你的工作量和贡献率。</p>
 </li>
 </ol>
+<blockquote>
+<p>注：可以在简历上附上项目github地址，上传重点功能的演示 gif ，让面试官可以很直观地评估你的项目规模和难度。</p>
+</blockquote>
+<h4 id="面试官会考察些什么？"><a href="#面试官会考察些什么？" class="headerlink" title="面试官会考察些什么？"></a>面试官会考察些什么？</h4><p>知己知彼，摸清面试官心理，你才能有针对性去准备。</p>
+<h5 id="1-能力、技术"><a href="#1-能力、技术" class="headerlink" title="1. 能力、技术"></a>1. 能力、技术</h5><ul>
+<li><p>考察深度：深入了解哪个技术？</p>
+<p>整个项目中用到了哪些开源框架？他们的实现思路是什么？你看过他们的源码吗？你不仅仅是要会用开源库和第三方SDK，还需要知道实现原理和技术细节。不然一个都是第三方堆砌起来的App，问这个说不了解，用的第三方框架，问哪个说不了解，用的SDK，你还要面试官问什么？[摊手]</p>
+</li>
+<li><p>考察广度</p>
+<p>在进行技术选型的时候，你有过什么考虑，做过多少调查。详细地了解不同的工具/框架 思想的对比。最后是什么原因，你选定了这个技术。记住一句话：技术没有优劣，只有合不合适。功能点的实现方式有很多，往往选择的是最适合的。</p>
+<p>同时面试官可能会考察你是否关注产品数据，是否关注合理的工作流程，是否关注前后台交互时的相关知识和流程，是否关注测试自动化、持续集成等其他方面。</p>
+</li>
+</ul>
+<h5 id="2-潜力"><a href="#2-潜力" class="headerlink" title="2. 潜力"></a>2. 潜力</h5><ul>
+<li><p>做项目中怎么解决问题？</p>
+<p>主要展示自己解决问题的思路。  </p>
+</li>
+<li><p>举一反三的能力</p>
+<p>面试官会提出和项目技术类似的点，考察你是否能将新知识点联系到已学的技术，然后尝试解决它。</p>
+</li>
+<li><p>优化项目哪些部分</p>
+<p>面试官意在考察你的思考力和动手能力，开源库多多少少都会有坑，你是否在应用中排查出坑并且能埋坑。</p>
+</li>
+<li><p>如何快速学习项目需要的技术点</p>
+<p>首先，找资料顺序是：官网文档-&gt;权威书籍-&gt;google-&gt;StackOverflow-&gt;博客。其次，新技术的学习非常考验基础。打个比方，没学过RxJava，但是如果你知道设计模式的观察者模式，理解起来就很快。</p>
+</li>
+</ul>
+<h5 id="3-细节"><a href="#3-细节" class="headerlink" title="3. 细节"></a>3. 细节</h5><ul>
+<li><p>sdk的细节了解在哪里</p>
+<p>自己造轮子确实费时间，但是你又是否知道SDK做了哪些优化？</p>
+</li>
+<li><p>自定义控件优化</p>
+</li>
+<li><p>作品对比</p>
+<p>自己的项目有没有和市面上的竞品比较过，客观地评价下从别人的作品中学到了什么，基于此你有没有改进自己的作品？</p>
+</li>
+<li><p>算法</p>
+<p>主要是一些坑和解决思路、解决的灵感来源等，在项目中肯定会涉及到数据结构，比如缓存最近100条点击记录，超出100条则移除最早缓存的记录，自己实现。可能你会想到用队列或堆实现，那可以去看看缓存算法Lru算法的原理，用的什么容器，为什么这么设计？</p>
+</li>
+</ul>
+<h5 id="4-主动性"><a href="#4-主动性" class="headerlink" title="4. 主动性"></a>4. 主动性</h5><ul>
+<li>是否做过知识总结、知识沉淀？（这就是平时注重博客积累的好处了）</li>
+<li>是否实践过知识分享？</li>
+<li>是否主动给项目提出过意见或建议？</li>
+</ul>
+<h5 id="5-沟通能力"><a href="#5-沟通能力" class="headerlink" title="5. 沟通能力"></a>5. 沟通能力</h5><p>在面试的过程中，<strong>悄声无息进行的还有另一项考察 —— 沟通能力</strong>。想想自己面谈时是否能让面试官感觉舒服，是否能清晰表达自己的要点，是否能清晰表达自己未来的个人发展规划。可以尝试模拟面试录下音，看是否有过多的语气词表达出的不自信。</p>
+<h5 id="6-例子"><a href="#6-例子" class="headerlink" title="6. 例子"></a>6. 例子</h5><p>说了这么多，搞个直观的例子谈谈。</p>
+<p><strong>问：</strong></p>
+<p>项目中推送是怎么实现的？</p>
+<p><strong>答：</strong></p>
+<p>刚开始做推送的时候，对目前主流的推送方案大致了解了一下。发现推送实现不止一种。  </p>
+<p><strong>（展示技术选型和方案，简单谈下就ok）</strong>  </p>
+<p>（1）GCM服务  </p>
+<p>优点：Google提供的服务、原生、简单，无需实现和部署服务端。  </p>
+<p>缺点：该服务在国内不够稳定、需要用户绑定Google帐号。  </p>
+<p>（2）XMPP：  </p>
+<p>优点：开放性，标准性，可扩展，跨平台，且已有开源项目。  </p>
+<p>缺点：数据冗余（基于XML），不支持二进制数据，协议虽然完整扩展性虽然好，它耗费网络流量很大，跑起来比MQTT慢很多；有高达70%的流量是耗费在XMPP本身的标签和编解码上面。  </p>
+<p>（3）MQTT  </p>
+<p>优点：协议简洁、小巧、可扩展性强、省流量、省电。  </p>
+<p>缺点：不够成熟、实现较复杂、服务端组件rsmb不开源，部署硬件成本较高。  </p>
+<p>（4）HTTP轮循<br>优点：实现简单、可控性强，部署硬件成本低。<br>缺点：实时性差。  </p>
+<p><strong>（体现技术细节）</strong>  </p>
+<p>所以后续选型，我选择了 XMPP + MINA + AndroidPN 来实现推送。  </p>
+<p><strong>（体现项目优化改进之处，体现自己的思考和能力，对开源项目进行改造）</strong></p>
+<p>但是 AndroidPN 开源项目也存在一些不足之处：  </p>
+<ol>
+<li><p>如果将消息从服务器上推送出去，就不再管理了。</p>
+<p> 我的做法是：客户端收到推送后给服务端一个反馈，如果服务端在一定时间内没有收到反馈，则重发。</p>
+</li>
+<li><p>androidpn服务器收到消息后如何知道要发给哪个用户？</p>
+<p> 所以我加了个tag维度来做用户分组</p>
+</li>
+<li><p>一旦服务器重启了，客户端似乎不会自动重连，需要用户自己中断后台Service再重启应用。</p>
+<p> 完善的方法是加上心跳机制和断线重连</p>
+</li>
+<li><p>AndroidPN服务器不保存消息。就是说它一有消息就会发出去，即使客户端根本不在线，它也不会重发。  </p>
+<p>解决方案是让服务端保持对客户端状态的监控</p>
+</li>
+</ol>
+<p><strong>再问：</strong></p>
+<p>怎么不用现有的极光推送？</p>
+<p><strong>答：</strong></p>
+<p>极光推送初始的版本文档不全，接入麻烦，<strong>同时我对推送的原理很感兴趣，所以想自己实践下。</strong></p>
+<h4 id="问题示例"><a href="#问题示例" class="headerlink" title="问题示例"></a>问题示例</h4><p>最后，是面试官针对项目面试可能提出的问题汇总。</p>
+<ul>
+<li><p>你参与的项目是独立完成的还是团队协作完成的，在团队里是什么角色？是负责人还是参与者？</p>
+</li>
+<li><p>项目执行过程中的难题你是怎么处理的？</p>
+</li>
+<li><p>问一些专业性的技术问题来了解你的水平。</p>
+</li>
+<li><p>如果是没有明确结果的项目，你从项目里学到了什么，有什么经验教训？</p>
+<p>  看你的项目经验，还有思维逻辑性，对项目整体的认识，包括技术的选型和架构的设计等等。</p>
+</li>
+<li><p>项目技术点具体的使用场景，比如多线程的控制、性能优化、数据库设计、加密混淆等等。</p>
+</li>
+<li><p>挑一个你最熟悉的项目讲讲吧。</p>
+</li>
+<li><p>讲解你是怎么从0到1对项目进行开发和改造的。</p>
+<p>题目确立 -&gt; 产品需求开发 -&gt;  概要设计 -&gt; 详细设计 -&gt; 测试用例 -&gt; 编码 -&gt; 测试 -&gt; 优化 -&gt; 宣传视频海报的制作。</p>
+</li>
+</ul>
+<h4 id="开放性问题"><a href="#开放性问题" class="headerlink" title="开放性问题"></a>开放性问题</h4><p>当然，存在有的面试官倾向于问一些开放性的问题。主要看重你是如何解决问题的，看你的思维方式是怎么发散的。</p>
+<p>比如面试官问我，你为什么觉得你做的产品就比别人好？你为什么要对你们的产品进行性能优化，主要瓶颈在哪里？你是通过什么方式进行优化？你优化的点是怎么考虑的？你在使用第三方服务是处于什么目的，你对它的评价是什么，它们给你带来的好处是什么？让你去思考如何更好的为开发者提供服务，你觉得还有什么东西是开发者需要的？你对开发工具类产品感兴趣吗？</p>
+<p>可以从这些问题看出，面试官并不仅仅看重你的技术能力，还有你对产品的认识。面试官想找的人不仅仅要在技术上有亮点，还有其他方面能吸引到他们。</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>最重要的一点：<strong>不知道的技术点不要不懂装懂</strong>。很多时候我们都会遇到一个情况，就是面试官的问题我不会，这时候大多数情况下不要马上说我不会，也不要糊弄回答，要懂得牵引，转移话题往类似的你擅长的技术点方向去，不然当你抱着侥幸心理随便回答出问题后，面试官会一直沿着往下深挖，挖到挖不出来为止，这就很尴尬了。</p>
+<blockquote>
+<p>受限于个人水平，如有错误之处，敬请谅解。<br>筹划面试系列很久，已经草稿6、7篇了，一直拖延症没有整理。这次参加掘金的征文比赛，就相当于催更了，本文是系列一，之后会陆陆续续补全面试其他系列。</p>
+</blockquote>
 
       
 
@@ -259,7 +359,19 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">项目介绍</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">系列文</a>
         		</li>
       		
 		</ul>
@@ -315,7 +427,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/07/Android-——-项目坑总结/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/17/「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -329,15 +441,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/03/02/Android面试总结之接口维护（版本控制）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android面试总结之接口维护（版本控制）
-        
-      </div>
-    </a>
   
+    <a href="/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_DISPLAY)</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -362,7 +470,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    本文暂无目录
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要重视项目介绍？"><span class="toc-number">1.</span> <span class="toc-text">为什么要重视项目介绍？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目介绍思路"><span class="toc-number">2.</span> <span class="toc-text">项目介绍思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面试官会考察些什么？"><span class="toc-number">3.</span> <span class="toc-text">面试官会考察些什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-能力、技术"><span class="toc-number">3.1.</span> <span class="toc-text">1. 能力、技术</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-潜力"><span class="toc-number">3.2.</span> <span class="toc-text">2. 潜力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-细节"><span class="toc-number">3.3.</span> <span class="toc-text">3. 细节</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-主动性"><span class="toc-number">3.4.</span> <span class="toc-text">4. 主动性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-沟通能力"><span class="toc-number">3.5.</span> <span class="toc-text">5. 沟通能力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-例子"><span class="toc-number">3.6.</span> <span class="toc-text">6. 例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题示例"><span class="toc-number">4.</span> <span class="toc-text">问题示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开放性问题"><span class="toc-number">5.</span> <span class="toc-text">开放性问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
                     </div>
                 </span>
             </div>
