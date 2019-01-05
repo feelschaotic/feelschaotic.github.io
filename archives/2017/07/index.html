@@ -76,8 +76,6 @@ var _hmt = _hmt || [];
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">推荐</a>
-    			
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
@@ -92,6 +90,8 @@ var _hmt = _hmt || [];
 					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/feels_chaotic" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 					<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/79087863dce7" title="jianshu"><i class="icon-jianshu"></i></a>
+		        
+					<a class="juejin" target="_blank" href="https://juejin.im/user/58130890bf22ec0068821df3" title="juejin"><i class="icon-juejin"></i></a>
 		        
 			</div>
 		</nav>
@@ -133,6 +133,8 @@ var _hmt = _hmt || [];
 						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/feels_chaotic" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 						<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/79087863dce7" title="jianshu"><i class="icon-jianshu"></i></a>
+			        
+						<a class="juejin" target="_blank" href="https://juejin.im/user/58130890bf22ec0068821df3" title="juejin"><i class="icon-juejin"></i></a>
 			        
 				</div>
 			</nav>
@@ -410,7 +412,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 feelschaotic
+    		&copy; 2019 feelschaotic
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -451,8 +453,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -464,15 +464,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">推荐</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -501,6 +499,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">校招</a>
               </li>
              
@@ -517,11 +523,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">拆轮子</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
+                <a href="javascript:void(0)" class="js-tag color3">架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,18 +544,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">阅读</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">拆轮子</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,23 +618,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://liuqingwen.me/blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>推荐博客1</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">Android开发菜鸟&lt;br&gt;琐碎的文章会逐步从简书迁移到博客，作为存档&lt;br&gt;&lt;br&gt;水平有限、文章有错误请多多指正&lt;br&gt;&lt;br&gt; —— 17.05.02</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。&lt;br&gt;&lt;br&gt;水平有限、文章有错误请多多指正&lt;br&gt;&lt;br&gt; —— 17.05.02</div>
   	  	
     	</section>
     
@@ -710,5 +696,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
