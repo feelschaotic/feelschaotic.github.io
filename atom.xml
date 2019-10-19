@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-19T06:27:42.453Z</updated>
+  <updated>2019-10-19T06:33:16.788Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,178 +16,178 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>����5���������� SDK ӵ�����޸�������ԭ��ƪ��</title>
+    <title>如何5分钟让你的 SDK 拥有热修复能力（原理篇）</title>
     <link href="http://yoursite.com/2019/10/15/new/%E5%A6%82%E4%BD%955%E5%88%86%E9%92%9F%E8%AE%A9%E4%BD%A0%E7%9A%84%20SDK%20%E6%8B%A5%E6%9C%89%E7%83%AD%E4%BF%AE%E5%A4%8D%E8%83%BD%E5%8A%9B%EF%BC%88%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%89/%E5%A6%82%E4%BD%955%E5%88%86%E9%92%9F%E8%AE%A9%E4%BD%A0%E7%9A%84%20SDK%20%E6%8B%A5%E6%9C%89%E7%83%AD%E4%BF%AE%E5%A4%8D%E8%83%BD%E5%8A%9B%EF%BC%88%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%89/"/>
     <id>http://yoursite.com/2019/10/15/new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/</id>
     <published>2019-10-15T05:14:00.000Z</published>
-    <updated>2019-10-19T06:27:42.453Z</updated>
+    <updated>2019-10-19T06:33:16.788Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="j��"><a href="#j��" class="headerlink" title="ǰ��"></a>ǰ��</h2><h3 id="���걾�L��Դﵽʲo�̶�"><a href="#���걾�L��Դﵽʲo�̶�" class="headerlink" title="���걾�Ŀ��Դﵽʲô�̶�"></a>���걾�Ŀ��Դﵽʲô�̶�</h3><ul>
-<li>�Զ����·���</li>
-<li>ѧ�� hook task</li>
-<li>ѧ���Զ��� task���Զ��� gradle ����</li>
-<li>���ո��� Robust </li>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="看完本文可以达到什么程度"><a href="#看完本文可以达到什么程度" class="headerlink" title="看完本文可以达到什么程度"></a>看完本文可以达到什么程度</h3><ul>
+<li>自顶向下分析</li>
+<li>学会 hook task</li>
+<li>学会自定义 task，自定义 gradle 插件</li>
+<li>掌握改造 Robust </li>
 </ul>
-<h3 id="Ԥ��֪ʶ"><a href="#Ԥ��֪ʶ" class="headerlink" title="Ԥ��֪ʶ"></a>Ԥ��֪ʶ</h3><ul>
-<li>���� gradle �Ļ�������</li>
-<li>���� Task��Transform ����</li>
+<h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><ul>
+<li>理解 gradle 的基本开发</li>
+<li>掌握 Task，Transform 概念</li>
 </ul>
 <a id="more"></a>
-<h3 id="�K�j׼������"><a href="#�K�j׼������" class="headerlink" title="�Ķ�ǰ׼������"></a>�Ķ�ǰ׼������</h3><ul>
-<li>�� Robust �����˽���С���� �� <a href="https://tech.meituan.com/2016/09/14/android-robust.html" target="_blank" rel="external">Android�ȸ��·���Robust</a></li>
-<li>��ʹ������������С���� �� <a href="https://www.jianshu.com/p/f4c311612a01" target="_blank" rel="external">SDK��ȫ���޸�����</a></li>
+<h3 id="阅读前准备工作"><a href="#阅读前准备工作" class="headerlink" title="阅读前准备工作"></a>阅读前准备工作</h3><ul>
+<li>对 Robust 还不了解的小伙伴 戳 <a href="https://tech.meituan.com/2016/09/14/android-robust.html" target="_blank" rel="external">Android热更新方案Robust</a></li>
+<li>想使用其他方案的小伙伴 戳 <a href="https://www.jianshu.com/p/f4c311612a01" target="_blank" rel="external">SDK最全热修复方案</a></li>
 </ul>
 <hr>
-<p>ǰ���ᵽ�����������̽��� Robust ʱȴ������ʾ��ֻ�� Application Module ���ܲ�׮�ʹ򲹶������һ�Ҫ�������������ӽ��ܡ����ݷ�������</p>
-<p>����������Ҫ����һ�������ˡ�</p>
-<p>���������أ�</p>
-<h2 id="�����Զ�����������������ʵ�ֲ���"><a href="#�����Զ�����������������ʵ�ֲ���" class="headerlink" title="�����Զ�����������������ʵ�ֲ���"></a>����<strong>�Զ�����</strong>������������ʵ�ֲ���</h2><blockquote>
-<p>�����ǿ�ʼд����֮ǰ��������Ҫ�������ν������⡣�������ֽ��������⣬ֱ��ÿ�������ⶼ���Ժ����ɵؽ��������������н�ģ������д�����Ĵ����ž��пɶ��ԺͿɲ��ԡ�</p>
+<p>前文提到，当我美滋滋接入 Robust 时却报错提示，只有 Application Module 才能插桩和打补丁，而且还要做补丁管理、加解密、数据分析……</p>
+<p>看来我们需要进行一番改造了。</p>
+<p>从哪入手呢？</p>
+<h2 id="我们自顶向下分析整个需求实现步骤"><a href="#我们自顶向下分析整个需求实现步骤" class="headerlink" title="我们自顶向下分析整个需求实现步骤"></a>我们<strong>自顶向下</strong>分析整个需求实现步骤</h2><blockquote>
+<p>在我们开始写代码之前，我们需要清楚如何解决问题。将问题分解成子问题，直到每个子问题都可以很轻松地解决。对问题进行建模，这样写出来的代码才具有可读性和可测性。</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-45ba5aeb2d70eabf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>����ÿһ�����裬�������ھ��¶�Ӧ�����⣺</p>
+<p>针对每一个步骤，我们来挖掘下对应的问题：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-76e4cb0961457220.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>�ǲ����������ˣ�</p>
+<p>是不是清晰多了？</p>
 <blockquote>
-<p>����֮ǰ��˵�������������ڽ���˼·�� <a href="https://github.com/feelschaotic/SDKHotFix" target="_blank" rel="external">����ϸ���Ѿ���Դ</a>��������չ����ֻҪ���ս���˼·��ʣ�µĶ������� API ��������</p>
+<p>讲解之前先说明，本文着重于解决思路， <a href="https://github.com/feelschaotic/SDKHotFix" target="_blank" rel="external">代码细节已经开源</a>，不过多展开。只要掌握解决思路，剩下的都是面向 API 编程啦。</p>
 </blockquote>
-<h3 id="��һ��������Robust"><a href="#��һ��������Robust" class="headerlink" title="��һ��������Robust"></a>��һ��������Robust</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-a64623e3bcffa4f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="����1��Robust-ֻ֧��Application-Module"><a href="#����1��Robust-ֻ֧��Application-Module" class="headerlink" title="����1��Robust ֻ֧��Application Module"></a>����1��Robust ֻ֧��Application Module</h4><p>һ�� apk ��һ�� arr ��ʲô������</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3167794-9fa7908ac3181835.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="aar��apk��ͬ��"></p>
-<p>ʵ����ûʲô����������ֻ��Ҫ�Ӹ����أ��Ƚ� SDK ����Ϊ Application���� Hook apk ������ Task���� build Ŀ¼�µ���Դѹ��Ϊ aar �������ˣ�</p>
+<h3 id="第一步：接入Robust"><a href="#第一步：接入Robust" class="headerlink" title="第一步：接入Robust"></a>第一步：接入Robust</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-a64623e3bcffa4f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="问题1：Robust-只支持Application-Module"><a href="#问题1：Robust-只支持Application-Module" class="headerlink" title="问题1：Robust 只支持Application Module"></a>问题1：Robust 只支持Application Module</h4><p>一个 apk 和一个 arr 有什么差别？</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-9fa7908ac3181835.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="aar和apk共同点"></p>
+<p>实际上没什么差别。我们只需要加个开关，先将 SDK 配置为 Application，再 Hook apk 打包的 Task，把 build 目录下的资源压缩为 aar 不就行了！</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-da8d8199ee5505dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-38246d7e51cb3b21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <blockquote>
-<p>ʵ�ּ���<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookAssembleAndCopyRes</code> ����</p>
+<p>实现见：<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookAssembleAndCopyRes</code> 方法</p>
 </blockquote>
-<h4 id="����2����o�Ѳ�׮����-aar-�ϴ���-jcenter-�أ�"><a href="#����2����o�Ѳ�׮����-aar-�ϴ���-jcenter-�أ�" class="headerlink" title="����2����ô�Ѳ�׮���� aar �ϴ��� jcenter �أ�"></a>����2����ô�Ѳ�׮���� aar �ϴ��� jcenter �أ�</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-42c18fd75547aa26.gif?imageMogr2/auto-orient/strip" alt="uploadArchives Task ����"></p>
-<p>�ϴ��϶���Ҫ���� uploadArchives ���� Task�������ҷ����� uploadArchives Task ���ú͹ٷ��ĵ������ֲ���֧���Զ�������Դ���ڵġ����İ���������</p>
-<p>��ô�죿GG�ˣ�</p>
-<p>�𼱣����ǻ��д�ɱ�� ���� Hook Gradle Task���������㽫��½½����������Hook ��ֱ���Ǹ�������~��</p>
+<h4 id="问题2：怎么把插桩后的-aar-上传到-jcenter-呢？"><a href="#问题2：怎么把插桩后的-aar-上传到-jcenter-呢？" class="headerlink" title="问题2：怎么把插桩后的 aar 上传到 jcenter 呢？"></a>问题2：怎么把插桩后的 aar 上传到 jcenter 呢？</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-42c18fd75547aa26.gif?imageMogr2/auto-orient/strip" alt="uploadArchives Task 配置"></p>
+<p>上传肯定是要借助 uploadArchives 这个 Task，但是我翻遍了 uploadArchives Task 配置和官方文档，发现并不支持自定义数据源入口的。（心拔凉拔凉）</p>
+<p>怎么办？GG了？</p>
+<p>别急，我们还有大杀招 —— Hook Gradle Task。（后面你将会陆陆续续看到，Hook 简直就是个万金油~）</p>
 <blockquote>
-<p>�����˽� Gradle �������̡�Plugin��Task �Ĺ�ϵ���� <a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">һ��Ӧ�� AOP ����Ӧ��ƪ�Ļ������� </a> </p>
+<p>还不了解 Gradle 工作流程、Plugin、Task 的关系？见 <a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">一文应用 AOP 三、应用篇的基础部分 </a> </p>
 </blockquote>
-<p>����֪���� Task ��һ����Ҫ�ĸ��inputs �� outputs��Task ͨ�� inputs �õ���Ҫ�Ĳ�������������֮�������� outputs������һ�� Task �� inputs ������һ�� Task ��outputs������ͼ��</p>
+<p>我们知道， Task 有一个重要的概念：inputs 和 outputs，Task 通过 inputs 拿到需要的参数，处理完毕之后就输出 outputs，而下一个 Task 的 inputs 则是上一个 Task 的outputs，如下图：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-7bb952afcf33b19d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>�����Ǵ�ӡһ�� uploadArchives ������ Task �Ͷ�Ӧ������������������ʲô����������Ħ˹.jpg��</p>
+<p>那我们打印一下 uploadArchives 的依赖 Task 和对应的输入输出，看下有什么线索（福尔摩斯.jpg）</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-dec3f36a791e392e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-bba3e6a36824327b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>bundleRelease Task ���Ǻʹ������ص� Task �ˣ����Ǵ�ӡ������ Task �����������룺</p>
+<p>bundleRelease Task 就是和打包相关的 Task 了，我们打印下这个 Task 的输出和输入：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-e2c216146b989d77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-c835e7cf312bf94b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>�����ܲ���������hook ����Task�������ǲ�׮�� jar ����ճ��������������Դ�� classes.jar������һ���ƻ���ľ������ô�죡</p>
+<p>诶，能不能这样，hook 这个Task，把我们插桩的 jar 复制粘贴覆盖这个输入源的 classes.jar？！好一招移花接木，就这么办！</p>
 <blockquote>
-<p>ʵ�ּ���<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookBundle</code>����</p>
+<p>实现见：<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookBundle</code>方法</p>
 </blockquote>
-<h4 id="����3����Դ-ID-��ͻ"><a href="#����3����Դ-ID-��ͻ" class="headerlink" title="����3����Դ ID ��ͻ"></a>����3����Դ ID ��ͻ</h4><p>�����󣬲����ܹ�����������ô sdk ���� layout ������ʾ�ˡ�</p>
-<p>����ɶ����</p>
+<h4 id="问题3：资源-ID-冲突"><a href="#问题3：资源-ID-冲突" class="headerlink" title="问题3：资源 ID 冲突"></a>问题3：资源 ID 冲突</h4><p>接入后，测试跑过来：诶？怎么 sdk 里的 layout 都不显示了。</p>
+<p>哈？啥情况</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-8e317f1d85df8274.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>������һ����</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f77bab6d895d840a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="��ͬ������ʽ��Դ�ȶ�.png"></p>
-<p>�üһ�� application ��ʽ������ aar ��Դ id ���ɳ����ˡ�</p>
-<p>������ʲô�����أ�</p>
-<p>�� ADT 14֮ǰ������������Ŀ���ǿ���Ŀ����Դ ID ͳһ������Ϊ final ���͵ľ�̬����������������ʹ���� ID�����൱��ʹ��һ�����������������﷨�Ż��Ὣ�����滻�ɾ�����ʮ�����������������ɵĽ���������Ŀ����ʱһ��������Դ ID ��ͻ���ͻ�Ϊ����Ŀ����Դ������ ID����������Ŀ��������Դ�ļ��Ĵ��붼��Ҫ���±��롣</p>
-<p>���� lib R ���е���Դ ID ���� static ���Σ��ͱ����˱���������ԴID���ͳ�ͻʱ������Ŀ R �಻�䣬�޸Ŀ���Ŀ R ���еı���������Ŀ�Ѿ��������Ĵ�������Ч��</p>
-<p>���� Android ���� application �� R �඼�Ǿ�̬������lib �� R �඼�Ǿ�̬������</p>
+<p>反编译一看：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f77bab6d895d840a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="不同打包方式资源比对.png"></p>
+<p>好家伙，用 application 方式打包的 aar 资源 id 变成常量了。</p>
+<p>这会有什么问题呢？</p>
+<p>在 ADT 14之前，无论是主项目还是库项目，资源 ID 统一被定义为 final 类型的静态变量。如果代码中使用了 ID，就相当于使用一个常量，编译器的语法优化会将引用替换成具体的十六进制数。这样造成的结果：主项目编译时一旦发现资源 ID 冲突，就会为库项目的资源分配新 ID，这样库项目里引用资源文件的代码都需要重新编译。</p>
+<p>如果 lib R 类中的资源 ID 仅被 static 修饰，就保留了变量。当资源ID发送冲突时，主项目 R 类不变，修改库项目 R 类中的变量，库项目已经编译过的代码仍有效。</p>
+<p>所以 Android 设计 application 的 R 类都是静态常量，lib 的 R 类都是静态变量。</p>
 <blockquote>
-<p>�ù� BufferKnife ��ͬѧ��֪������ libary ��ʹ�� switch ��Ҫ�� R2.XXX���ǲ��ͻ����ֳ��� R2 ��ҵ���� R ��Դ��ͻ����������J ������ô�����ģ��뿴��<a href="https://www.jianshu.com/p/0f1c7b3e907f" target="_blank" rel="external">AST �����﷨�� ���� ����������AOP����</a></p>
+<p>用过 BufferKnife 的同学都知道，在 libary 中使用 switch 需要用 R2.XXX，那不就会出现常量 R2 和业务方 R 资源冲突的问题吗？J 神是怎么解决的？请看：<a href="https://www.jianshu.com/p/0f1c7b3e907f" target="_blank" rel="external">AST 抽象语法树 —— 最轻量级的AOP方法</a></p>
 </blockquote>
-<p>��զ����</p>
-<p>�ѵ�����Ҫ���� <code>0x7f��</code> ���� <code>R.XX.XX</code> Ȼ����һһ�Ѵ����滻����Ҫ������ǿ�Ƹ��²�׮ aar ����Դ id ֵ�Ӷ�������ͻ��Ĭ��ֵ��0x7F…�ĳ�0x02~0x7E��</p>
-<p>��ô�������������Ժ�������һȦ��һ�Ĵ��ȣ�������ô����ѽ��</p>
-<p>��Ȼ R �ļ��ı������η����ˣ������ǸĻ����£�</p>
-<p>���ҵ� R �ļ����ɵ�Task���������Ǵ�ӡһ�£�</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">:sdk:generateReleaseBuildConfig //������ releasse�µ� ��Դ��Դ�� ����BuildConfig  ��build/generate/source/buildConfig/release  ����checkReleaseManifest</div><div class="line">:sdk:generateReleaseResValues //׼��resource�� values�ļ�  </div><div class="line">:sdk:generateReleaseResources //׼�� ��Դ�ļ� </div><div class="line">:sdk:mergeReleaseResources  //release�µ� ����Resource�ļ� ��build/incremental/res/release�� �� merge.xml ��build/intermediates/incremental/mergeResources/release��</div><div class="line">:sdk:processReleaseManifest //����prepareReleaseDependencies  ���� AndroidManifest�ļ� ��build/incremental/manifest/full/release</div><div class="line">:sdk:processReleaseResources //����resources-release.ap_</div><div class="line">:sdk:generateReleaseSources //����R�ļ�  ��build/generate/source/r/debug�� </div><div class="line">:sdk:processReleaseJavaRes            </div><div class="line">:sdk:compileReleaseJavaWithJavac //ʹ��Javac����Java����</div><div class="line">:sdk:proguardRelease  //���� �����ļ� ���л�������</div><div class="line">:sdk:androidJavadocsPicked</div><div class="line">:sdk:copyMappingTask  //���� mapping�ļ�  </div><div class="line">:sdk:androidJavadocsJar //���� Javadocs��Jar�ļ�</div><div class="line">:sdk:androidSourcesJar //���� JavaԴ���� Jar�ļ�</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>���ǿ��� <code>generateReleaseSources</code> Task ��������R�ļ���������д�� Gradle �ű���hook סǰһ���� <code>processReleaseResources Task</code>���޸����η���so easy��hook �󷨺ã�</p>
-<p>ʵ�ּ���<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookBuild</code>����</p>
+<p>能咋整？</p>
+<p>难道我们要根据 <code>0x7f…</code> 反查 <code>R.XX.XX</code> 然后再一一把代码替换掉？要不我们强制改下插桩 aar 的资源 id 值从而避免冲突？默认值是0x7F…改成0x02~0x7E？</p>
+<p>这么多个方案在我脑海中绕了一圈，一拍大腿，不用这么复杂呀！</p>
+<p>既然 R 文件的变量修饰符变了，那我们改回来呗！</p>
+<p>先找到 R 文件生成的Task，来，我们打印一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">:sdk:generateReleaseBuildConfig //会生成 releasse下的 资源和源码 包括BuildConfig  在build/generate/source/buildConfig/release  依赖checkReleaseManifest</div><div class="line">:sdk:generateReleaseResValues //准备resource的 values文件  </div><div class="line">:sdk:generateReleaseResources //准备 资源文件 </div><div class="line">:sdk:mergeReleaseResources  //release下的 生成Resource文件 在build/incremental/res/release下 和 merge.xml 在build/intermediates/incremental/mergeResources/release下</div><div class="line">:sdk:processReleaseManifest //依赖prepareReleaseDependencies  生成 AndroidManifest文件 在build/incremental/manifest/full/release</div><div class="line">:sdk:processReleaseResources //生成resources-release.ap_</div><div class="line">:sdk:generateReleaseSources //生成R文件  在build/generate/source/r/debug下 </div><div class="line">:sdk:processReleaseJavaRes            </div><div class="line">:sdk:compileReleaseJavaWithJavac //使用Javac编译Java代码</div><div class="line">:sdk:proguardRelease  //生成 混淆文件 运行混淆规则</div><div class="line">:sdk:androidJavadocsPicked</div><div class="line">:sdk:copyMappingTask  //复制 mapping文件  </div><div class="line">:sdk:androidJavadocsJar //生成 Javadocs的Jar文件</div><div class="line">:sdk:androidSourcesJar //生成 Java源码的 Jar文件</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>我们看到 <code>generateReleaseSources</code> Task 负责生成R文件，那我们写个 Gradle 脚本，hook 住前一个的 <code>processReleaseResources Task</code>，修改修饰符，so easy，hook 大法好！</p>
+<p>实现见：<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookBuild</code>方法</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-c6c9ef1a47843c3d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>�ǲ��Ǿ��ý����������򵥣���ʱ���ѵĲ���ʵ�֣��������ܲ����ҵ������㡣</p>
+<p>是不是觉得解决方案超简单？有时候难的不是实现，而是你能不能找到切入点。</p>
 <blockquote>
-<p>��̬�޸� resId С��չ��</p>
+<p>动态修改 resId 小扩展：</p>
 <ul>
-<li><a href="https://blog.csdn.net/chzphoenix/article/details/80581838#commentBox" target="_blank" rel="external">��̬�޸�android�е���Դ����resId</a></li>
-<li><a href="https://blog.csdn.net/jiangwei0910410003/article/details/50820219" target="_blank" rel="external">Android�������޸ı�������ԴIDֵ</a></li>
+<li><a href="https://blog.csdn.net/chzphoenix/article/details/80581838#commentBox" target="_blank" rel="external">动态修改android中的资源索引resId</a></li>
+<li><a href="https://blog.csdn.net/jiangwei0910410003/article/details/50820219" target="_blank" rel="external">Android中如何修改编译的资源ID值</a></li>
 </ul>
 </blockquote>
-<h3 id="�ڶ����������·�"><a href="#�ڶ����������·�" class="headerlink" title="�ڶ����������·�"></a>�ڶ����������·�</h3><blockquote>
-<p>�������ء����غ��ϴ���һ���� app �ȸ����죬����������Щ��ī��</p>
+<h3 id="第二步：补丁下发"><a href="#第二步：补丁下发" class="headerlink" title="第二步：补丁下发"></a>第二步：补丁下发</h3><blockquote>
+<p>补丁下载、加载和上传与一般的 app 热更无异，所以我们少些笔墨。</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-4c95a72292209ef8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>�����Ĵ洢���ǲ��ð����� OSS �����洢��һ�ְ�ȫ���ͳɱ����߿ɿ����ƴ洢���񣬿ͻ��ˡ������ˡ����������߹�ϵ���£�</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3167794-e09755cb8756c9bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ֱ����ʱ��ͼ"></p>
-<h3 id="���������������ز���"><a href="#���������������ز���" class="headerlink" title="���������������ز���"></a>���������������ز���</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-353c95ce903b03e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>补丁的存储我们采用阿里云 OSS 对象存储：一种安全、低成本、高可靠的云存储服务，客户端、服务端、阿里云三者关系如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-e09755cb8756c9bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="直接上时序图"></p>
+<h3 id="第三步：补丁加载策略"><a href="#第三步：补丁加载策略" class="headerlink" title="第三步：补丁加载策略"></a>第三步：补丁加载策略</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-353c95ce903b03e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-2fbad7719592bca1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="���Ĳ��������ϴ�"><a href="#���Ĳ��������ϴ�" class="headerlink" title="���Ĳ��������ϴ�"></a>���Ĳ��������ϴ�</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-5e5a338b2e23a3db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="第四步：补丁上传"><a href="#第四步：补丁上传" class="headerlink" title="第四步：补丁上传"></a>第四步：补丁上传</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-5e5a338b2e23a3db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <blockquote>
-<p>������һ����Ҫע�⣺�Զ��� Gradle Task ֻ֧�����봿 Java �⣬��֧��Android�⡣</p>
+<p>这里有一点需要注意：自定义 Gradle Task 只支持引入纯 Java 库，不支持Android库。</p>
 </blockquote>
-<h3 id="���岽������ʧЧ����"><a href="#���岽������ʧЧ����" class="headerlink" title="���岽������ʧЧ����"></a>���岽������ʧЧ����</h3><h4 id="1-o���쳣�����������Z�"><a href="#1-o���쳣�����������Z�" class="headerlink" title="1. ȫ���쳣�����������Ž�"></a>1. ȫ���쳣�����������Ž�</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-25f11c750707e89d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>һ˵�������쳣������ʶ��һ��Ӧ��ʹ��ȫ���쳣������ѽ��</p>
-<p>�������������͵������������ˣ�</p>
-<p>����˼���£�����ͼһ������������Ҫ��һ���ǣ�ȷ���ǲ����������쳣������ʹ��ȫ���쳣����������ζ�ţ�</p>
+<h3 id="第五步：补丁失效机制"><a href="#第五步：补丁失效机制" class="headerlink" title="第五步：补丁失效机制"></a>第五步：补丁失效机制</h3><h4 id="1-全局异常捕获不是最优解"><a href="#1-全局异常捕获不是最优解" class="headerlink" title="1. 全局异常捕获不是最优解"></a>1. 全局异常捕获不是最优解</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-25f11c750707e89d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>一说到捕获异常，下意识第一反应：使用全局异常捕获器呀！</p>
+<p>诶诶诶，那你就掉进经验坑里了！</p>
+<p>我们思考下，如上图一共三步，最重要的一步是：确认是补丁引起的异常，如果使用全局异常捕获器，意味着：</p>
 <ol>
-<li>������Ҫ�ȶԶ�ջ��Ϣ�����ǲ������Ի�ȡ�࣬�޷���ȡ���޸��ķ����������Ҷ�ջ�ȽϷǳ���Ч��������Ҳ�ߡ�</li>
+<li>我们需要比对堆栈信息。但是补丁可以获取类，无法获取到修复的方法名，而且堆栈比较非常低效，误判率也高。</li>
 </ol>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-52125d7817bae12f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <ol>
-<li>�����޸��� A + B��A �޸������쳣�����������Զ�ʧЧ��B �޸�ҲʧЧ�ˡ�</li>
+<li>补丁修复了 A + B，A 修复引起异常，整个补丁自动失效，B 修复也失效了。</li>
 </ol>
-<p>�ܲ���ֻ�� A ʧЧ�أ��ܲ��ܸ�Чȷ���ǲ����������쳣�أ�</p>
-<h4 id="2-��RobustԴ������������"><a href="#2-��RobustԴ������������" class="headerlink" title="2. ��RobustԴ������������"></a>2. ��RobustԴ������������</h4><p>���ǿ��� robust.xml �����ã�һ���Ƿ��Զ������쳣������ӳ��������</p>
+<p>能不能只让 A 失效呢？能不能高效确认是补丁引起的异常呢？</p>
+<h4 id="2-在Robust源码中找找灵感"><a href="#2-在Robust源码中找找灵感" class="headerlink" title="2. 在Robust源码中找找灵感"></a>2. 在Robust源码中找找灵感</h4><p>我们看看 robust.xml 的配置，一个是否自动捕获异常的配置映入眼帘。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-7fec4ad48416c1dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>������ Robust ȫ�������� <code>catchReflectException</code> �ؼ��֣����ֲ�׮�����ദ���򵥴ֱ���ֱ��ƴ���� try-catch��</p>
+<p>来，在 Robust 全局搜索下 <code>catchReflectException</code> 关键字，发现插桩工厂类处理简单粗暴，直接拼接了 try-catch。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-220bf47e8165ad2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-198ad8a4ff033369.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>���ɵĲ����������£�</p>
+<p>生成的补丁代码如下：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-f4ae1fb25a7f157e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="3-ȷ�ϸL��k�ʽ"><a href="#3-ȷ�ϸL��k�ʽ" class="headerlink" title="3.  ȷ�ϸĿ��ķ�ʽ"></a>3.  ȷ�ϸĿ��ķ�ʽ</h4><p>���������� try-catch������һ�� Robust �Ĳ�׮�ɡ�</p>
+<h4 id="3-确认改库的方式"><a href="#3-确认改库的方式" class="headerlink" title="3.  确认改库的方式"></a>3.  确认改库的方式</h4><p>那我们利用 try-catch，改造一下 Robust 的插桩吧。</p>
 <ol>
-<li>robust.xml ���������֧�� rollbackWhenException ���ã�</li>
-<li>��ʼ��ʱ���� XML �����</li>
-<li>�½��ع��������࣬��ҵ�񷽼�����</li>
-<li>��׮ʱ�������������ã������� try-catch���� catch ��֪ͨ�ع���������</li>
+<li>robust.xml 增加配置项，支持 rollbackWhenException 配置；</li>
+<li>初始化时加载 XML 配置项；</li>
+<li>新建回滚监听器类，供业务方监听；</li>
+<li>插桩时，若开启此配置，则插入 try-catch，且 catch 里通知回滚监听器。</li>
 </ol>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-42d57afbdc5efeda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <blockquote>
-<p>ÿ��������������Ψһ id �������ô� id ����¼�ع�״̬</p>
+<p>每个补丁方法都有唯一 id 我们利用此 id 来记录回滚状态</p>
 </blockquote>
-<p>�� Robust ����ϸ<a href="https://github.com/feelschaotic/Robust" target="_blank" rel="external">����MR</a>������Ȥ�Ŀ��Կ���</p>
+<p>对 Robust 的详细<a href="https://github.com/feelschaotic/Robust" target="_blank" rel="external">改造MR</a>，感兴趣的可以看看</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-a33baaf32a31551c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-3081f139db8c2282.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>�����׶����ڽ����ˣ�Ъ����~</p>
+<p>开发阶段终于结束了，歇会儿~</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-f4841530e598cd6e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="�����������ݷ���"><a href="#�����������ݷ���" class="headerlink" title="�����������ݷ���"></a>�����������ݷ���</h3><p>�����ȿ������������ĵ�ָ������Щ���ٵ��Ƴ���ϸ�������</p>
+<h3 id="第六步：数据分析"><a href="#第六步：数据分析" class="headerlink" title="第六步：数据分析"></a>第六步：数据分析</h3><p>我们先看看我们最关心的指标是哪些，再倒推出详细的埋点项。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-e2d7f02c0bfe4a8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>���еĽӿ�ʧ���ʺ�����ʧ���ʣ����ǻ�Ӧ��������ԭ����</p>
+<p>其中的接口失败率和下载失败率，我们还应区别错误原因：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-594d004d1610f6ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-8f8066b7a6610f3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="����"><a href="#����" class="headerlink" title="����"></a>����</h2><ol>
-<li>SDK ���޸����������� �� �����������ľ��ǲ������⡢ϸ������������</li>
-<li>�󵨼��裬ϸ����֤</li>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
+<li>SDK 热修复方案少人做 ≠ 难做，考验的就是拆分问题、细化问题的能力</li>
+<li>大胆假设，细心验证</li>
 </ol>
-<p>���ϵ�ʵ�����Ѿ���װ�ɿ� <a href="https://github.com/feelschaotic/SDKHotFix" target="_blank" rel="external">SDKHotFix</a>��SDK ������ֻ�� 5 ���Ӽ������Լ��� SDK ӵ�����޸�����������ӭ star ��</p>
-<p>���󣬸�������˼ά��ͼ��</p>
+<p>以上的实现我已经封装成库 <a href="https://github.com/feelschaotic/SDKHotFix" target="_blank" rel="external">SDKHotFix</a>，SDK 开发者只需 5 分钟即可让自己的 SDK 拥有热修复的能力，欢迎 star ！</p>
+<p>最后，附上整个思维导图：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-2693f144156649a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <blockquote>
-<p>��ƪ���ɺ�ʱ 15 �������ӣ�450 ���ӣ�</p>
+<p>本篇完成耗时 15 个番茄钟（450 分钟）</p>
 </blockquote>
 <hr>
-<p>���� FeelsChaotic��һ��д���˴��� p ����ͼ����������Ƶ�����˻��ĳ����£�������׷���������š��ܹ����ƺ� T �ͳɳ���</p>
-<p>��ӭ��ע FeelsChaotic ��<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">����</a>��<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">����</a>�������ҵ����¶���������һ������������ӭ  ??�����Ĺ�������д��������������</p>
-<p>������Ҫ�ģ����������Ľ������������д���������ָ����</p>
+<p>我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。</p>
+<p>欢迎关注 FeelsChaotic 的<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">简书</a>和<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">掘金</a>，如果我的文章对你哪怕有一点点帮助，欢迎  ??！你的鼓励是我写作的最大动力！</p>
+<p>最最重要的，请给出你的建议或意见，有错误请多多指正！</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;j��&quot;&gt;&lt;a href=&quot;#j��&quot; class=&quot;headerlink&quot; title=&quot;ǰ��&quot;&gt;&lt;/a&gt;ǰ��&lt;/h2&gt;&lt;h3 id=&quot;���걾�L��Դﵽʲo�̶�&quot;&gt;&lt;a href=&quot;#���걾�L��Դﵽʲo�̶�&quot; class=&quot;headerlink&quot; title=&quot;���걾�Ŀ��Դﵽʲô�̶�&quot;&gt;&lt;/a&gt;���걾�Ŀ��Դﵽʲô�̶�&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;�Զ����·���&lt;/li&gt;
-&lt;li&gt;ѧ�� hook task&lt;/li&gt;
-&lt;li&gt;ѧ���Զ��� task���Զ��� gradle ����&lt;/li&gt;
-&lt;li&gt;���ո��� Robust &lt;/li&gt;
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;h3 id=&quot;看完本文可以达到什么程度&quot;&gt;&lt;a href=&quot;#看完本文可以达到什么程度&quot; class=&quot;headerlink&quot; title=&quot;看完本文可以达到什么程度&quot;&gt;&lt;/a&gt;看完本文可以达到什么程度&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;自顶向下分析&lt;/li&gt;
+&lt;li&gt;学会 hook task&lt;/li&gt;
+&lt;li&gt;学会自定义 task，自定义 gradle 插件&lt;/li&gt;
+&lt;li&gt;掌握改造 Robust &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;Ԥ��֪ʶ&quot;&gt;&lt;a href=&quot;#Ԥ��֪ʶ&quot; class=&quot;headerlink&quot; title=&quot;Ԥ��֪ʶ&quot;&gt;&lt;/a&gt;Ԥ��֪ʶ&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;���� gradle �Ļ�������&lt;/li&gt;
-&lt;li&gt;���� Task��Transform ����&lt;/li&gt;
+&lt;h3 id=&quot;预备知识&quot;&gt;&lt;a href=&quot;#预备知识&quot; class=&quot;headerlink&quot; title=&quot;预备知识&quot;&gt;&lt;/a&gt;预备知识&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;理解 gradle 的基本开发&lt;/li&gt;
+&lt;li&gt;掌握 Task，Transform 概念&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
@@ -195,9 +195,9 @@
     
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
-      <category term="���޸�" scheme="http://yoursite.com/tags/%EF%BF%BD%EF%BF%BD%EF%BF%BD%DE%B8%EF%BF%BD/"/>
+      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
     
-      <category term="ϵ����" scheme="http://yoursite.com/tags/%CF%B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
+      <category term="热修复" scheme="http://yoursite.com/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/"/>
     
   </entry>
   
