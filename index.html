@@ -162,6 +162,559 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/15/new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/">����5���������� SDK ӵ�����޸�������ԭ��ƪ��</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/15/new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/" class="archive-article-date">
+  	<time datetime="2019-10-15T05:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="j��"><a href="#j��" class="headerlink" title="ǰ��"></a>ǰ��</h2><h3 id="���걾�L��Դﵽʲo�̶�"><a href="#���걾�L��Դﵽʲo�̶�" class="headerlink" title="���걾�Ŀ��Դﵽʲô�̶�"></a>���걾�Ŀ��Դﵽʲô�̶�</h3><ul>
+<li>�Զ����·���</li>
+<li>ѧ�� hook task</li>
+<li>ѧ���Զ��� task���Զ��� gradle ����</li>
+<li>���ո��� Robust </li>
+</ul>
+<h3 id="Ԥ��֪ʶ"><a href="#Ԥ��֪ʶ" class="headerlink" title="Ԥ��֪ʶ"></a>Ԥ��֪ʶ</h3><ul>
+<li>���� gradle �Ļ�������</li>
+<li>���� Task��Transform ����</li>
+</ul>
+        
+          <a class="article-more-a" href="/2019/10/15/new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">���޸�</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ϵ����</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/15/new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-new/APP-热修复都懂了，你会-SDK-热修复吗？最全方案在这里！" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/13/new/APP-热修复都懂了，你会-SDK-热修复吗？最全方案在这里！/">APP热修复都懂了，你会SDK热修复吗？最全方案在这里！</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/13/new/APP-热修复都懂了，你会-SDK-热修复吗？最全方案在这里！/" class="archive-article-date">
+  	<time datetime="2019-07-13T08:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>刚开始要做 SDK 热修复，我是拒绝的 ~</p>
+<p>某日，解决完一个线上 bug 后，我冒出了一个念头：让我们的 SDK 也具有热修复的能力呗！</p>
+<p>但是查了查，网上资料少、很多热修复方案只针对app……</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-781bb4e0457262ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可是我都拍胸脯向老大夸口了，焉有退缩的道理？！</p>
+<p>加上万一以后手抖，出了个什么大 bug 或者兼容问题，我的职业生涯不就要终结了！？</p>
+<p>我滴乖乖，保命要紧！还是赶紧做个保底方案吧。</p>
+        
+          <a class="article-more-a" href="/2019/07/13/new/APP-热修复都懂了，你会-SDK-热修复吗？最全方案在这里！/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">系列文</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">热修复</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/13/new/APP-热修复都懂了，你会-SDK-热修复吗？最全方案在这里！/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-new/从各大跨平台技术说开去，我们真的需要虚拟-DOM-吗？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/24/new/从各大跨平台技术说开去，我们真的需要虚拟-DOM-吗？/">从各大跨平台技术说开去，我们真的需要虚拟 DOM 吗？</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/24/new/从各大跨平台技术说开去，我们真的需要虚拟-DOM-吗？/" class="archive-article-date">
+  	<time datetime="2019-05-24T12:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://upload-images.jianshu.io/upload_images/3167794-2d227d10d3097288.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>你有没有留意到？优秀的解决方案思想都是相通的：当你研究 Flutter 渲染原理时会发现 Flutter Rendering 层类似于 React 中的虚拟 DOM，当你去看 Weex 工作原理时，诶，又发现了虚拟 DOM 的身影，更别提 VUE 响应式视图的核心也是虚拟 DOM 了。</p>
+<p>那这个虚拟 DOM 有什么用？为什么这么多框架都应用了它？本质上带来了什么优势？本文将结合前端和移动端来谈谈。</p>
+        
+          <a class="article-more-a" href="/2019/05/24/new/从各大跨平台技术说开去，我们真的需要虚拟-DOM-吗？/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">跨平台</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/24/new/从各大跨平台技术说开去，我们真的需要虚拟-DOM-吗？/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-new/会用就行了？你知道-AOP-框架的原理吗？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/04/new/会用就行了？你知道-AOP-框架的原理吗？/">会用就行了？你知道 AOP 框架的原理吗？</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/04/new/会用就行了？你知道-AOP-框架的原理吗？/" class="archive-article-date">
+  	<time datetime="2019-02-04T03:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文将从另一个角度讲解 AOP，从<strong>宏观的实现原理和设计本质</strong>入手。大部分讲 AOP 的博文都是一上来就罗列语法，然后敲个应用 demo就完了 。但学习不能知其然，不知其所以然。</p>
+<p>对 AOP 我提出了几点思考：AspectJ 为什么会大热？AspectJ 是怎样工作的？和 Spring AOP 有什么区别？什么场景下适用？我们能不能自己实现一个 AOP 方法？</p>
+        
+          <a class="article-more-a" href="/2019/02/04/new/会用就行了？你知道-AOP-框架的原理吗？/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">系列文</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AOP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">源码解析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/04/new/会用就行了？你知道-AOP-框架的原理吗？/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-new/AOP-最后一块拼图---AST-抽象语法树-——-最轻量级的AOP方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/21/new/AOP-最后一块拼图---AST-抽象语法树-——-最轻量级的AOP方法/">AOP 最后一块拼图 AST 抽象语法树-——-最轻量级的AOP方法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/21/new/AOP-最后一块拼图---AST-抽象语法树-——-最轻量级的AOP方法/" class="archive-article-date">
+  	<time datetime="2019-01-21T12:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://upload-images.jianshu.io/upload_images/3167794-0c31bec917b37b16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Aspect 语法难懂？ASM 字节码操作繁琐？APT 难以精准找到切入点？你该试试 AST 了！编辑器级别，效率高，更轻量。</p>
+        
+          <a class="article-more-a" href="/2019/01/21/new/AOP-最后一块拼图---AST-抽象语法树-——-最轻量级的AOP方法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">系列文</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">架构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AOP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/21/new/AOP-最后一块拼图---AST-抽象语法树-——-最轻量级的AOP方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-new/再见-2018-——-我们常常高估一天所能做的事,却低估一年所能做的事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/31/new/再见-2018-——-我们常常高估一天所能做的事,却低估一年所能做的事/">再见 2018-——-我们常常高估一天所能做的事,却低估一年所能做的事</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/31/new/再见-2018-——-我们常常高估一天所能做的事,却低估一年所能做的事/" class="archive-article-date">
+  	<time datetime="2018-12-31T04:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://upload-images.jianshu.io/upload_images/3167794-0098483ffe9fbe45.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="一、复盘-2017-定下的规划"><a href="#一、复盘-2017-定下的规划" class="headerlink" title="一、复盘 2017 定下的规划"></a>一、复盘 2017 定下的规划</h2><p>2017年底，给自己的 2018 定下了 4 项规划：</p>
+<ol>
+<li><p>制定中长期计划和目标，进行阶段总结反思。</p>
+<blockquote>
+<p>结果：给10分不能再多，只制定了中期目标，也没有及时复盘，没有照着目标规划来走，可以说是随意生长了。</p>
+</blockquote>
+</li>
+<li><p>提高 GitHub 开源贡献</p>
+<blockquote>
+<p>结果：给自己打60分，勉强及格，没什么好的思路去开源。</p>
+</blockquote>
+</li>
+<li><p>坚持阅读写作，已经过 1 轮的书籍过第 2 轮，再次消化感悟。</p>
+<blockquote>
+<p>结果：遗憾没能过第 2 轮，但是本年坚持阅读，阅读量达新高，且做到及时写总结，听书 30 本，阅读 32 本书，完成回顾总结 42 本，给自己打70分。</p>
+</blockquote>
+</li>
+<li><p>学习理财知识，增加第二收入。</p>
+<blockquote>
+<p>结果：80分，阅读理财相关的书籍 4 本，对投资有个完整的认识，用大局观来看股市，并留心观察潜力行业（养老、医疗），付出了实践，也当了一回韭菜。</p>
+</blockquote>
+</li>
+<li><p>和部门团队更多的交流</p>
+<blockquote>
+<p>结果：75分，还是有惰性，也比较看心情，但是每次调研都可以主动和同事交流，review 时积极提出不合理之处，算是有改进。</p>
+</blockquote>
+</li>
+</ol>
+<p>整体而言，2018 没怎么按之前的规划走，也是和自己规划能力差、没及时复盘有关系。虽然走偏，但连拿 2 个季度 S + 1个季度 A + 年度 S，也体现了开挂般的 2018 。</p>
+<h2 id="二、2018：随意生长，收获满满"><a href="#二、2018：随意生长，收获满满" class="headerlink" title="二、2018：随意生长，收获满满"></a>二、2018：随意生长，收获满满</h2>
+        
+          <a class="article-more-a" href="/2018/12/31/new/再见-2018-——-我们常常高估一天所能做的事,却低估一年所能做的事/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">T型发展</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">阅读</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/31/new/再见-2018-——-我们常常高估一天所能做的事,却低估一年所能做的事/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-new/一文应用-AOP---最全选型考量-+-边剖析经典开源库边实践，美滋滋" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -169,7 +722,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/17/new/一文应用-AOP---最全选型考量-+-边剖析经典开源库边实践，美滋滋/">一文应用-AOP---最全选型考量-+-边剖析经典开源库边实践，美滋滋</a>
+      <a class="article-title" href="/2018/12/17/new/一文应用-AOP---最全选型考量-+-边剖析经典开源库边实践，美滋滋/">一文应用 AOP - 最全选型考量 + 边剖析经典开源库边实践，美滋滋</a>
     </h1>
   
 
@@ -261,7 +814,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/30/new/一文读懂-AOP---你想要的最全面-AOP-方法探讨/">一文读懂-AOP---你想要的最全面-AOP-方法探讨</a>
+      <a class="article-title" href="/2018/11/30/new/一文读懂-AOP---你想要的最全面-AOP-方法探讨/">一文读懂 AOP---你想要的最全面 AOP 方法探讨</a>
     </h1>
   
 
@@ -518,531 +1071,9 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-new/「辩思」App研发录：架构设计、Crash分析和竞品技术分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/28/new/「辩思」App研发录：架构设计、Crash分析和竞品技术分析/">「辩思」App研发录：架构设计、Crash分析和竞品技术分析</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/28/new/「辩思」App研发录：架构设计、Crash分析和竞品技术分析/" class="archive-article-date">
-  	<time datetime="2018-07-28T09:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>技术会过时，但是思想永远不会过时。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/3167794-0c47b356f5dddc99.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>本书面广却不深，适合快读。书中基本都是作者自己工作中遇到的问题和坑，从实践而来，避免了空谈。</p>
-<p>但是有些地方比如：Carsh异常分析这章，仅仅提供解决方案，缺少问题解决背后的思维过程：遇到什么问题？怎样分析，推理？最后如何发现解决方案？我觉得异常分析的思路和步骤远比罗列大篇幅的异常要更为重要。</p>
-        
-          <a class="article-more-a" href="/2018/07/28/new/「辩思」App研发录：架构设计、Crash分析和竞品技术分析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">阅读</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">竞品分析</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">团队管理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">代码质量</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/28/new/「辩思」App研发录：架构设计、Crash分析和竞品技术分析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-new/「读」架构真经---互联网技术架构的设计原则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/21/new/「读」架构真经---互联网技术架构的设计原则/">「读」架构真经---互联网技术架构的设计原则</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/21/new/「读」架构真经---互联网技术架构的设计原则/" class="archive-article-date">
-  	<time datetime="2018-07-21T05:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>架构的思想是非常宝贵的，设计的基本原理不会因为新技术的层出不穷而过时。怎样以最低成本最大化系统的扩展性？怎样达到风险利益的平衡点？答案尽在本书中。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/07/21/new/「读」架构真经---互联网技术架构的设计原则/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">架构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">T型发展</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">阅读</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/21/new/「读」架构真经---互联网技术架构的设计原则/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-new/推荐---Android-完整知识体系脑图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/new/推荐---Android-完整知识体系脑图/">推荐---Android-完整知识体系脑图</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/new/推荐---Android-完整知识体系脑图/" class="archive-article-date">
-  	<time datetime="2018-06-05T09:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>抽个空，把所有知识点整理成脑图，方便构建知识体系，有遗漏的，欢迎在评论区补充。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3167794-d5e778569f292cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><a href="http://naotu.baidu.com/file/ae9b7d7d7120bfd4a775ee707025f83b?token=ec7e0dac38165406" target="_blank" rel="external">脑图详细地址</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">知识体系</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/new/推荐---Android-完整知识体系脑图/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-new/「Android-安全架构」你真的了解权限机制吗？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/new/「Android-安全架构」你真的了解权限机制吗？/">「Android-安全架构」你真的了解权限机制吗？</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/new/「Android-安全架构」你真的了解权限机制吗？/" class="archive-article-date">
-  	<time datetime="2018-05-26T09:49:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android将安全设计贯穿系统架构的各个层面，覆盖系统内核、虚拟机、应用程序框架层以及应用层各个环节，力求在开放的同时，也最大程度地保护用户的数据、应用程序和设备的安全。Android安全模型主要提供以下几种安全机制：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3167794-6d77a9733cf9b413.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-        
-          <a class="article-more-a" href="/2018/05/26/new/「Android-安全架构」你真的了解权限机制吗？/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">架构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/new/「Android-安全架构」你真的了解权限机制吗？/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-new/目标方法前置检验模型设计与实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/04/new/目标方法前置检验模型设计与实现/">目标方法前置检验模型设计与实现</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/04/new/目标方法前置检验模型设计与实现/" class="archive-article-date">
-  	<time datetime="2018-04-04T13:43:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="https://www.jianshu.com/p/ed880f35f97f" target="_blank" rel="external">继上次的指纹验证</a>后，产品又提出了个项目典型需求：用户在未登录状态下，点击关注，跳转登录，登录成功后自动执行关注。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这里有两个需求：</p>
-<ol>
-<li>自动跳转到登录界面</li>
-<li>登录成功后再自动执行关注行为</li>
-</ol>
-<p>思考下抽象出通用性，首先，我们的目的是执行关注行为，但是关注行为需要用户处于登录状态。也就是说执行某个操作时需要满足一些前提条件，而这些前提条件是需要用户参与才能满足。可能存在多个前提条件的需求，这里可以分离出目标行为和前提条件行为。</p>
-        
-          <a class="article-more-a" href="/2018/04/04/new/目标方法前置检验模型设计与实现/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">架构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/04/new/目标方法前置检验模型设计与实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-new/如何在复杂业务场景中优雅实现Android指纹验证？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/15/new/如何在复杂业务场景中优雅实现Android指纹验证？/">如何在复杂业务场景中优雅实现Android指纹验证？</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/15/new/如何在复杂业务场景中优雅实现Android指纹验证？/" class="archive-article-date">
-  	<time datetime="2018-02-15T03:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>目前指纹领域无论从产品角度还是技术角度都已经趋于成熟，但是当各位开发者准备深入探究的时候，却发现网上很多文章都是皮毛，很难有较深的启示。本文将着重介绍指纹验证开发整个过程，包括技术选型、产品的设计方案逻辑、代码的架构以及后续测试中遇到的兼容性问题等几个方面。在这里抛砖引玉，希望能给予大家一些启发。</p>
-        
-          <a class="article-more-a" href="/2018/02/15/new/如何在复杂业务场景中优雅实现Android指纹验证？/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">架构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/15/new/如何在复杂业务场景中优雅实现Android指纹验证？/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1214,6 +1245,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">知识体系</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">跨平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">���޸�</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ϵ����</a>
               </li>
             
             <div class="clearfix"></div>

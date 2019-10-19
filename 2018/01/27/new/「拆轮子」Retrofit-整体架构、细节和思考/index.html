@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>「拆轮子」Retrofit-整体架构、细节和思考 | FeelsChaotic</title>
+  <title>「拆轮子」Retrofit 整体架构、细节和思考 | FeelsChaotic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="阅读源码基本套路：WHWWhat：能做哪些事？提供了什么功能？How：采用什么方式实现的？由哪些模块组成？Why：为什么有这样的需求？模块这样封装的意图是什么？还有没有更好的方式？  前言在业务常用框架中，Retrofit 算是代码量较少，难度较低的开源项目。虽然代码不多，但依然用到了大量的设计模式，具有非常好的扩展性。 解析 Retrofit 源码的优秀文章不少，本文不再赘述，抓住易曲解的概念">
 <meta name="keywords" content="Android,拆轮子,架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「拆轮子」Retrofit-整体架构、细节和思考">
+<meta property="og:title" content="「拆轮子」Retrofit 整体架构、细节和思考">
 <meta property="og:url" content="http://yoursite.com/2018/01/27/new/「拆轮子」Retrofit-整体架构、细节和思考/index.html">
 <meta property="og:site_name" content="FeelsChaotic">
 <meta property="og:description" content="阅读源码基本套路：WHWWhat：能做哪些事？提供了什么功能？How：采用什么方式实现的？由哪些模块组成？Why：为什么有这样的需求？模块这样封装的意图是什么？还有没有更好的方式？  前言在业务常用框架中，Retrofit 算是代码量较少，难度较低的开源项目。虽然代码不多，但依然用到了大量的设计模式，具有非常好的扩展性。 解析 Retrofit 源码的优秀文章不少，本文不再赘述，抓住易曲解的概念">
@@ -25,9 +25,9 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-876e3934d82002ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-58c70db7efd5a913.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3167794-365009ee39f8bab3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-12-18T12:29:01.210Z">
+<meta property="og:updated_time" content="2019-10-19T06:29:03.236Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「拆轮子」Retrofit-整体架构、细节和思考">
+<meta name="twitter:title" content="「拆轮子」Retrofit 整体架构、细节和思考">
 <meta name="twitter:description" content="阅读源码基本套路：WHWWhat：能做哪些事？提供了什么功能？How：采用什么方式实现的？由哪些模块组成？Why：为什么有这样的需求？模块这样封装的意图是什么？还有没有更好的方式？  前言在业务常用框架中，Retrofit 算是代码量较少，难度较低的开源项目。虽然代码不多，但依然用到了大量的设计模式，具有非常好的扩展性。 解析 Retrofit 源码的优秀文章不少，本文不再赘述，抓住易曲解的概念">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1863579-afe6e4e3ababc37c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/603">
   
@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      「拆轮子」Retrofit-整体架构、细节和思考
+      「拆轮子」Retrofit 整体架构、细节和思考
     </h1>
   
 
@@ -585,6 +585,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">知识体系</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">跨平台</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">���޸�</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ϵ����</a>
               </li>
             
             <div class="clearfix"></div>

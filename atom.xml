@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-18T12:30:22.523Z</updated>
+  <updated>2019-10-19T06:27:42.453Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,1183 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>一文应用-AOP---最全选型考量-+-边剖析经典开源库边实践，美滋滋</title>
+    <title>����5���������� SDK ӵ�����޸�������ԭ��ƪ��</title>
+    <link href="http://yoursite.com/2019/10/15/new/%E5%A6%82%E4%BD%955%E5%88%86%E9%92%9F%E8%AE%A9%E4%BD%A0%E7%9A%84%20SDK%20%E6%8B%A5%E6%9C%89%E7%83%AD%E4%BF%AE%E5%A4%8D%E8%83%BD%E5%8A%9B%EF%BC%88%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%89/%E5%A6%82%E4%BD%955%E5%88%86%E9%92%9F%E8%AE%A9%E4%BD%A0%E7%9A%84%20SDK%20%E6%8B%A5%E6%9C%89%E7%83%AD%E4%BF%AE%E5%A4%8D%E8%83%BD%E5%8A%9B%EF%BC%88%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/10/15/new/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/如何5分钟让你的 SDK 拥有热修复能力（原理篇）/</id>
+    <published>2019-10-15T05:14:00.000Z</published>
+    <updated>2019-10-19T06:27:42.453Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="j��"><a href="#j��" class="headerlink" title="ǰ��"></a>ǰ��</h2><h3 id="���걾�L��Դﵽʲo�̶�"><a href="#���걾�L��Դﵽʲo�̶�" class="headerlink" title="���걾�Ŀ��Դﵽʲô�̶�"></a>���걾�Ŀ��Դﵽʲô�̶�</h3><ul>
+<li>�Զ����·���</li>
+<li>ѧ�� hook task</li>
+<li>ѧ���Զ��� task���Զ��� gradle ����</li>
+<li>���ո��� Robust </li>
+</ul>
+<h3 id="Ԥ��֪ʶ"><a href="#Ԥ��֪ʶ" class="headerlink" title="Ԥ��֪ʶ"></a>Ԥ��֪ʶ</h3><ul>
+<li>���� gradle �Ļ�������</li>
+<li>���� Task��Transform ����</li>
+</ul>
+<a id="more"></a>
+<h3 id="�K�j׼������"><a href="#�K�j׼������" class="headerlink" title="�Ķ�ǰ׼������"></a>�Ķ�ǰ׼������</h3><ul>
+<li>�� Robust �����˽���С���� �� <a href="https://tech.meituan.com/2016/09/14/android-robust.html" target="_blank" rel="external">Android�ȸ��·���Robust</a></li>
+<li>��ʹ������������С���� �� <a href="https://www.jianshu.com/p/f4c311612a01" target="_blank" rel="external">SDK��ȫ���޸�����</a></li>
+</ul>
+<hr>
+<p>ǰ���ᵽ�����������̽��� Robust ʱȴ������ʾ��ֻ�� Application Module ���ܲ�׮�ʹ򲹶������һ�Ҫ�������������ӽ��ܡ����ݷ�������</p>
+<p>����������Ҫ����һ�������ˡ�</p>
+<p>���������أ�</p>
+<h2 id="�����Զ�����������������ʵ�ֲ���"><a href="#�����Զ�����������������ʵ�ֲ���" class="headerlink" title="�����Զ�����������������ʵ�ֲ���"></a>����<strong>�Զ�����</strong>������������ʵ�ֲ���</h2><blockquote>
+<p>�����ǿ�ʼд����֮ǰ��������Ҫ�������ν������⡣�������ֽ��������⣬ֱ��ÿ�������ⶼ���Ժ����ɵؽ��������������н�ģ������д�����Ĵ����ž��пɶ��ԺͿɲ��ԡ�</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-45ba5aeb2d70eabf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>����ÿһ�����裬�������ھ��¶�Ӧ�����⣺</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-76e4cb0961457220.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>�ǲ����������ˣ�</p>
+<blockquote>
+<p>����֮ǰ��˵�������������ڽ���˼·�� <a href="https://github.com/feelschaotic/SDKHotFix" target="_blank" rel="external">����ϸ���Ѿ���Դ</a>��������չ����ֻҪ���ս���˼·��ʣ�µĶ������� API ��������</p>
+</blockquote>
+<h3 id="��һ��������Robust"><a href="#��һ��������Robust" class="headerlink" title="��һ��������Robust"></a>��һ��������Robust</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-a64623e3bcffa4f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="����1��Robust-ֻ֧��Application-Module"><a href="#����1��Robust-ֻ֧��Application-Module" class="headerlink" title="����1��Robust ֻ֧��Application Module"></a>����1��Robust ֻ֧��Application Module</h4><p>һ�� apk ��һ�� arr ��ʲô������</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-9fa7908ac3181835.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="aar��apk��ͬ��"></p>
+<p>ʵ����ûʲô����������ֻ��Ҫ�Ӹ����أ��Ƚ� SDK ����Ϊ Application���� Hook apk ������ Task���� build Ŀ¼�µ���Դѹ��Ϊ aar �������ˣ�</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-da8d8199ee5505dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-38246d7e51cb3b21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>ʵ�ּ���<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookAssembleAndCopyRes</code> ����</p>
+</blockquote>
+<h4 id="����2����o�Ѳ�׮����-aar-�ϴ���-jcenter-�أ�"><a href="#����2����o�Ѳ�׮����-aar-�ϴ���-jcenter-�أ�" class="headerlink" title="����2����ô�Ѳ�׮���� aar �ϴ��� jcenter �أ�"></a>����2����ô�Ѳ�׮���� aar �ϴ��� jcenter �أ�</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-42c18fd75547aa26.gif?imageMogr2/auto-orient/strip" alt="uploadArchives Task ����"></p>
+<p>�ϴ��϶���Ҫ���� uploadArchives ���� Task�������ҷ����� uploadArchives Task ���ú͹ٷ��ĵ������ֲ���֧���Զ�������Դ���ڵġ����İ���������</p>
+<p>��ô�죿GG�ˣ�</p>
+<p>�𼱣����ǻ��д�ɱ�� ���� Hook Gradle Task���������㽫��½½����������Hook ��ֱ���Ǹ�������~��</p>
+<blockquote>
+<p>�����˽� Gradle �������̡�Plugin��Task �Ĺ�ϵ���� <a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">һ��Ӧ�� AOP ����Ӧ��ƪ�Ļ������� </a> </p>
+</blockquote>
+<p>����֪���� Task ��һ����Ҫ�ĸ��inputs �� outputs��Task ͨ�� inputs �õ���Ҫ�Ĳ�������������֮�������� outputs������һ�� Task �� inputs ������һ�� Task ��outputs������ͼ��</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-7bb952afcf33b19d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>�����Ǵ�ӡһ�� uploadArchives ������ Task �Ͷ�Ӧ������������������ʲô����������Ħ˹.jpg��</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-dec3f36a791e392e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-bba3e6a36824327b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>bundleRelease Task ���Ǻʹ������ص� Task �ˣ����Ǵ�ӡ������ Task �����������룺</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-e2c216146b989d77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-c835e7cf312bf94b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>�����ܲ���������hook ����Task�������ǲ�׮�� jar ����ճ��������������Դ�� classes.jar������һ���ƻ���ľ������ô�죡</p>
+<blockquote>
+<p>ʵ�ּ���<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookBundle</code>����</p>
+</blockquote>
+<h4 id="����3����Դ-ID-��ͻ"><a href="#����3����Դ-ID-��ͻ" class="headerlink" title="����3����Դ ID ��ͻ"></a>����3����Դ ID ��ͻ</h4><p>�����󣬲����ܹ�����������ô sdk ���� layout ������ʾ�ˡ�</p>
+<p>����ɶ����</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-8e317f1d85df8274.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>������һ����</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f77bab6d895d840a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="��ͬ������ʽ��Դ�ȶ�.png"></p>
+<p>�üһ�� application ��ʽ������ aar ��Դ id ���ɳ����ˡ�</p>
+<p>������ʲô�����أ�</p>
+<p>�� ADT 14֮ǰ������������Ŀ���ǿ���Ŀ����Դ ID ͳһ������Ϊ final ���͵ľ�̬����������������ʹ���� ID�����൱��ʹ��һ�����������������﷨�Ż��Ὣ�����滻�ɾ�����ʮ�����������������ɵĽ���������Ŀ����ʱһ��������Դ ID ��ͻ���ͻ�Ϊ����Ŀ����Դ������ ID����������Ŀ��������Դ�ļ��Ĵ��붼��Ҫ���±��롣</p>
+<p>���� lib R ���е���Դ ID ���� static ���Σ��ͱ����˱���������ԴID���ͳ�ͻʱ������Ŀ R �಻�䣬�޸Ŀ���Ŀ R ���еı���������Ŀ�Ѿ��������Ĵ�������Ч��</p>
+<p>���� Android ���� application �� R �඼�Ǿ�̬������lib �� R �඼�Ǿ�̬������</p>
+<blockquote>
+<p>�ù� BufferKnife ��ͬѧ��֪������ libary ��ʹ�� switch ��Ҫ�� R2.XXX���ǲ��ͻ����ֳ��� R2 ��ҵ���� R ��Դ��ͻ����������J ������ô�����ģ��뿴��<a href="https://www.jianshu.com/p/0f1c7b3e907f" target="_blank" rel="external">AST �����﷨�� ���� ����������AOP����</a></p>
+</blockquote>
+<p>��զ����</p>
+<p>�ѵ�����Ҫ���� <code>0x7f��</code> ���� <code>R.XX.XX</code> Ȼ����һһ�Ѵ����滻����Ҫ������ǿ�Ƹ��²�׮ aar ����Դ id ֵ�Ӷ�������ͻ��Ĭ��ֵ��0x7F…�ĳ�0x02~0x7E��</p>
+<p>��ô�������������Ժ�������һȦ��һ�Ĵ��ȣ�������ô����ѽ��</p>
+<p>��Ȼ R �ļ��ı������η����ˣ������ǸĻ����£�</p>
+<p>���ҵ� R �ļ����ɵ�Task���������Ǵ�ӡһ�£�</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">:sdk:generateReleaseBuildConfig //������ releasse�µ� ��Դ��Դ�� ����BuildConfig  ��build/generate/source/buildConfig/release  ����checkReleaseManifest</div><div class="line">:sdk:generateReleaseResValues //׼��resource�� values�ļ�  </div><div class="line">:sdk:generateReleaseResources //׼�� ��Դ�ļ� </div><div class="line">:sdk:mergeReleaseResources  //release�µ� ����Resource�ļ� ��build/incremental/res/release�� �� merge.xml ��build/intermediates/incremental/mergeResources/release��</div><div class="line">:sdk:processReleaseManifest //����prepareReleaseDependencies  ���� AndroidManifest�ļ� ��build/incremental/manifest/full/release</div><div class="line">:sdk:processReleaseResources //����resources-release.ap_</div><div class="line">:sdk:generateReleaseSources //����R�ļ�  ��build/generate/source/r/debug�� </div><div class="line">:sdk:processReleaseJavaRes            </div><div class="line">:sdk:compileReleaseJavaWithJavac //ʹ��Javac����Java����</div><div class="line">:sdk:proguardRelease  //���� �����ļ� ���л�������</div><div class="line">:sdk:androidJavadocsPicked</div><div class="line">:sdk:copyMappingTask  //���� mapping�ļ�  </div><div class="line">:sdk:androidJavadocsJar //���� Javadocs��Jar�ļ�</div><div class="line">:sdk:androidSourcesJar //���� JavaԴ���� Jar�ļ�</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>���ǿ��� <code>generateReleaseSources</code> Task ��������R�ļ���������д�� Gradle �ű���hook סǰһ���� <code>processReleaseResources Task</code>���޸����η���so easy��hook �󷨺ã�</p>
+<p>ʵ�ּ���<a href="https://github.com/feelschaotic/SDKHotFix/blob/master/business_sdk/packPlugin.gradle" target="_blank" rel="external">packPlugin.gradle</a> <code>hookBuild</code>����</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-c6c9ef1a47843c3d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>�ǲ��Ǿ��ý����������򵥣���ʱ���ѵĲ���ʵ�֣��������ܲ����ҵ������㡣</p>
+<blockquote>
+<p>��̬�޸� resId С��չ��</p>
+<ul>
+<li><a href="https://blog.csdn.net/chzphoenix/article/details/80581838#commentBox" target="_blank" rel="external">��̬�޸�android�е���Դ����resId</a></li>
+<li><a href="https://blog.csdn.net/jiangwei0910410003/article/details/50820219" target="_blank" rel="external">Android�������޸ı�������ԴIDֵ</a></li>
+</ul>
+</blockquote>
+<h3 id="�ڶ����������·�"><a href="#�ڶ����������·�" class="headerlink" title="�ڶ����������·�"></a>�ڶ����������·�</h3><blockquote>
+<p>�������ء����غ��ϴ���һ���� app �ȸ����죬����������Щ��ī��</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-4c95a72292209ef8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>�����Ĵ洢���ǲ��ð����� OSS �����洢��һ�ְ�ȫ���ͳɱ����߿ɿ����ƴ洢���񣬿ͻ��ˡ������ˡ����������߹�ϵ���£�</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-e09755cb8756c9bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ֱ����ʱ��ͼ"></p>
+<h3 id="���������������ز���"><a href="#���������������ز���" class="headerlink" title="���������������ز���"></a>���������������ز���</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-353c95ce903b03e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-2fbad7719592bca1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="���Ĳ��������ϴ�"><a href="#���Ĳ��������ϴ�" class="headerlink" title="���Ĳ��������ϴ�"></a>���Ĳ��������ϴ�</h3><p><img src="https://upload-images.jianshu.io/upload_images/3167794-5e5a338b2e23a3db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>������һ����Ҫע�⣺�Զ��� Gradle Task ֻ֧�����봿 Java �⣬��֧��Android�⡣</p>
+</blockquote>
+<h3 id="���岽������ʧЧ����"><a href="#���岽������ʧЧ����" class="headerlink" title="���岽������ʧЧ����"></a>���岽������ʧЧ����</h3><h4 id="1-o���쳣�����������Z�"><a href="#1-o���쳣�����������Z�" class="headerlink" title="1. ȫ���쳣�����������Ž�"></a>1. ȫ���쳣�����������Ž�</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-25f11c750707e89d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>һ˵�������쳣������ʶ��һ��Ӧ��ʹ��ȫ���쳣������ѽ��</p>
+<p>�������������͵������������ˣ�</p>
+<p>����˼���£�����ͼһ������������Ҫ��һ���ǣ�ȷ���ǲ����������쳣������ʹ��ȫ���쳣����������ζ�ţ�</p>
+<ol>
+<li>������Ҫ�ȶԶ�ջ��Ϣ�����ǲ������Ի�ȡ�࣬�޷���ȡ���޸��ķ����������Ҷ�ջ�ȽϷǳ���Ч��������Ҳ�ߡ�</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-52125d7817bae12f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>�����޸��� A + B��A �޸������쳣�����������Զ�ʧЧ��B �޸�ҲʧЧ�ˡ�</li>
+</ol>
+<p>�ܲ���ֻ�� A ʧЧ�أ��ܲ��ܸ�Чȷ���ǲ����������쳣�أ�</p>
+<h4 id="2-��RobustԴ������������"><a href="#2-��RobustԴ������������" class="headerlink" title="2. ��RobustԴ������������"></a>2. ��RobustԴ������������</h4><p>���ǿ��� robust.xml �����ã�һ���Ƿ��Զ������쳣������ӳ��������</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-7fec4ad48416c1dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>������ Robust ȫ�������� <code>catchReflectException</code> �ؼ��֣����ֲ�׮�����ദ���򵥴ֱ���ֱ��ƴ���� try-catch��</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-220bf47e8165ad2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-198ad8a4ff033369.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>���ɵĲ����������£�</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f4ae1fb25a7f157e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="3-ȷ�ϸL��k�ʽ"><a href="#3-ȷ�ϸL��k�ʽ" class="headerlink" title="3.  ȷ�ϸĿ��ķ�ʽ"></a>3.  ȷ�ϸĿ��ķ�ʽ</h4><p>���������� try-catch������һ�� Robust �Ĳ�׮�ɡ�</p>
+<ol>
+<li>robust.xml ���������֧�� rollbackWhenException ���ã�</li>
+<li>��ʼ��ʱ���� XML �����</li>
+<li>�½��ع��������࣬��ҵ�񷽼�����</li>
+<li>��׮ʱ�������������ã������� try-catch���� catch ��֪ͨ�ع���������</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-42d57afbdc5efeda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>ÿ��������������Ψһ id �������ô� id ����¼�ع�״̬</p>
+</blockquote>
+<p>�� Robust ����ϸ<a href="https://github.com/feelschaotic/Robust" target="_blank" rel="external">����MR</a>������Ȥ�Ŀ��Կ���</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-a33baaf32a31551c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-3081f139db8c2282.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>�����׶����ڽ����ˣ�Ъ����~</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f4841530e598cd6e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="�����������ݷ���"><a href="#�����������ݷ���" class="headerlink" title="�����������ݷ���"></a>�����������ݷ���</h3><p>�����ȿ������������ĵ�ָ������Щ���ٵ��Ƴ���ϸ�������</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-e2d7f02c0bfe4a8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>���еĽӿ�ʧ���ʺ�����ʧ���ʣ����ǻ�Ӧ��������ԭ����</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-594d004d1610f6ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-8f8066b7a6610f3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="����"><a href="#����" class="headerlink" title="����"></a>����</h2><ol>
+<li>SDK ���޸����������� �� �����������ľ��ǲ������⡢ϸ������������</li>
+<li>�󵨼��裬ϸ����֤</li>
+</ol>
+<p>���ϵ�ʵ�����Ѿ���װ�ɿ� <a href="https://github.com/feelschaotic/SDKHotFix" target="_blank" rel="external">SDKHotFix</a>��SDK ������ֻ�� 5 ���Ӽ������Լ��� SDK ӵ�����޸�����������ӭ star ��</p>
+<p>���󣬸�������˼ά��ͼ��</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-2693f144156649a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>��ƪ���ɺ�ʱ 15 �������ӣ�450 ���ӣ�</p>
+</blockquote>
+<hr>
+<p>���� FeelsChaotic��һ��д���˴��� p ����ͼ����������Ƶ�����˻��ĳ����£�������׷���������š��ܹ����ƺ� T �ͳɳ���</p>
+<p>��ӭ��ע FeelsChaotic ��<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">����</a>��<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">����</a>�������ҵ����¶���������һ������������ӭ  ??�����Ĺ�������д��������������</p>
+<p>������Ҫ�ģ����������Ľ������������д���������ָ����</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;j��&quot;&gt;&lt;a href=&quot;#j��&quot; class=&quot;headerlink&quot; title=&quot;ǰ��&quot;&gt;&lt;/a&gt;ǰ��&lt;/h2&gt;&lt;h3 id=&quot;���걾�L��Դﵽʲo�̶�&quot;&gt;&lt;a href=&quot;#���걾�L��Դﵽʲo�̶�&quot; class=&quot;headerlink&quot; title=&quot;���걾�Ŀ��Դﵽʲô�̶�&quot;&gt;&lt;/a&gt;���걾�Ŀ��Դﵽʲô�̶�&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;�Զ����·���&lt;/li&gt;
+&lt;li&gt;ѧ�� hook task&lt;/li&gt;
+&lt;li&gt;ѧ���Զ��� task���Զ��� gradle ����&lt;/li&gt;
+&lt;li&gt;���ո��� Robust &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Ԥ��֪ʶ&quot;&gt;&lt;a href=&quot;#Ԥ��֪ʶ&quot; class=&quot;headerlink&quot; title=&quot;Ԥ��֪ʶ&quot;&gt;&lt;/a&gt;Ԥ��֪ʶ&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;���� gradle �Ļ�������&lt;/li&gt;
+&lt;li&gt;���� Task��Transform ����&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="���޸�" scheme="http://yoursite.com/tags/%EF%BF%BD%EF%BF%BD%EF%BF%BD%DE%B8%EF%BF%BD/"/>
+    
+      <category term="ϵ����" scheme="http://yoursite.com/tags/%CF%B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>APP热修复都懂了，你会SDK热修复吗？最全方案在这里！</title>
+    <link href="http://yoursite.com/2019/07/13/new/APP-%E7%83%AD%E4%BF%AE%E5%A4%8D%E9%83%BD%E6%87%82%E4%BA%86%EF%BC%8C%E4%BD%A0%E4%BC%9A-SDK-%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%90%97%EF%BC%9F%E6%9C%80%E5%85%A8%E6%96%B9%E6%A1%88%E5%9C%A8%E8%BF%99%E9%87%8C%EF%BC%81/"/>
+    <id>http://yoursite.com/2019/07/13/new/APP-热修复都懂了，你会-SDK-热修复吗？最全方案在这里！/</id>
+    <published>2019-07-13T08:46:00.000Z</published>
+    <updated>2019-10-19T06:26:50.920Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>刚开始要做 SDK 热修复，我是拒绝的 ~</p>
+<p>某日，解决完一个线上 bug 后，我冒出了一个念头：让我们的 SDK 也具有热修复的能力呗！</p>
+<p>但是查了查，网上资料少、很多热修复方案只针对app……</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-781bb4e0457262ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可是我都拍胸脯向老大夸口了，焉有退缩的道理？！</p>
+<p>加上万一以后手抖，出了个什么大 bug 或者兼容问题，我的职业生涯不就要终结了！？</p>
+<p>我滴乖乖，保命要紧！还是赶紧做个保底方案吧。</p>
+<a id="more"></a>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-706b07a38e75266d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="一、背景和目的"><a href="#一、背景和目的" class="headerlink" title="一、背景和目的"></a>一、背景和目的</h2><p>我们想实现的效果很简单，如下场景三：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-92738500f63654df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="二、技术方案"><a href="#二、技术方案" class="headerlink" title="二、技术方案"></a>二、技术方案</h2><p>先说明下，<strong>方案没有最好，只有最合适</strong>。虽然我最终选定了方案四，但如果各位小伙伴的团队有资源、有其他方案的经验、SDK的热更需求更丰富，可以自行选择其他方案。</p>
+<h3 id="方案一：JAR-替换"><a href="#方案一：JAR-替换" class="headerlink" title="方案一：JAR 替换"></a>方案一：JAR 替换</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>从服务端下载 jar -&gt; 通过反射，加载jar -&gt; 创建相关对象并且操作之。</p>
+<blockquote>
+<p>方案参考：<br><a href="https://blog.csdn.net/chunqiuwei/article/details/53066360" target="_blank" rel="external">Android SDK热修复机制简析以实现</a></p>
+</blockquote>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
+<ol>
+<li>无兼容问题</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>反射消耗性能；</li>
+<li>jar 包如果体积大，整个下载就很不友好；</li>
+<li>确定改动的代码范围繁琐，维护麻烦。</li>
+</ol>
+<h3 id="方案一改进：子-JAR-替换"><a href="#方案一改进：子-JAR-替换" class="headerlink" title="方案一改进：子 JAR 替换"></a>方案一改进：子 JAR 替换</h3><h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><p>针对 jar 包体积大的情况，我们可以考虑对 sdk 项目进行拆包（拆module），分成小的 jar 包和主包</p>
+<p>主包负责反射加载，如果需要热修，下发子 jar 即可，比较轻量。</p>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
+<ol>
+<li>只下发子包，轻量</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>比较适合主包变动小的情况；</li>
+<li>主包和子包耦合性强；</li>
+<li>还是需要用到反射。</li>
+</ol>
+<h3 id="方案二：插件化"><a href="#方案二：插件化" class="headerlink" title="方案二：插件化"></a>方案二：插件化</h3><h4 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h4><p>将SDK分包，宿主包仅提供 API 和加载核心实现的插件包，插件包就可以热更了。</p>
+<h4 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
+<ol>
+<li>灵活</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>对主项目工程的依赖太大，往往一些基本配置需要依赖于主工程的项目源码；</li>
+<li>使用接入成本高，配置麻烦，而 SDK 的业务接入方需要的是快速接入；</li>
+<li>插件化框架可能会对系统原生代码的运行造成不可预估的影响；</li>
+<li>不得不依赖很多不需要的插件化框架功能。</li>
+</ol>
+<h3 id="方案三：业务方热更"><a href="#方案三：业务方热更" class="headerlink" title="方案三：业务方热更"></a>方案三：业务方热更</h3><p>走投无路之下，我想起，诶！很多 app 热更方案不是说支持 lib 热更吗！那先作为一个保底方案吧。</p>
+<h4 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h4><p>通过业务方 app 热更 lib 包。</p>
+<h4 id="优缺点-3"><a href="#优缺点-3" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
+<ol>
+<li>热更权把控在业务方手中，对业务方透明</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>lib 包太大时，下载还是很耗流量的</li>
+<li>diff 算法无法计算新旧 lib 的差异，只能整个替换掉</li>
+<li>步骤相当繁琐，如下图：</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-430c35c9f08bc28d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="业务方会杀了你的！"></p>
+<h3 id="方案四：改造现有-APP-热修复方案"><a href="#方案四：改造现有-APP-热修复方案" class="headerlink" title="方案四：改造现有 APP 热修复方案"></a>方案四：改造现有 APP 热修复方案</h3><h4 id="1-那在选择热修复方案时考虑点有哪些？"><a href="#1-那在选择热修复方案时考虑点有哪些？" class="headerlink" title="1. 那在选择热修复方案时考虑点有哪些？"></a>1. 那在选择热修复方案时考虑点有哪些？</h4><ol>
+<li>热更项目的需求</li>
+</ol>
+<ul>
+<li>只需要简单的方法级别 Bug 修复？</li>
+<li>需要资源及 so 库的修复？</li>
+<li>需要 Native 的修复？</li>
+<li>对平台兼容性要求及成功率要求？</li>
+<li>是否需要对补丁包进行管理？</li>
+<li>公司资源是否支持商业付费？</li>
+</ul>
+<ol>
+<li>学习及使用成本</li>
+</ol>
+<ul>
+<li>集成难度和复杂度</li>
+<li>代码侵入性</li>
+<li>调试维护</li>
+</ul>
+<ol>
+<li>选择框架的关注点</li>
+</ol>
+<ul>
+<li>尽量大厂</li>
+<li>性能过关</li>
+<li>有专人维护</li>
+<li>热度高，开源社区活跃</li>
+</ul>
+<h4 id="2-总结出需要热更的-SDK-特点"><a href="#2-总结出需要热更的-SDK-特点" class="headerlink" title="2. 总结出需要热更的 SDK 特点"></a>2. 总结出需要热更的 SDK 特点</h4><ol>
+<li>主要是代码热更，无so库、资源更新需求；</li>
+<li>实时性要求高，因为一旦出问题，对业务方的影响极大；</li>
+<li>兼容性要求高，你无法预料到业务方的活跃用户都有啥机型。</li>
+</ol>
+<h4 id="3-那我们赶紧来看下，现有的-APP-热修复方案都有哪些？"><a href="#3-那我们赶紧来看下，现有的-APP-热修复方案都有哪些？" class="headerlink" title="3. 那我们赶紧来看下，现有的 APP 热修复方案都有哪些？"></a>3. 那我们赶紧来看下，现有的 APP 热修复方案都有哪些？</h4><h5 id="3-1-综合优化的产物-——-Sophix（弃）"><a href="#3-1-综合优化的产物-——-Sophix（弃）" class="headerlink" title="3.1 综合优化的产物 —— Sophix（弃）"></a>3.1 综合优化的产物 —— Sophix（弃）</h5><p>Sophix 功能完善、开发简单透明，可惜没开源，无法改造。</p>
+<h5 id="3-2-底层替换方案（弃）"><a href="#3-2-底层替换方案（弃）" class="headerlink" title="3.2 底层替换方案（弃）"></a>3.2 底层替换方案（弃）</h5><p>底层替换方案不可避免地存在兼容问题，弃之。</p>
+<h5 id="3-3-类加载方案-——-Tinker"><a href="#3-3-类加载方案-——-Tinker" class="headerlink" title="3.3 类加载方案 —— Tinker"></a>3.3 类加载方案 —— Tinker</h5><p>优点：</p>
+<ol>
+<li>用户多</li>
+<li>更新时间新，相比之下，其他有在Github上开源的框架，star数都是7000以下，上次更新时间都在1年前，甚至2年前。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>dex合成占用ROM较大</li>
+<li>不够实时</li>
+<li>需要改造Application，业务方有感知。（也可以参考 InstantRun 做到不修改 Application 达到替换 Application 的效果，但该方案大量 hook 系统 api，不够稳定，大概有 1/1w 的概率会出现替换失败，所以Tinker最终还是没有使用InstantRun的方式）</li>
+</ol>
+<p>还有两个问题，留给大家去思考：</p>
+<ol>
+<li>会不会影响业务方加固？</li>
+<li>和业务方是否冲突？</li>
+</ol>
+<blockquote>
+<ul>
+<li><p>方案参考：<br><a href="https://www.jianshu.com/p/19d92329d9f2" target="_blank" rel="external">基于Tinker的SDK全局热更新方案（全网唯一）</a> </p>
+</li>
+<li><p>扩展：<br>InstantRun 如何动态替换 Application，总结起来就两步：</p>
+</li>
+</ul>
+<ol>
+<li>打包时替换 Application 标签，插入BootstrapApplication</li>
+<li>运行时 hook 系统api，将 BootstrapApplication 换回 MyApplication</li>
+</ol>
+</blockquote>
+<h5 id="3-4-插桩-——-美团-Robust"><a href="#3-4-插桩-——-美团-Robust" class="headerlink" title="3.4 插桩 —— 美团 Robust"></a>3.4 插桩 —— <a href="https://tech.meituan.com/2016/09/14/android-robust.html" target="_blank" rel="external">美团 Robust</a></h5><p>Robust 的原理可以简单描述为：</p>
+<ol>
+<li>打基础包时插桩，在每个方法前插入一段 if(changeQuickRedirect==null)-else 的逻辑；</li>
+<li>加载补丁时，从补丁包中读取要替换的类及具体替换的方法实现，新建 ClassLoader 加载补丁 dex，当目标方法被执行时，此时 changeQuickRedirect != null，方法逻辑流程被改变，而替换掉之前的旧逻辑，达到 fix 的目的。</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-5b3cef14f624570b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="流程图"></p>
+<p>优点：</p>
+<ol>
+<li>兼容性最优，兼容加固</li>
+<li>实时生效</li>
+<li>粒度细，支持方法级别的修复</li>
+<li>高稳定性，修复成功率高达99.9%</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>在编译阶段插件侵入了产品代码，对运行效率、方法数、包体积还是产生了一些副作用。（支持指定某些class无需插入）</li>
+<li>so和资源的替换目前暂未实现</li>
+<li>无法新增变量</li>
+<li>没有补丁管理和安全校验，需要开发者自行实现</li>
+</ol>
+<p>思考：</p>
+<ol>
+<li>和其他的插桩插件混用是否有冲突？</li>
+</ol>
+<h2 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h2><p>就在我美滋滋地接入 Robust 时，问题来了！</p>
+<p>Robust 需要是 Application 才能插桩和打补丁，要用在 SDK 上，还是需要一轮改造的。</p>
+<p>如何改造？我将在下篇博文中详解，同时将推出封装好的库，让 SDK 开发者只需 5 分钟即可让自己的 SDK 拥有热修复的能力，敬请期待。</p>
+<h2 id="四、除了热更技术本身，我们还应该关心的"><a href="#四、除了热更技术本身，我们还应该关心的" class="headerlink" title="四、除了热更技术本身，我们还应该关心的"></a>四、除了热更技术本身，我们还应该关心的</h2><p>当然，我们的焦点并不局限在技术实现上，还有很多值得我们去考虑的：</p>
+<p>我们怎么对分发进行控制？对监控数据进行统计？如果补丁引起了崩溃，我们怎么第一时间补救？</p>
+<h3 id="1-精准分发"><a href="#1-精准分发" class="headerlink" title="1. 精准分发"></a>1. 精准分发</h3><p>结合外部维度系统，根据用户维度，比如渠道、系统版本等等做有差别的下发。</p>
+<h3 id="2-数据分析"><a href="#2-数据分析" class="headerlink" title="2. 数据分析"></a>2. 数据分析</h3><p>上线后我们最关心的就是补丁的兼容性和成功率。</p>
+<ol>
+<li>补丁拉取成功率 = 请求补丁成功的用户 / 发起请求补丁的用户 </li>
+<li>补丁下载成功率 = 下载补丁成功的用户 / 尝试下载补丁的用户 </li>
+<li>patch应用成功率 = patch成功的用户 - 回滚的用户 / 补丁下载成功的用户</li>
+</ol>
+<h3 id="3-补丁回滚机制"><a href="#3-补丁回滚机制" class="headerlink" title="3. 补丁回滚机制"></a>3. 补丁回滚机制</h3><p>我们需要支持自动监控崩溃，如果是下发的补丁引起的，则下次启动补丁自动失效，避免扩大影响范围。</p>
+<p>以上这些思考，我将会在下篇博文中一一实现，敬请关注！</p>
+<blockquote>
+<p>本篇完成耗时 6 个番茄钟（180 分钟）</p>
+</blockquote>
+<hr>
+<p>我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。</p>
+<p>欢迎关注 FeelsChaotic 的<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">简书</a>和<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">掘金</a>，如果我的文章对你哪怕有一点点帮助，欢迎  ❤️！你的鼓励是我写作的最大动力！</p>
+<p>最最重要的，请给出你的建议或意见，有错误请多多指正！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;刚开始要做 SDK 热修复，我是拒绝的 ~&lt;/p&gt;
+&lt;p&gt;某日，解决完一个线上 bug 后，我冒出了一个念头：让我们的 SDK 也具有热修复的能力呗！&lt;/p&gt;
+&lt;p&gt;但是查了查，网上资料少、很多热修复方案只针对app……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/3167794-781bb4e0457262ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可是我都拍胸脯向老大夸口了，焉有退缩的道理？！&lt;/p&gt;
+&lt;p&gt;加上万一以后手抖，出了个什么大 bug 或者兼容问题，我的职业生涯不就要终结了！？&lt;/p&gt;
+&lt;p&gt;我滴乖乖，保命要紧！还是赶紧做个保底方案吧。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
+    
+      <category term="热修复" scheme="http://yoursite.com/tags/%E7%83%AD%E4%BF%AE%E5%A4%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从各大跨平台技术说开去，我们真的需要虚拟 DOM 吗？</title>
+    <link href="http://yoursite.com/2019/05/24/new/%E4%BB%8E%E5%90%84%E5%A4%A7%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF%E8%AF%B4%E5%BC%80%E5%8E%BB%EF%BC%8C%E6%88%91%E4%BB%AC%E7%9C%9F%E7%9A%84%E9%9C%80%E8%A6%81%E8%99%9A%E6%8B%9F-DOM-%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/05/24/new/从各大跨平台技术说开去，我们真的需要虚拟-DOM-吗？/</id>
+    <published>2019-05-24T12:45:00.000Z</published>
+    <updated>2019-10-19T06:27:26.909Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/3167794-2d227d10d3097288.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>你有没有留意到？优秀的解决方案思想都是相通的：当你研究 Flutter 渲染原理时会发现 Flutter Rendering 层类似于 React 中的虚拟 DOM，当你去看 Weex 工作原理时，诶，又发现了虚拟 DOM 的身影，更别提 VUE 响应式视图的核心也是虚拟 DOM 了。</p>
+<p>那这个虚拟 DOM 有什么用？为什么这么多框架都应用了它？本质上带来了什么优势？本文将结合前端和移动端来谈谈。</p>
+<a id="more"></a>
+<h2 id="什么是-DOM？什么是虚拟-DOM？"><a href="#什么是-DOM？什么是虚拟-DOM？" class="headerlink" title="什么是 DOM？什么是虚拟 DOM？"></a>什么是 DOM？什么是虚拟 DOM？</h2><p>DOM 就是文档树，与用户界面控件树对应，在 web 开发中通常指 HTML 对应的渲染树，但广义的 DOM 也可以指 Android 中的 XML 布局对应的控件树，而 DOM 操作就是指直接操作渲染树（或控件树）。</p>
+<p>虚拟 DOM 是一个用来表示真实的 DOM 结构的数据结构。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-9a75dc4273e299fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>想当年学前端的时候，还是 jQuery 的时代，想赋值？改个样式？取值？都是<code>document.getElementById()</code>咔咔一顿操作。这样直接操作 DOM 会有什么问题？</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-925375a2ff821060.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="直接操作-DOM-带来的问题"><a href="#直接操作-DOM-带来的问题" class="headerlink" title="直接操作 DOM 带来的问题"></a>直接操作 DOM 带来的问题</h3><h4 id="1-model-和-view-耦合"><a href="#1-model-和-view-耦合" class="headerlink" title="1. model 和 view 耦合"></a>1. model 和 view 耦合</h4><p>最直观的问题之一， 把用户请求的表现逻辑和控制层要实现的业务逻辑两者混合起来了，两部分的依赖非常强。</p>
+<h4 id="2-高频操作引起性能损耗"><a href="#2-高频操作引起性能损耗" class="headerlink" title="2. 高频操作引起性能损耗"></a>2. 高频操作引起性能损耗</h4><p>写个简单Demo，我们看下效果。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-cdbafa118f7b1b19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-b9226c2ad01dade7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="为什么会有性能损耗？"><a href="#为什么会有性能损耗？" class="headerlink" title="为什么会有性能损耗？"></a>为什么会有性能损耗？</h3><p>原因可以归结为 2 点：</p>
+<h4 id="1-跨界交流损耗"><a href="#1-跨界交流损耗" class="headerlink" title="1. 跨界交流损耗"></a>1. 跨界交流损耗</h4><blockquote>
+<p>把 DOM 和 ECMAScript 各自想象成一个岛屿，它们之间用收费桥梁连接。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——《高性能JavaScript》</p>
+</blockquote>
+<p>DOM 属于渲染引擎，而 JS 又是属于 JS 引擎，在浏览器内核中他们彼此独立。单独来看，两者都是很快的，但当我们用 JS 去操作 DOM 时，引擎之间进行了“跨界交流”。这个“跨界交流”的实现并不简单，它依赖了桥接接口作为“桥梁”，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-873b5151581182de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>既然是收费桥梁，过“桥”就要收费。我们每操作一次 DOM（不管是为了修改还是仅仅为了访问其值），都要过一次“桥”。次数一多就会产生比较明显的性能问题。</p>
+<p>那移动端混合开发的情况呢？</p>
+<p>就拿 RectNative 举例，RectNative 是一套 UI 基于原生控件（非Web UI）业务逻辑基于 JS 的跨平台技术解决方案，JS 中所写控件标签不是真实控件，会在 Native 端解析为原生控件，如<code>&lt;Text&gt;</code>标签对应 Android 中的 TextView 控件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-4b9b7b9d846bf495.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="映射链条"></p>
+<p>在布局过程中 RN 需要在 JS 和 Native 之间通信，如果遇到滑动和拖动的情况，劣势就很明显了，这和在浏览器中要 JS 频繁操作 DOM 所带来的问题是相同的，都会带来比较可观的性能开销。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-441c9fa48b836ddc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="UI 控件属于原生层，逻辑  JS 属于 JS 层，也属于“跨界交流”"></p>
+<h4 id="2-DOM-修改引起重绘或重排"><a href="#2-DOM-修改引起重绘或重排" class="headerlink" title="2. DOM 修改引起重绘或重排"></a>2. DOM 修改引起重绘或重排</h4><p>修改 DOM 属性的代价更是昂贵，它会导致渲染引擎重新计算几何变化（重排和重绘）。我们来看下渲染步骤：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-012469eb45a5eda4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="渲染过程"></p>
+<p>在页面生成时，至少会进行一次布局和渲染，后面用户操作时，如果修改了 DOM 节点，会触发渲染树（Render Tree）的变化，从而进行上图的步骤2、3、4、5，因此如果在 js 中存在很多 DOM 操作，就会不断地触发重绘或重排，影响页面性能。</p>
+<p>在移动端，情况也好不到哪里去。</p>
+<p>布局中的任何一个 View 一旦发生属性变化，都可能引起很大的连锁反应（如果所在的控件层级非常复杂的话）。例如某个 btn 的大小突然增加一倍，有可能会导致兄弟视图的位置变化，也有可能导致父视图的大小发生改变。当大量的 layout() 操作被频繁调用执行时，会引起整个 View 频繁地重渲，最终导致丢帧或 UI 卡顿。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>针对以上的问题，我们一一提出解决方案：</p>
+<h3 id="1-减少跨界过桥次数，合并操作"><a href="#1-减少跨界过桥次数，合并操作" class="headerlink" title="1. 减少跨界过桥次数，合并操作"></a>1. 减少跨界过桥次数，合并操作</h3><blockquote>
+<p>ECMAScript 每次访问 DOM，都要经过这座桥，并交纳“过桥费”，访问 DOM 的次数越多，费用也就越高。因此，推荐的做法是尽量减少过桥的次数，努力呆在 ECMAScript 岛上。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;——《高性能JavaScript》</p>
+</blockquote>
+<p>我们来分析下，怎么减少“过桥的次数”？过桥次数之所以频繁，和频繁的 DOM 操作有关。</p>
+<p>比如我们给列表加数据，最差的方式就是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0; i &lt; N; i++) &#123;</div><div class="line">      var li = document.createElement(&quot;li&quot;);</div><div class="line">      li.innerHTML = arr[i];</div><div class="line">      ul.appendChild(li);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>这里会操作 N 次 DOM 触发 N 次重绘。重渲肯定是无法避免的，我们的目标是最小化重绘和重排次数。</p>
+<p>那能不能不要立即去操作 DOM 呢？</p>
+<p>将这 N 次更新的内容保存到一个 js 对象中，最终将这个 js 对象一次性 attach 到 DOM 树上，通知浏览器去执行绘制工作。这样无论多么复杂的 DOM 操作，最终都只会触发一次渲染全流程，避免了大量的无谓计算量，这样不就可以了么！（欣喜若狂.jpg）</p>
+<p>但优化 DOM 操作方式很多，不一定要依赖虚拟 DOM，所以这不是我们需要虚拟 DOM 的根本原因，根本的原因还是响应式需求。</p>
+<h3 id="2-响应式"><a href="#2-响应式" class="headerlink" title="2. 响应式"></a>2. 响应式</h3><p>如果通过 JS 直接操作 DOM 的话，势必会造成视图数据和模型数据的不匹配，我们能不能让开发者只关心状态（数据）变化，而无需关心控件操作呢？当然可以！</p>
+<p>React 中提出一个重要思想：状态改变则 UI 随之自动改变。</p>
+<p>每次状态有变动就重构用户界面，重渲整个 view。如果没有虚拟 DOM，简单粗暴的做法就是直接重置 innerHTML，在大部分数据都变了的情况下，重置 innerHTML 还算合理，但如果只有一行数据变了，显然就有大量的浪费。</p>
+<p>这是我们需要虚拟 DOM 的原因，用它来代替开发者的手工操作，确保只对真正有变化的部分进行实际的 DOM 操作（局部刷新）。</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>开发者对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟 DOM（自动同步，体现响应式），最后再批量同步到真实 DOM 中，而不是每次改变都去操作一下 DOM（批量同步，体现合并操作）</p>
+<ol>
+<li>不需要直接操作控件，通过数据驱动视图</li>
+<li>最大程度降低对最终视图的修改，提高页面渲染效率</li>
+</ol>
+<h2 id="怎么利用虚拟-DOM？"><a href="#怎么利用虚拟-DOM？" class="headerlink" title="怎么利用虚拟 DOM？"></a>怎么利用虚拟 DOM？</h2><h3 id="1-React"><a href="#1-React" class="headerlink" title="1. React"></a>1. React</h3><p>当 React UI 渲染时，先渲染一个虚拟 DOM，这是一个轻量的纯 js 的对象结构，并没有完全实现 DOM，最主要的还是保留了节点之间的层次关系和一些基本属性，因为 DOM 实在是太复杂，实际在做最后绘制时，这些都是不需要关心的。所以虚拟 DOM 里每一个节点只有几个简单属性，哪怕是直接把虚拟 DOM 删了，根据新传进来的数据重新创建一个新的虚拟 DOM 都非常快。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-0bdbe0da4eee0200.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当有变化时，生成一个新的虚拟 DOM。这个新的虚拟DOM反应了数据模型的新状态。现在我们有 2 个虚拟DOM：新的和老的。对比 DOM 树差异得到一个 Patch，把这个 Patch 打到真实的 DOM 上去，这有点像版本控制打patch的思路。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-29d1b04e82340899.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>那我们怎么比较出两颗 DOM 树的差异呢？ Diff 算法！</p>
+<p>即给定任意两棵树，找到最少的转换步骤。但是标准的 Diff 算法复杂度需要 O(n^3)，这显然无法满足性能要求。Facebook 工程师结合 Web 界面的特点做出了两个简单的假设，使得 Diff 算法复杂度直接降低到 O(n)。</p>
+<ol>
+<li>两个相同组件产生类似的 DOM 结构，不同的组件产生不同的 DOM 结构；</li>
+<li>对于同一层次的一组子节点，它们可以通过唯一的 id 进行区分。</li>
+</ol>
+<p>算法上的优化是 React 整个界面 Render 的基础，事实也证明这两个假设是合理而精确的，保证了整体界面构建的性能。</p>
+<p>由这一对不同类型的节点的处理逻辑我们很容易得到推论，那就是 React 的 DOM Diff 算法实际上只会对树进行逐层比较，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-1a13588cf5b31e79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>React 只会对相同颜色方框内的 DOM 节点进行比较，即同一个父节点下的所有子节点。当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不会用于进一步的比较。这样只需要对树进行一次遍历，便能完成整个 DOM 树的比较。</p>
+<p>实际实践起来，Diff 算法并没有这么简单，感兴趣的小伙伴可以在文末的推文去深入了解。</p>
+<p>那跨平台方案的情况呢？</p>
+<h3 id="2-RN"><a href="#2-RN" class="headerlink" title="2. RN"></a>2. RN</h3><p>上文已经提到 RN 是 React 在原生移动应用平台的衍生产物，那两者主要的区别是什么呢？主要的区别在于虚拟 DOM 映射的对象是什么。React 中虚拟 DOM 最终会映射为浏览器 DOM 树，而 RN 中虚拟 DOM 会通过 JavaScriptCore 映射为原生控件树。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f89728c9f9c680cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>步骤如下：</p>
+<ol>
+<li>布局消息传递：将虚拟 DOM 布局信息传递给原生；</li>
+<li>原生根据布局信息，映射成对应原生控件树，渲染控件树。</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-1dc092ada1b75e28.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>至此，RN 便实现了跨平台。 </p>
+<h3 id="3-weex"><a href="#3-weex" class="headerlink" title="3. weex"></a>3. weex</h3><p>weex 一定程度上用 JS 实现了  vue 一统天下的效果。</p>
+<p>可以看到，weex 会编译构建虚拟 DOM，并发送渲染指令给 RenderEngine 层，这样，同样一份 JSON 数据，在不同平台的渲染引擎中能够渲染成不同版本的 UI，这是 Weex 可以实现动态化的原因。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-15d57a51af99cd02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="weex工作原理"></p>
+<p> 那三端的语法都不一样，Weex是怎么统一的？重点在于 JS Framework！</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-cc8d82e529a5ec7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p> weex 在 RN 的  JS V8 引擎基础上，多了 JS Framework 承当了重要的职责，它主要负责：管理 Weex 的生命周期；解析 JS Bundle，转为 Virtual DOM，再通过所在平台不同的 API 构建页面；进行双向的数据交互和响应。</p>
+<p>这使得上层具备统一性，在开发过程中，代码模式、编译过程、模板组件、数据绑定、生命周期等上层语法是一致的。得益于上层的统一，只需要在 JS Framework 层的最后判断是由 Vue.js 生成真实的 DOM，还是通过 Native Api 渲染组件即可。</p>
+<h3 id="4-Flutter"><a href="#4-Flutter" class="headerlink" title="4. Flutter"></a>4. Flutter</h3><p>RN 和 React 原理相通，那 Flutter 呢？Flutter Widget 的中心思想是用 Widget 构建你的UI（非原生控件）。 那少了原生控件层和 js 层的通信损耗，不需要用虚拟 DOM 了吧？</p>
+<p>非也！ Flutter Widget 从 React 中获得了灵感，也是采用现代响应式框架构建。</p>
+<p>先看看 Flutter 中三颗重要的树：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-988bb2b3add8fa9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Flutter的三颗树"></p>
+<ul>
+<li><p>Widget 树：控件树，表示了我们在 dart 代码中所写的控件的结构，但这只是描述信息，渲染引擎是不认识的。</p>
+<p>Widget 被开发人员配置了多个属性来定义它的展现形式，例如配置 Text 组件需要显示的字符串，配置输入框组件需要显示的内容……Element 树会记录这些配置信息。</p>
+</li>
+<li><p>Element 数：实际控件树</p>
+<p>  在手机屏幕上显示的控件并非我们在代码中所写的 Widget，Flutter 会根据 Widget 树信息生成控件对应的 Element 树，在 Flutter 中，一个 Widget 通过多次复用可以对应多个 Element 实例，Element 才是我们真正在屏幕上显示的元素。</p>
+<p>  Element 与 Widget 另一个区别在于，Widget 是不可变的，它的改变就意味着要重建，而其重建也非常频繁，如果我们将更多的任务交给它，将会对性能造成很大的损耗，因此我们把 Widget 树当作一个虚拟 DOM 树，真正被渲染在屏幕上的其实是 ElememtTree，它持有其对应 Widget 的引用，如果对应的 Widget 发生改变，它就会被标记为 dirty Element，下一次更新视图时根据这个状态只更新被修改的内容，这样就把可变状态与 Widget 关联起来，从而达到提升性能的效果。</p>
+</li>
+<li><p>RenderObject 树：渲染树，做组件布局渲染工作，包含渲染搭配、布局约束等信息。</p>
+</li>
+</ul>
+<p>简而言之，Flutter 引入虚拟 DOM 的目的是为了确定底层渲染树从一个状态转换到下一个状态所需的最小更改。</p>
+<h2 id="虚拟-DOM-对跨平台技术的意义"><a href="#虚拟-DOM-对跨平台技术的意义" class="headerlink" title="虚拟 DOM 对跨平台技术的意义"></a>虚拟 DOM 对跨平台技术的意义</h2><p>那分析完各种跨平台技术，你对虚拟 DOM 有了怎样的认识了呢？</p>
+<p>为什么使用虚拟 DOM？</p>
+<p>是因为快？（实际上不一定快）</p>
+<p>是因为解耦？</p>
+<p>是因为响应式？</p>
+<p>对跨平台技术来说，更重要的意义在于：</p>
+<p>虚拟 DOM 是 DOM 在内存中的一种轻量级表达方式，是一种统一约定！<strong>可以通过不同的渲染引擎生成不同平台下的 UI！</strong></p>
+<p>虚拟 DOM 的可移植性非常好，这意味着可以渲染到 DOM 以外的任何端，发挥你的想象力，可以做的事情很多。</p>
+<h2 id="再次审视虚拟-DOM"><a href="#再次审视虚拟-DOM" class="headerlink" title="再次审视虚拟 DOM"></a>再次审视虚拟 DOM</h2><p>虚拟 DOM 真正的价值从来都不是性能，而是不管数据怎么变化，都可以用最小的代价来更新 DOM，而且掩盖了底层的 DOM 操作，让你用更声明式的方式来描述你的目的，从而让你的代码更容易维护。</p>
+<p>虚拟 DOM 带来了很多好思路，打开了通向有趣架构的大门，例如将视图视为状态函数。它让我们编写代码，就像重新呈现整个场景一样。这不禁让我感慨，没有什么是加中间件不能解决的，如果有，那就再加多个中间件。</p>
+<p>5 个词语概括下意义：</p>
+<p><strong>可维护性、最小的代价、效率、函数式UI、数据驱动</strong></p>
+<h2 id="进一步思考"><a href="#进一步思考" class="headerlink" title="进一步思考"></a>进一步思考</h2><p>虚拟 DOM 的说明已经结束了，但是对于虚拟 DOM 的思考远没有结束。</p>
+<p>Rect 的方式有两大缺点：</p>
+<ol>
+<li><p>每次数据更改，哪怕改动很小，都会生成完整的虚拟 DOM，如果 DOM 很复杂，这个过程就会白白浪费很多计算资源；</p>
+</li>
+<li><p>比较虚拟 DOM 差异的过程，既慢又容易出错。因为 React 持有的新旧虚拟 DOM 相互独立，React 并不知道数据源发生了什么操作，只能根据两个虚拟 DOM 来猜测需要执行的操作。自动的猜测算法既不准又慢，必须要前端开发者手动提供 key 属性和一些额外的方法实现来帮助 React 猜对。</p>
+</li>
+</ol>
+<p>那么？</p>
+<p>留个思考题，vue 是怎么利用虚拟 DOM 的？针对以上缺点怎么做改进？大家可以去了解一下。</p>
+<h2 id="还想了解更多？"><a href="#还想了解更多？" class="headerlink" title="还想了解更多？"></a>还想了解更多？</h2><blockquote>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&amp;mid=2247484104&amp;idx=1&amp;sn=59f4d94f95664b2dbb9b23a6cd0bce45&amp;scene=21#wechat_redirect" target="_blank" rel="external">别再说虚拟 DOM 快了，要被打脸的</a></li>
+<li><a href="https://www.zhihu.com/question/31809713/answer/53544875" target="_blank" rel="external">网上都说操作真实 DOM 慢，但测试结果却比 React 更快，为什么？</a></li>
+<li><a href="https://juejin.im/post/5c4a76b4e51d4526e57da225" target="_blank" rel="external">虚拟DOM和Diff算法 - 入门级</a></li>
+<li><a href="https://blog.csdn.net/qq_36407875/article/details/84965311" target="_blank" rel="external">React的虚拟DOM与diff算法的理解</a></li>
+<li><a href="https://github.com/livoras/blog/issues/13" target="_blank" rel="external">深度剖析：如何实现一个 Virtual DOM 算法</a></li>
+<li><a href="https://www.cnblogs.com/wind-lanyan/p/9061684.html" target="_blank" rel="external">详解vue的diff算法</a></li>
+<li><a href="https://segmentfault.com/a/1190000008782928" target="_blank" rel="external">解析vue2.0的diff算法</a></li>
+</ul>
+<p>本篇完成耗时 26 个番茄钟（ 650分钟）</p>
+</blockquote>
+<hr>
+<p>我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。</p>
+<p>欢迎关注 FeelsChaotic 的<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">简书</a>和<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">掘金</a>，如果我的文章对你哪怕有一点点帮助，欢迎  ❤️！你的鼓励是我写作的最大动力！</p>
+<p>最最重要的，请给出你的建议或意见，有错误请多多指正！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/3167794-2d227d10d3097288.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;你有没有留意到？优秀的解决方案思想都是相通的：当你研究 Flutter 渲染原理时会发现 Flutter Rendering 层类似于 React 中的虚拟 DOM，当你去看 Weex 工作原理时，诶，又发现了虚拟 DOM 的身影，更别提 VUE 响应式视图的核心也是虚拟 DOM 了。&lt;/p&gt;
+&lt;p&gt;那这个虚拟 DOM 有什么用？为什么这么多框架都应用了它？本质上带来了什么优势？本文将结合前端和移动端来谈谈。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="跨平台" scheme="http://yoursite.com/tags/%E8%B7%A8%E5%B9%B3%E5%8F%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>会用就行了？你知道 AOP 框架的原理吗？</title>
+    <link href="http://yoursite.com/2019/02/04/new/%E4%BC%9A%E7%94%A8%E5%B0%B1%E8%A1%8C%E4%BA%86%EF%BC%9F%E4%BD%A0%E7%9F%A5%E9%81%93-AOP-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E7%90%86%E5%90%97%EF%BC%9F/"/>
+    <id>http://yoursite.com/2019/02/04/new/会用就行了？你知道-AOP-框架的原理吗？/</id>
+    <published>2019-02-04T03:25:00.000Z</published>
+    <updated>2019-10-19T06:28:22.407Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文将从另一个角度讲解 AOP，从<strong>宏观的实现原理和设计本质</strong>入手。大部分讲 AOP 的博文都是一上来就罗列语法，然后敲个应用 demo就完了 。但学习不能知其然，不知其所以然。</p>
+<p>对 AOP 我提出了几点思考：AspectJ 为什么会大热？AspectJ 是怎样工作的？和 Spring AOP 有什么区别？什么场景下适用？我们能不能自己实现一个 AOP 方法？</p>
+<a id="more"></a>
+<blockquote>
+<p>在熟悉原理前，如果想先掌握 AOP 的使用方法可以看：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/0799aa19ada1" target="_blank" rel="external">一文读懂 AOP | 你想要的最全面 AOP 方法探讨</a></li>
+<li><a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">一文应用 AOP | 最全选型考量 + 边剖析经典开源库边实践，美滋滋</a></li>
+<li><a href="https://www.jianshu.com/p/0f1c7b3e907f" target="_blank" rel="external">AOP 最后一块拼图 | AST 抽象语法树 —— 最轻量级的AOP方法</a></li>
+</ul>
+</blockquote>
+<h3 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h3><p>敲一个小 Demo 来引入主题，假设我想不依赖任何 AOP 方法，在特定方法的执行前后加上日志打印。</p>
+<h4 id="第一种方式：写死代码"><a href="#第一种方式：写死代码" class="headerlink" title="第一种方式：写死代码"></a>第一种方式：写死代码</h4><p>定义一个目标类接口</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-e1e136501d717e62.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-fbe83771b67d4776.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>把 before() 和 after() 方法写死在 execute() 方法体中，非常不优雅，我们改进一下。</p>
+<h4 id="第二种方式：静态代理"><a href="#第二种方式：静态代理" class="headerlink" title="第二种方式：静态代理"></a>第二种方式：静态代理</h4><p><img src="http://upload-images.jianshu.io/upload_images/3167794-bcb5743743c929a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但是存在一个问题，随着打印日志的需求增多，Proxy 类越来越多，我们能不能保持只有一个代理呢？这时候我们就需要用到 JDK 动态代理了。</p>
+<h4 id="第三种方式：动态代理"><a href="#第三种方式：动态代理" class="headerlink" title="第三种方式：动态代理"></a>第三种方式：动态代理</h4><p>新建动态代理类</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-9299439e1eb59250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>客户端调用</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-fc0cb11a0b795844.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这又引出一个问题，日志打印和业务逻辑耦合在一起，我们希望把前置和后置抽离出来，作为单独的增强类。</p>
+<h4 id="第四种方式：动态代理-分离增强类"><a href="#第四种方式：动态代理-分离增强类" class="headerlink" title="第四种方式：动态代理 + 分离增强类"></a>第四种方式：动态代理 + 分离增强类</h4><p>新建增强类接口和实现类</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-ca121efdccbdfa2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>用反射代替写死方法，解耦代理和操作者</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-d6e7713c71ed1db6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>客户端调用</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-6fb74ce7c04519fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但是用了反射性能太差了，而且动态代理用起来也不方便，有没有更好的办法？</p>
+<h4 id="我们发现-Demo-存在种种问题"><a href="#我们发现-Demo-存在种种问题" class="headerlink" title="我们发现 Demo 存在种种问题"></a>我们发现 Demo 存在种种问题</h4><ul>
+<li>静态代理每次都要自己新建个代理类，太繁琐，重用性又差，一个代理不能同时代理多种类；</li>
+<li>动态代理可以重用，但性能太差；</li>
+<li>代理类耦合进被代理类的调用阶段，万一我需要改下 before、after 的方法名，可能会点燃一个炸弹；</li>
+<li>代理拦截了一个类，就会拦截这个类的所有方法，难道我还要在代理类里加个 if-else 判断特定方法过滤拦截？我们可以不可以只拦截特定的方法？</li>
+<li>如果我既要打印日志，又要计算方法执行用时，每次都要去改增强类吗？</li>
+</ul>
+<p>我们的<strong>诉求很简单：1. 性能高；2. 松耦合；3. 步骤方便；4. 灵活性高。</strong></p>
+<p>那主流的 AOP 框架是怎么解决这个问题的呢？我们赶紧来看看！</p>
+<h3 id="二、AOP-方法"><a href="#二、AOP-方法" class="headerlink" title="二、AOP 方法"></a>二、AOP 方法</h3><p>不同的 AOP 方法原理略微有些不同，我们先看下 AOP 实现方式有哪些：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">AOP方式</th>
+<th style="text-align:left">机制</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">静态织入</td>
+<td style="text-align:left">静态代理</td>
+<td style="text-align:left">直接修改原类，比如编译期生成代理类的 APT</td>
+</tr>
+<tr>
+<td style="text-align:left">静态织入</td>
+<td style="text-align:left">自定义类加载器</td>
+<td style="text-align:left">使用类加载器启动自定义的类加载器，并加一个类加载监听器，监听器发现目标类被加载时就织入切入逻辑，以 Javassist 为代表</td>
+</tr>
+<tr>
+<td style="text-align:left">动态织入</td>
+<td style="text-align:left">动态代理</td>
+<td style="text-align:left">字节码加载后，为接口动态生成代理类，将切面植入到代理类中，以 JDK Proxy 为代表</td>
+</tr>
+<tr>
+<td style="text-align:left">动态织入</td>
+<td style="text-align:left">动态字节码生成</td>
+<td style="text-align:left">字节码加载后，通过字节码技术为一个类创建子类，并在子类中采用方法拦截的技术拦截所有父类方法的调用织入逻辑。属于子类代理，以 CGLIB 为代表</td>
+</tr>
+</tbody>
+</table>
+<p>所有 AOP 方法<strong>本质就是：拦截、代理、反射</strong>（动态情况下），实现<strong>原理可以看作是代理 / 装饰设计模式的泛化，</strong>为什么这么说？我们来详细分析一下。</p>
+<h3 id="三、静态织入原理，以-AspectJ-为例"><a href="#三、静态织入原理，以-AspectJ-为例" class="headerlink" title="三、静态织入原理，以 AspectJ 为例"></a>三、静态织入原理，以 AspectJ 为例</h3><p>静态织入原理就是<strong>静态代理</strong>，我们以 AspectJ 为例。</p>
+<h4 id="1-AspectJ-设计思路"><a href="#1-AspectJ-设计思路" class="headerlink" title="1. AspectJ 设计思路"></a>1. AspectJ 设计思路</h4><p>前面说到 Demo 存在的种种问题，AspectJ 是怎么解决的呢？AspectJ 提供了两套强大的机制：</p>
+<h5 id="（1）切面语法-解决业务和切面的耦合"><a href="#（1）切面语法-解决业务和切面的耦合" class="headerlink" title="（1）切面语法 | 解决业务和切面的耦合"></a>（1）切面语法 | 解决业务和切面的耦合</h5><p>AspectJ 中的切面，就解决了这个问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@Before(&quot;execution(* android.view.View.OnClickListener.onClick(..))&quot;)</div></pre></td></tr></table></figure>
+<p>我们可以通过切面，将增强类与拦截匹配条件（切点）组合在一起，从而生成代理。这<strong>把是否要使用切面的决定权利还给了切面</strong>，我们在写切面时就可以决定哪些类的哪些方法会被代理，从而<strong>逻辑上不需要侵入业务代码</strong>。</p>
+<p>而普通的代理模式并没有做到切面与业务代码的解耦，虽然将切面的逻辑独立进了代理类，但是决定是否使用切面的权利仍然在业务代码中。这才导致了 Demo 中种种的麻烦。</p>
+<p>AspectJ 提供了两套对切面的描述方法：</p>
+<ol>
+<li><p>我们常用的基于 java 注解切面描述的方法，写起来十分方便，兼容 Java 语法；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">public class AnnoAspect &#123;</div><div class="line">    @Pointcut(&quot;execution(...)&quot;)</div><div class="line">    public void jointPoint() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Before(&quot;jointPoint()&quot;)</div><div class="line">    public void before() &#123;</div><div class="line">		//...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @After(&quot;jointPoint()&quot;)</div><div class="line">    public void after() &#123;</div><div class="line">		//...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>基于 aspect 文件的切面描述方法，这种语法不兼容 Java 语法。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public aspect AnnoAspect &#123;</div><div class="line"></div><div class="line">    pointcut XX():</div><div class="line">            execution(...);</div><div class="line">    before(): XX() &#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">    after(): XX() &#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="（2）织入工具-解决代理手动调用的繁琐"><a href="#（2）织入工具-解决代理手动调用的繁琐" class="headerlink" title="（2）织入工具 | 解决代理手动调用的繁琐"></a>（2）织入工具 | 解决代理手动调用的繁琐</h5><p>那么切面语法让切面从逻辑上与业务代码解耦，但是我要怎么<strong>找到特定的业务代码织入切面</strong>呢？</p>
+<p>两种解决思路：一种就是提供注册机制，通过额外的配置文件指明哪些类受到切面的影响，不过这还是需要干涉对象创建的过程；另外一种解决思路就是在编译期或类加载期先扫描切面，并将切面代码通过某种形式插入到业务代码中。</p>
+<p>那 AspectJ 织入方式有两种：一种是 ajc 编译，可以在编译期将切面织入到业务代码中。另一种就是 aspectjweaver.jar 的 agent 代理，提供了一个 Java agent 用于在类加载期间织入切面。</p>
+<h4 id="2-通过-class-反推-AspectJ-实现机制"><a href="#2-通过-class-反推-AspectJ-实现机制" class="headerlink" title="2. 通过 class 反推 AspectJ 实现机制"></a>2. 通过 class 反推 AspectJ 实现机制</h4><h5 id="（1）-Before-机制"><a href="#（1）-Before-机制" class="headerlink" title="（1）@Before 机制"></a>（1）<code>@Before</code> 机制</h5><p>国际惯例写个 Demo</p>
+<ol>
+<li>自定义 AutoLog 注解</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-ad7887f48106ec93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>编写 LogAspect 切面</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-c279c663f1f39491.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>在切入点中加上注解</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-e44a3651c6bc8cd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>反编译后（请点开大图查看）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-fa88087940dda681.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>发现 AspectJ 会把调用切面的方法插入到切入点中，且封装了切入点所在的方法名、所在类、入参名、入参值、返回值等等信息，传递给切面，这样就<strong>建立了切面和业务代码的关联</strong>。</p>
+<p>我们跟进 <code>LogAspect.aspectOf().aroundJoinPoint(localJoinPoint);</code> 一探究竟。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-1b97167dc4ca2329.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们发现了什么？其实 Before 和 After 的插入就是在匹配到的 JoinPoint 调用前后插入 Advise 方法，以此来达到拦截目标 JoinPoint 的作用。 如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-301cee2aeab1e99e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h5 id="（2）-Around-机制"><a href="#（2）-Around-机制" class="headerlink" title="（2）@Around 机制"></a>（2）<code>@Around</code> 机制</h5><ol>
+<li>自定义 SingleClick 注解</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-87e13bbc97966c8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>编写 SingleClickAspect 切面</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-8aa91b015cdad68e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>业务方加上注解</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-9728a881422a6eff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>打开编译后的 class 文件（请点开大图查看）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-8459ef869abd8d12.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们发现和 Before、After 织入不一样了！前者的织入只是<strong>在匹配的 JoinPoint 前后插入 Advise 方法</strong>，仅仅是插入。而 Around 拆分了业务代码和 Advise 方法，把业务代码迁移到新函数中，<strong>通过一个单独的闭包拆分来执行，相当于对目标 JoinPoint 进行了一个代理</strong>，所以 Around 情况下我们除了编写切面逻辑，还需要手动调用 joinPoint.proceed() 来调用闭包执行原方法。</p>
+<p>我们看下 proceed() 都做了些什么</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-75dde24a721e8ec1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>那这个 arc 是什么？什么时候拿到的呢？</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-a4c9b4c33885f7e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>继续回溯</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-22790510274f6736.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在 AroundClosure 闭包中，会把运行时对象和当前连接点 joinPoint 对象传入，调用 linkClosureAndJoinPoint() 绑定两端，这样在 Around 中就可以通过 ProceedingJoinPoint.proceed() 调用 AroundClosure，进而调用到目标方法了。</p>
+<p>那么一图总结 Around 机制：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-c46e74cbe8ac4ec9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们从 AspectJ 编译后的 class 文件可以明显看出执行的逻辑，proceed 方法就是回调执行被代理类中的方法。</p>
+<p>所以 AspectJ 做的事情如下：</p>
+<ol>
+<li><p>首先从文件列表里取出所有的文件名，读取文件，进行分析；</p>
+</li>
+<li><p>扫描含有 aspect 的切面文件；</p>
+</li>
+<li><p>根据切面中定义规则，拦截匹配的 JoinPoint ；</p>
+</li>
+<li><p>继续读取切面定义的规则，根据 around 或 before ，采用不同策略织入切面。</p>
+</li>
+</ol>
+<h5 id="（3）-Before-After-机制与-Around-机制区别"><a href="#（3）-Before-After-机制与-Around-机制区别" class="headerlink" title="（3）@Before @After 机制与 @Around 机制区别"></a>（3）<code>@Before</code> <code>@After</code> 机制与 <code>@Around</code> 机制区别</h5><ul>
+<li>Before、After 仅仅是织入了 Advise 方法</li>
+<li>Around 使用了代理 + 闭包的方式进行替换</li>
+</ul>
+<h4 id="3-AspectJ-底层技术总结"><a href="#3-AspectJ-底层技术总结" class="headerlink" title="3. AspectJ 底层技术总结"></a>3. AspectJ 底层技术总结</h4><p>分析完 class 你会发现，AspectJ 实际上就是用一种<strong>特定语言</strong>编写切面，通过自己的语法编译工具 ajc 编译器来编译，生成一个新的代理类，该代理类增强了业务类。</p>
+<ol>
+<li><p>AspectJ 就是一个<strong>代码生成工具</strong>；</p>
+<p> 编写一段通用的代码，然后根据 AspectJ 语法定义一套代码生成规则，AspectJ 就会帮你把这段代码插入到对应的位置去。</p>
+</li>
+<li><p>AspectJ 语法就是用来<strong>定义代码生成规则的语法</strong>。</p>
+<p> 扩展编译器，引入特定的语法来创建 Advise，从而在编译期间就织入了Advise 的代码。 </p>
+<p> 如果使用过 Java Compiler Compiler (JavaCC)，你会发现两者的代码生成规则的理念惊人相似。JavaCC 允许你在语法定义规则文件中，加入你自己的 Java 代码，用来处理读入的各种语法元素。</p>
+</li>
+</ol>
+<h3 id="四、动态织入原理，以-Spring-AOP-为例"><a href="#四、动态织入原理，以-Spring-AOP-为例" class="headerlink" title="四、动态织入原理，以 Spring AOP 为例"></a>四、动态织入原理，以 Spring AOP 为例</h3><p>动态织入原理就是<strong>动态代理</strong>。</p>
+<h4 id="1-Spring-AOP-执行原理"><a href="#1-Spring-AOP-执行原理" class="headerlink" title="1. Spring AOP 执行原理"></a>1. Spring AOP 执行原理</h4><p>Spring AOP 利用截取的方式，对被代理类进行装饰，以取代原有对象行为的执行，不会生成新类。</p>
+<h4 id="2-Spring-AOP-VS-AspectJ"><a href="#2-Spring-AOP-VS-AspectJ" class="headerlink" title="2. Spring AOP VS AspectJ"></a>2. Spring AOP VS AspectJ</h4><p>可能有的小伙伴会困惑了，Spring AOP 使用了 AspectJ，怎么是动态代理呢？</p>
+<p>那是因为 Spring 只是使用了与 AspectJ 一样的注解，没有使用 AspectJ 的编译器，转向采用动态代理技术的实现原理来构建 Spring AOP 的内部机制（动态织入），这是与 AspectJ（静态织入）最根本的区别。</p>
+<p>Spring 底层的动态代理分为两种 JDK 动态代理和 CGLib：</p>
+<ol>
+<li><p>JDK 动态代理用于<strong>对接口的代理</strong>，动态产生一个实现指定接口的类，注意<strong>动态代理有个约束</strong>：<strong>目标对象一定是要有接口的</strong>，没有接口就不能实现动态代理，只能为接口创建动态代理实例，而不能对类创建动态代理。</p>
+</li>
+<li><p>CGLIB 用于<strong>对类的代理</strong>，把被代理对象类的 class 文件加载进来，修改其字节码生成一个继承了被代理类的子类。使用 cglib 就是为了弥补动态代理的不足。</p>
+</li>
+</ol>
+<h4 id="3-JDK-动态代理的原理"><a href="#3-JDK-动态代理的原理" class="headerlink" title="3.  JDK 动态代理的原理"></a>3.  JDK 动态代理的原理</h4><p>我们前面的 Demo 第三种方式使用了动态代理，我们不禁有了疑问，动态代理类及其对象实例是如何生成的？调用动态代理对象方法为什么可以调用到目标对象方法？</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-34ec1b9e0811341a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们通过 <code>Proxy.newProxyInstance</code> 可以动态生成指定接口的代理类的实例。我们来看下<code>newProxyInstance</code>内部实现机制。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-b1f1200a4ece1d74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>代理对象会实现接口的所有方法，实现的方法交由我们自定义的 handler 来处理。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-740b14c467dbb3ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我们看下 <code>getProxyClass0</code> 方法，只凭一个类加载器、一个接口，是怎么创建代理类的？</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-774531b4f53ea35e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>注意一下：Android 中动态代理类是直接生成，而 Java 是生成代理类的字节码，再根据字节码生成代理类。</p>
+</blockquote>
+<p>那么客户端就可以 <code>getProxy()</code> 拿到生成的代理类 <code>com.sun.proxy.$Proxy0</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-eac701ca4b20af3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这个代理类继承自 <code>Proxy</code> 并实现了我们被代理类的所有接口，在各个接口方法的内部，通过反射调用了 <code>InvocationHandlerImpl</code> 的 <code>invoke</code> 方法。</p>
+<p>总结下步骤：</p>
+<ol>
+<li>获得被代理类的接口信息，生成一个实现了代理接口的动态代理类；</li>
+<li>通过反射获得代理类的构造函数；</li>
+<li>利用构造函数生成动态代理类的实例对象，在调用具体方法前调用 invokeHandler 方法来处理。</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/3167794-7027620b4b0d98cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><h4 id="1-设计模式不能脱离业务场景"><a href="#1-设计模式不能脱离业务场景" class="headerlink" title="1. 设计模式不能脱离业务场景"></a>1. 设计模式不能脱离业务场景</h4><p>不知不觉我们复习了一下代理模式，设计模式必须依赖大量的业务场景，脱离业务去看设计模式是没有意义的。</p>
+<p>因为脱离了应用场景，即使理解了模式的内容和结构，也学不会在合适的时候应用。</p>
+<h4 id="2-敢于追求优雅的代码"><a href="#2-敢于追求优雅的代码" class="headerlink" title="2. 敢于追求优雅的代码"></a>2. 敢于追求优雅的代码</h4><p>首先你要敢于追求优雅的代码，就像我们开头的打印日志的需求，不断提出问题，不断追求更好的解决方案，在新的方案上挖掘新的问题……如果你完全不追求设计，那自然是不会想到去研究设计模式的。</p>
+<blockquote>
+<p>本篇完成耗时 26 个番茄钟（650 分钟）</p>
+</blockquote>
+<hr>
+<p>我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。</p>
+<p>欢迎关注 FeelsChaotic 的<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">简书</a>和<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">掘金</a>，如果我的文章对你哪怕有一点点帮助，欢迎  ❤️！你的鼓励是我写作的最大动力！</p>
+<p>最最重要的，请给出你的建议或意见，有错误请多多指正！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;本文将从另一个角度讲解 AOP，从&lt;strong&gt;宏观的实现原理和设计本质&lt;/strong&gt;入手。大部分讲 AOP 的博文都是一上来就罗列语法，然后敲个应用 demo就完了 。但学习不能知其然，不知其所以然。&lt;/p&gt;
+&lt;p&gt;对 AOP 我提出了几点思考：AspectJ 为什么会大热？AspectJ 是怎样工作的？和 Spring AOP 有什么区别？什么场景下适用？我们能不能自己实现一个 AOP 方法？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
+    
+      <category term="AOP" scheme="http://yoursite.com/tags/AOP/"/>
+    
+      <category term="源码解析" scheme="http://yoursite.com/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AOP 最后一块拼图 AST 抽象语法树-——-最轻量级的AOP方法</title>
+    <link href="http://yoursite.com/2019/01/21/new/AOP-%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E6%8B%BC%E5%9B%BE---AST-%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91-%E2%80%94%E2%80%94-%E6%9C%80%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84AOP%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2019/01/21/new/AOP-最后一块拼图---AST-抽象语法树-——-最轻量级的AOP方法/</id>
+    <published>2019-01-21T12:31:00.000Z</published>
+    <updated>2019-10-19T06:16:18.545Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/3167794-0c31bec917b37b16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Aspect 语法难懂？ASM 字节码操作繁琐？APT 难以精准找到切入点？你该试试 AST 了！编辑器级别，效率高，更轻量。</p>
+<a id="more"></a>
+<h2 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h2><p>在开始上手之前，我们先了解下几个简单的概念：</p>
+<h3 id="什么是-AST-？AST-的作用？"><a href="#什么是-AST-？AST-的作用？" class="headerlink" title="什么是 AST ？AST 的作用？"></a>什么是 AST ？AST 的作用？</h3><p>我们知道，编程语言再怎么变，不变的是由「类型」「运算符」「流程语句」「函数」「对象」组成的本质，这些本质概念表达了底层的运算与逻辑，那么这么多编程语言，要怎么抽离出这个逻辑本质呢？</p>
+<p>答案就是：转化为<strong>统一的结构！</strong></p>
+<p>这个统一的结构不依赖于源语言的语法，只代表源语言中的语法结构，如类型、修饰符、运算符……<br>这就是抽象语法树 AST。AST（abstract syntax tree）即抽象语法树，是源代码的抽象语法结构的树状表现形式，每一个节点代表一个语法结构。那 AST 是怎么转化得来的呢？</p>
+<h3 id="AST-的生成过程"><a href="#AST-的生成过程" class="headerlink" title="AST 的生成过程"></a>AST 的生成过程</h3><p>不同的语言，都会有对应不同的语法分析器，语法分析器会把源代码作为字符串读入、解析，并建立语法树，这是一个程序完成编译所必要的前期工作。</p>
+<p>我们看下 Java 的编译过程，重点关注步骤一和步骤二：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-d098b6d72c1fa8f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>步骤一：词法分析，将源代码的字符流转变为 Token 列表。</strong></p>
+<p>一个个读取源代码，按照预定规则合并成 Token，Token 是编译过程的最小元素，关键字、变量名、字面量、运算符等都可以成为 Token。</p>
+<p><strong>步骤二：语法分析，根据 Token 流来构造树形表达式也就是 AST。</strong></p>
+<p>语法树的每一个节点都代表着程序代码中的一个语法结构，如类型、修饰符、运算符等。经过这个步骤后，编译器就基本不会再对源码文件进行操作了，后续的操作都建立在抽象语法树之上。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-0784308611647a4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="转化图解"></p>
+<blockquote>
+<ul>
+<li>可以访问 <a href="https://astexplorer.net/" target="_blank" rel="external">Astexplorer</a> 在线玩转 AST</li>
+</ul>
+</blockquote>
+<h3 id="怎么利用-AST？"><a href="#怎么利用-AST？" class="headerlink" title="怎么利用 AST？"></a>怎么利用 AST？</h3><p>我们可以发现，AST 定义了代码的结构，通过操作 AST，我们可以<strong>精准地定位到声明语句、赋值语句、运算语句</strong>等，实现<strong>对源代码的分析、优化、变更</strong>等操作。</p>
+<p>举个例子，想要改变 a 的赋值，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-2dad33e014fc9ad5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>想改 a 的赋值，可以对 AST 语法树的 value 节点下手，一旦改动，编译器会重新进行编译流程处理，此时赋值改动就反映到源码上了。是不是很神奇？其实 Lombok、IDE 语法高亮、IDE 格式化代码、自动补全、代码混淆压缩、甚至大名鼎鼎的 ButterKnife 的 R、R2 文件映射和静态代码检查，都是利用了 AST。</p>
+<p>既然要操作 AST，我们怎么拿到 AST 呢？</p>
+<p>答案是：<strong>在注解处理器 APT！</strong></p>
+<p>利用 JDK 的注解处理器，可在编译期间处理注解，还可以读取、修改、添加 AST 中的任意元素，让改动后的 AST 重新参与编译流程处理，直到语法树没有改动为止。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-8a6c67f65e124ae4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="AST优缺点"><a href="#AST优缺点" class="headerlink" title="AST优缺点"></a>AST优缺点</h3><p>相比其他的AOP方法，AST 属于编辑器级别，时机更为提前，效率更高。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-e8bdcd705134828f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但语法复杂，推荐通过库来操作 AST：</p>
+<ul>
+<li><a href="https://github.com/Netflix-Skunkworks/rewrite" target="_blank" rel="external">rewrite</a></li>
+<li><a href="https://github.com/Javaparser/Javaparser" target="_blank" rel="external">JavaParser</a></li>
+</ul>
+<h2 id="二、实践"><a href="#二、实践" class="headerlink" title="二、实践"></a>二、实践</h2><h3 id="实现一个清除-log-功能"><a href="#实现一个清除-log-功能" class="headerlink" title="实现一个清除 log 功能"></a>实现一个清除 log 功能</h3><p>整体思路：在编译期间拿到 AST，扫描是否含有特定日志语句如：Log，存在则删除该语句。</p>
+<h4 id="1-实现-AbstractProcessor"><a href="#1-实现-AbstractProcessor" class="headerlink" title="1. 实现 AbstractProcessor"></a>1. 实现 AbstractProcessor</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-1b2eee38291ea305.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="2-添加注解"><a href="#2-添加注解" class="headerlink" title="2. 添加注解"></a>2. 添加注解</h4><p><code>@SupportedAnnotationTypes</code> 指定此注解处理器支持的注解，可用 <code>*</code> 指定所有注解<br><code>@SupportedSourceVersion</code> 指定支持的java的版本</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-57d051947d6cee74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="3-获取-AST"><a href="#3-获取-AST" class="headerlink" title="3. 获取 AST"></a>3. 获取 AST</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-348bf2870dcc022d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在注解处理器的 init 函数里，通过 <code>Trees.instance(env)</code> 拿到抽象语法树（AST）。<br>此处把<code>ProcessingEnvironment</code>强转成<code>JavacProcessingEnvironment</code>，后面的操作都变成了IDE编辑器内部的操作了。</p>
+<h4 id="4-操作-AST"><a href="#4-操作-AST" class="headerlink" title="4. 操作 AST"></a>4. 操作 AST</h4><p><img src="https://upload-images.jianshu.io/upload_images/3167794-cb5f1c5016c02400.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在注解处理器的 process 函数中，我们扫描所有的类，实现一个自定义的 TreeTranslator。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-cc8d45a1c8d52023.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>为什么自定义的 TreeTranslator 要复写 visitBlock？因为我们的需求场景是扫描所有 log 语句，粒度为语句块。AST 支持我们以不同的粒度去访问，还有哪些粒度呢？我们看下TreeTranslator 的继承层次，可以发现一个 Visitor 类。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-1580e33c2e8e2b54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>打开 Visitor 类：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-a1f5e6c041579a7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>所有 visit 方法一目了然，我们前面提到 AST 每一个节点都代表着源语言中的一个语法结构，所以我们可以细粒度到指定访问 if、return、try等特定类型节点，只需覆写相应的 visit 方法。</p>
+<p>回到我们的需求场景：扫描所有 log 语句，既然是语句，粒度应该为语句块，所以我们覆写 visitBlock 进行扫描，当扫描到指定语句比如 <code>Log.</code> 时，就不把整个语句都写入 AST，以此达到清除 log 语句的效果。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-f0220b58fe00bb35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<ul>
+<li>想了解更多 AST 操作语法？详见 <a href="https://blog.csdn.net/a_zhenzhen/article/details/86065063" target="_blank" rel="external">java注解处理器——在编译期修改语法树</a></li>
+<li>想获取<a href="https://github.com/feelschaotic/AopClearLog" target="_blank" rel="external"> demo 源码请戳</a></li>
+</ul>
+</blockquote>
+<h3 id="剖析-ButterKnife"><a href="#剖析-ButterKnife" class="headerlink" title="剖析 ButterKnife"></a>剖析 ButterKnife</h3><p>有了实战的基础，我们再来看看 ButterKnife 是如何利用 AST 的。全网对这块的讲解少之又少，解析只着重于 APT，实在可惜。</p>
+<p>细心的你会发现在 ButterKnife 的 sample-library 中，注解的都是引用了 R2 ：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/638283-5ffedfa371afd554.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/668/format/webp" alt=""></p>
+<p>为什么 library 工程不直接引用 R？当我们把 R2 改成 R 之后，编译器会报错：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/638283-64434305d9b62f41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/468/format/webp" alt=""></p>
+<p>也就是说注解的属性必须是常量，但是 <strong>library 中 R.id.title 的值为变量</strong>。原因见 <a href="https://sites.google.com/a/android.com/tools/tips/non-constant-fields" target="_blank" rel="external">Non-constant Fields in Case Labels.</a>、<a href="https://www.jianshu.com/p/ba127b56811b" target="_blank" rel="external">Android主项目和Module中R类的区别</a>。</p>
+<p>那我们可以拷贝下 R 文件，生成一个 R2，把属性都改为常量即可解决。为了让这个拷贝过程无感知，J 神使用了 gradle 插件来自动化完成，<strong>这就是 library 需要引用 butterknife-gradle-plugin 的原因</strong>。</p>
+<p>那另一个问题来了，R2 仅仅是 module 中 R 的复制，只代表了所在 module 编译期间 R 的值，在运行时主工程的 R 和 R2 完全对不上，单纯地拷贝修改是不行的。咋整呢？</p>
+<p>那我们生成 R2 供编译期使用，在生成代码阶段把 R2 替换成 R 不就行了？好主意！J 神的思路就是这样的！我们打开生成的 <code>XXX_ViewBinding</code> 文件就可以发现 —— R2 已经被换成了 R。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-517549893e3cb322.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-6012c0874d3ee87b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但是怎么拿到 R 和 R2 的映射呢？</p>
+<p>我们思考下：以 <code>@BindView(R2.id.view)</code> 为例，最终生成的代码是 <code>findViewById(0x7f…)</code>。那我们通过 <code>0x7f…</code> 反寻 <code>R2.id.view</code> 这样的常量名，R 和 R2 一样，所以也连带知道了 <code>R.id.view</code> 变量名，于是可以将生成代码的结果从 <code>findViewById(0x7f…)</code> 替换成 <code>findViewById(R.id.view)</code> ，这里的 <code>R</code> 在主工程的编译过程中会被 inline 成最终确定的数值，从而避免在生成代码的过程中直接填写数值带来的麻烦。</p>
+<p>思路确定了，那接下来第一步就是通过 <code>0x7f…</code> 反寻 <code>R2.id.view</code> ，但是在 APT 里，我们只能拿到 Element 的注解值，也就是说，并不知道当前传入的是 R2 的哪个 field。现在就该轮到 AST 大显身手了，根据 Element 反查出真正 Java 文件的树形结构。</p>
+<ol>
+<li>拿到AST树；</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-6e75538c932796e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>在扫描资源时，获取 Element  AST 树，注入自定义的 TreeScanner 访问器 RScanner 来访问子节点；</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-5af8bd06e2ebd7d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>RScanner 寻找 R 文件内部类（id、string等)），建立 view 与 id 的关系；</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-279ce5652e195f86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>拿到映射关系后，进行代码拼接。</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-2b54e0d9ed16bac6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3167794-fe31ef601c9319e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="AST-应用场景扩展"><a href="#AST-应用场景扩展" class="headerlink" title="AST 应用场景扩展"></a>AST 应用场景扩展</h3><p>你以为 AST 的应用场景就这么多了吗？</p>
+<p>不不不，我们开下脑洞，既然拿到了源代码的树形表达式，我们不一定要把表达式转回成源码，那是不是可以通过它自动写代码？画个源码流程图？画个类图？写个说明文档？或者其它你想要的东西？</p>
+<p>看看这个项目 <a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank" rel="external">js-code-to-svg-flowchart</a>，或许能给带你更多灵感。</p>
+<h3 id="对-AST-仍有疑问？"><a href="#对-AST-仍有疑问？" class="headerlink" title="对 AST 仍有疑问？"></a>对 AST 仍有疑问？</h3><p>也许下面这些资料可以答疑： </p>
+<ul>
+<li><a href="http://openjdk.java.net/groups/compiler/doc/compilation-overview/index.html" target="_blank" rel="external">openjdk AST</a></li>
+<li><a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/#sec-example-application" target="_blank" rel="external">Abstract Syntax Tree</a></li>
+</ul>
+<h3 id="想了解其他-AOP-方法？"><a href="#想了解其他-AOP-方法？" class="headerlink" title="想了解其他 AOP 方法？"></a>想了解其他 AOP 方法？</h3><ul>
+<li><a href="https://www.jianshu.com/p/0799aa19ada1" target="_blank" rel="external">一文读懂 AOP | 你想要的最全面 AOP 方法探讨</a></li>
+<li><a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">一文应用 AOP | 最全选型考量 + 边剖析经典开源库边实践，美滋滋</a></li>
+</ul>
+<blockquote>
+<p>本篇完成耗时 24 个番茄钟（600 分钟）</p>
+</blockquote>
+<hr>
+<p>我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。</p>
+<p>欢迎关注 FeelsChaotic 的<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">简书</a>和<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">掘金</a>，如果我的文章对你哪怕有一点点帮助，欢迎  ❤️！你的鼓励是我写作的最大动力！</p>
+<p>最最重要的，请给出你的建议或意见，有错误请多多指正！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/3167794-0c31bec917b37b16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;Aspect 语法难懂？ASM 字节码操作繁琐？APT 难以精准找到切入点？你该试试 AST 了！编辑器级别，效率高，更轻量。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
+    
+      <category term="架构" scheme="http://yoursite.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="AOP" scheme="http://yoursite.com/tags/AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>再见 2018-——-我们常常高估一天所能做的事,却低估一年所能做的事</title>
+    <link href="http://yoursite.com/2018/12/31/new/%E5%86%8D%E8%A7%81-2018-%E2%80%94%E2%80%94-%E6%88%91%E4%BB%AC%E5%B8%B8%E5%B8%B8%E9%AB%98%E4%BC%B0%E4%B8%80%E5%A4%A9%E6%89%80%E8%83%BD%E5%81%9A%E7%9A%84%E4%BA%8B,%E5%8D%B4%E4%BD%8E%E4%BC%B0%E4%B8%80%E5%B9%B4%E6%89%80%E8%83%BD%E5%81%9A%E7%9A%84%E4%BA%8B/"/>
+    <id>http://yoursite.com/2018/12/31/new/再见-2018-——-我们常常高估一天所能做的事,却低估一年所能做的事/</id>
+    <published>2018-12-31T04:04:00.000Z</published>
+    <updated>2019-10-19T06:28:49.252Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/3167794-0098483ffe9fbe45.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="一、复盘-2017-定下的规划"><a href="#一、复盘-2017-定下的规划" class="headerlink" title="一、复盘 2017 定下的规划"></a>一、复盘 2017 定下的规划</h2><p>2017年底，给自己的 2018 定下了 4 项规划：</p>
+<ol>
+<li><p>制定中长期计划和目标，进行阶段总结反思。</p>
+<blockquote>
+<p>结果：给10分不能再多，只制定了中期目标，也没有及时复盘，没有照着目标规划来走，可以说是随意生长了。</p>
+</blockquote>
+</li>
+<li><p>提高 GitHub 开源贡献</p>
+<blockquote>
+<p>结果：给自己打60分，勉强及格，没什么好的思路去开源。</p>
+</blockquote>
+</li>
+<li><p>坚持阅读写作，已经过 1 轮的书籍过第 2 轮，再次消化感悟。</p>
+<blockquote>
+<p>结果：遗憾没能过第 2 轮，但是本年坚持阅读，阅读量达新高，且做到及时写总结，听书 30 本，阅读 32 本书，完成回顾总结 42 本，给自己打70分。</p>
+</blockquote>
+</li>
+<li><p>学习理财知识，增加第二收入。</p>
+<blockquote>
+<p>结果：80分，阅读理财相关的书籍 4 本，对投资有个完整的认识，用大局观来看股市，并留心观察潜力行业（养老、医疗），付出了实践，也当了一回韭菜。</p>
+</blockquote>
+</li>
+<li><p>和部门团队更多的交流</p>
+<blockquote>
+<p>结果：75分，还是有惰性，也比较看心情，但是每次调研都可以主动和同事交流，review 时积极提出不合理之处，算是有改进。</p>
+</blockquote>
+</li>
+</ol>
+<p>整体而言，2018 没怎么按之前的规划走，也是和自己规划能力差、没及时复盘有关系。虽然走偏，但连拿 2 个季度 S + 1个季度 A + 年度 S，也体现了开挂般的 2018 。</p>
+<h2 id="二、2018：随意生长，收获满满"><a href="#二、2018：随意生长，收获满满" class="headerlink" title="二、2018：随意生长，收获满满"></a>二、2018：随意生长，收获满满</h2><a id="more"></a>
+<h3 id="1-输入"><a href="#1-输入" class="headerlink" title="1. 输入"></a>1. 输入</h3><h4 id="（1）阅读"><a href="#（1）阅读" class="headerlink" title="（1）阅读"></a>（1）阅读</h4><p><strong>听书 30 本</strong></p>
+<p>涉及产品设计、运营策略、团队建设等方面。推荐：「参与感」、<a href="https://www.jianshu.com/p/5d58a084dba8" target="_blank" rel="external">「疯传」</a>、「上瘾」、「重新定义团队」、「增长黑客」、「流量池」、「刻意练习」、「娱乐至死」。</p>
+<p><strong>阅读 32 本</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类别</th>
+<th style="text-align:left">书名</th>
+<th style="text-align:center">统计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Android</td>
+<td style="text-align:left">Android源码设计模式解析与实战、Android 安全架构深究、<a href="https://www.jianshu.com/p/13b7c945b243" target="_blank" rel="external">App研发录</a>、Android高级进阶、Android进阶解密</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">后端</td>
+<td style="text-align:left">淘宝技术这十年、<a href="https://www.jianshu.com/p/fa5e5d405e6b" target="_blank" rel="external">架构真经</a></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">基础能力</td>
+<td style="text-align:left">敏捷软件开发：原则、模式与实践、软件开发践行录、<a href="https://www.jianshu.com/p/0e31122c38f7" target="_blank" rel="external">代码整洁之道</a>、如何阅读一本书？、凤凰项目</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">理财</td>
+<td style="text-align:left">小狗钱钱、彼得林奇的黄金投资原则、穷爸爸与富爸爸、邻家的百万富翁</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">思维</td>
+<td style="text-align:left">影响力、你的灯亮着吗？</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">自我管理</td>
+<td style="text-align:left">暗时间、深度工作、和时间做朋友、番茄工作法图解、毅力：如何培养自律的习惯</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">杂七杂八</td>
+<td style="text-align:left">肠子的小心思、医本正经、怪诞心理学、白夜行、怪诞行为学、那些古怪又让人忧心的问题、人工智能</td>
+<td style="text-align:center">7</td>
+</tr>
+</tbody>
+</table>
+<h4 id="（2）开源库研究"><a href="#（2）开源库研究" class="headerlink" title="（2）开源库研究"></a>（2）开源库研究</h4><p>研究了 4 个开源库：<a href="https://www.jianshu.com/p/9a4c55478c4d" target="_blank" rel="external">Retrofit</a>、Glide、<a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">hugo</a>、<a href="https://www.jianshu.com/p/42ce95450adb" target="_blank" rel="external">ButterKnife</a></p>
+<h4 id="做得好的"><a href="#做得好的" class="headerlink" title="做得好的"></a>做得好的</h4><ol>
+<li><p>7 月初买了个 kpw3，从此摆脱拎着笨重的技术书籍上下班的日子，堪称本年度最高回报率的投资；</p>
+</li>
+<li><p>第二最佳投资是买了 FlatTomato 的会员，照着番茄工作法组织自己的时间安排和目标管理，找到自己产生焦虑和丧失注意力的根源，设立了通讯工具静时；</p>
+</li>
+<li><p>随时记录阅读时间线，逼迫自己写阅读总结。</p>
+</li>
+</ol>
+<h4 id="有待改进"><a href="#有待改进" class="headerlink" title="有待改进"></a>有待改进</h4><ol>
+<li><p><strong>确定输入的方向性和目的性</strong>，从着力增强点和信息缺口出发，再去选择书籍；</p>
+<p>目前看书漫无目的，除了 Android 和理财投资，其他都是想到什么就看什么，没有选择性。可以说我没有一天停止过阅读，但是阅读的方向乱七八糟，无脑的坚持可能会带来虚假的满足感。</p>
+</li>
+<li><p><strong>提高输入速度和输入质量，扩大输入渠道</strong>；</p>
+<p>多研究优秀的开源库开源项目，不要单阅读书籍，多逛开源社区。</p>
+</li>
+<li><p><strong>建立反馈链路</strong></p>
+<p>坚持及时总结书籍，及时实践，建立主题阅读。</p>
+</li>
+</ol>
+<h3 id="2-输出"><a href="#2-输出" class="headerlink" title="2. 输出"></a>2. 输出</h3><h4 id="（1）写作"><a href="#（1）写作" class="headerlink" title="（1）写作"></a>（1）写作</h4><p>发表 12 篇文章，平台累计获得点赞 744 次，粉丝 193，291 次收藏,，单篇最高阅读量 6152。</p>
+<h4 id="（2）技术分享"><a href="#（2）技术分享" class="headerlink" title="（2）技术分享"></a>（2）技术分享</h4><p>3 次技术分享质量逐步提升，<a href="https://www.jianshu.com/p/a17c8bed79d9" target="_blank" rel="external">《Android 权限机制》</a>好评率达到4.94分（满分5分），直播在线观看平均时长高达32分钟（分享包含讨论时长 40 分钟），获得季度分享之星；《怎样分享？》获得季度第一名。</p>
+<h4 id="（3）规范和指引"><a href="#（3）规范和指引" class="headerlink" title="（3）规范和指引"></a>（3）规范和指引</h4><ol>
+<li>跨部门组织修订《Android 编码规范》，是公司第一份完整的 Android 规范。</li>
+<li>建立 <a href="https://www.jianshu.com/p/9317e0988fa8" target="_blank" rel="external">Android 知识体系脑图</a></li>
+</ol>
+<h4 id="（4）调研"><a href="#（4）调研" class="headerlink" title="（4）调研"></a>（4）调研</h4><ol>
+<li>APM 调研</li>
+<li>编译速度调研</li>
+<li>lean Architecture 架构调研</li>
+<li><a href="https://www.jianshu.com/p/0799aa19ada1" target="_blank" rel="external">AOP 调研</a>并阅读无埋点 SDK</li>
+</ol>
+<h4 id="做得好的-1"><a href="#做得好的-1" class="headerlink" title="做得好的"></a>做得好的</h4><ol>
+<li><p>博文更新数量不多，但质量有所提高，达成每月至少 1 篇的小目标；</p>
+</li>
+<li><p>坚持写作总结，坚持阅读和学习新的技术，研究轮子。这些都让我更好地理解需求，实现需求；</p>
+</li>
+<li><p>在产品需求不明确、同类竞品无法参考的前提下，推进指纹解锁产品完整方案落地，真正意义上的技术推动产品设计。输出<a href="https://www.jianshu.com/p/ed880f35f97f" target="_blank" rel="external">指纹博文</a>，成为了本年度所有博文中最热门的一篇，为后续的产出提供了参考和借鉴。</p>
+</li>
+</ol>
+<h4 id="有待改进-1"><a href="#有待改进-1" class="headerlink" title="有待改进"></a>有待改进</h4><ol>
+<li><p>佛系写作，没有规划，不懂营销，没有推广，往往自我感觉良好时效果数据不如人意；</p>
+</li>
+<li><p>不敢开公众号和知识星球，觉得没有能力经营，一直想着成长到一定阶段，提高影响力后再开通，殊不知这才能逼迫自己更快成长；</p>
+</li>
+<li><p>准备时间过长；</p>
+<ul>
+<li>培养随手记的习惯，碎片化时间去完善，缩短写作时间</li>
+<li>技术分享限制准备时间，培养自己自由发挥和临场能力</li>
+</ul>
+</li>
+<li><p>很多有价值的调研都是从项目中来，应用到项目中去，要敏锐从业务中发现痛点；</p>
+</li>
+<li><p>建立进度时间线，写作也好阅读也好，进度更直观。</p>
+</li>
+</ol>
+<h3 id="3-影响力"><a href="#3-影响力" class="headerlink" title="3. 影响力"></a>3. 影响力</h3><ol>
+<li><p>帮助其他部门团队管理代码质量；</p>
+</li>
+<li><p>接手分享组织、CodeReview 平台 pha、技术日报等团队建设工作，建立分享指引，做到有引导有参考有方向，保证了技术分享的有序进行。</p>
+<p>从负责整个 app 端的分享组织工作开始，我愈发地觉得，看起来是简单的跨部门组织沟通，实际上对个人的技术要求很高，为了保证分享的质量，我需要审查每场分享的内容，对深度广度、正确性进行把关，这要求了我的高速技术成长，也成为了自己成长的动力之一。</p>
+</li>
+<li><p>担任 2 次 PMO；</p>
+<p>在开发资源不足、时间紧迫、难度大等前提下保障了顺利上线，还参与到抽象层的建模中，感受非常深，架构时需要避免深入到细节，多类型数据源就包装成统一数据源，多类型规则就包装成多类型的过滤器，这就是分类、分层、找相关性和总结的能力。</p>
+</li>
+<li><p>加入代码评审委员会，促进技术团队质量提高，并最高票当选代码评审委员会优秀主席；</p>
+</li>
+<li><p>编写 <a href="https://www.jianshu.com/p/92d663bf729f" target="_blank" rel="external">Android 自动验证渠道包</a>的脚本，减少测试的工作量。</p>
+</li>
+</ol>
+<h2 id="三、思考"><a href="#三、思考" class="headerlink" title="三、思考"></a>三、思考</h2><h3 id="1-需要肯定自己的"><a href="#1-需要肯定自己的" class="headerlink" title="1. 需要肯定自己的"></a>1. 需要肯定自己的</h3><ol>
+<li>吸收快，学到就能马上用；</li>
+<li>事无巨细，每天都习惯详细记录工作内容，方便做总结和回顾。</li>
+</ol>
+<h3 id="2-仍需加强的"><a href="#2-仍需加强的" class="headerlink" title="2. 仍需加强的"></a>2. 仍需加强的</h3><ol>
+<li><p>思考强于记录，需要详细记录自己每天的感悟；</p>
+</li>
+<li><p>扩大输入，提高输入速度，筛选输入质量，多学习最佳实践，寻找新的方案的思路，寻找新的业务场景需求；</p>
+</li>
+<li><p>建立人脉和社区影响力；</p>
+</li>
+<li><p>培养数据思维，数据驱动改进；</p>
+</li>
+<li><p>实践强于认可，认可但无实践就不是真正的认可；</p>
+</li>
+<li><p>开会也好，讨论也好，写作也好，思考也好，无论要做什么事，可以先列出自己的想法，再看看别人的方案，比较下差距。</p>
+</li>
+</ol>
+<h3 id="3-这一年，想清楚了几个困扰的问题"><a href="#3-这一年，想清楚了几个困扰的问题" class="headerlink" title="3. 这一年，想清楚了几个困扰的问题"></a>3. 这一年，想清楚了几个困扰的问题</h3><h4 id="（1）需要学的很多，精力有限，我怎么决定优先级？"><a href="#（1）需要学的很多，精力有限，我怎么决定优先级？" class="headerlink" title="（1）需要学的很多，精力有限，我怎么决定优先级？"></a>（1）需要学的很多，精力有限，我怎么决定优先级？</h4><p>作为新人，最大的困惑和焦虑，来源于知识点的繁多和对自身快速成长的压力。</p>
+<p>经过一年的摸索，我的策略是：先确定使用场景，再决定该不该学。</p>
+<p>任何技术不用在实际的业务场景中，就没有价值。作为移动开发工程师，最接近终端用户，多想想如何才能让用户使用产品更加舒服？那让 App 的体验更好，更流畅、更稳定、功能更强大，所有能达到这些目的的技术，都值得一学。</p>
+<p>其次，对自己的技术产物或者业务产物用数据来量化，理解这个技术解决的核心问题是什么。</p>
+<h4 id="（2）无论做什么，抓住本质！"><a href="#（2）无论做什么，抓住本质！" class="headerlink" title="（2）无论做什么，抓住本质！"></a>（2）无论做什么，抓住本质！</h4><p>看透技术本质，比如很火的 Flutter、小程序等跨端框架，其实是多端统一与复用的诉求下的必然产物。</p>
+<p>写作的本质：揣摩别人的写作意图，句式手法，通过什么场景怎么表达，文章读起来很流畅，是什么原因？</p>
+<h4 id="（3）立体思考"><a href="#（3）立体思考" class="headerlink" title="（3）立体思考"></a>（3）立体思考</h4><p>不再从单一领域看待一件事。</p>
+<p>比如拿写作这件事来说：</p>
+<p>用户思维，让我思考，文章面向的对象是谁？</p>
+<p>产品思维，让我思考，我的文章要提供给大家什么价值？</p>
+<p>视觉思维，让我思考，多少句一个段落比较合理？排版要怎么看起来才舒服？图片插入在这里是否合适？</p>
+<p>营销思维，让我思考，标题命名要怎么才能吸引读者？个人宣传和软广植入呢？</p>
+<p>项目思维，让我思考，我今年要写什么哪些文章？系列要怎么去划分，知识点要怎么规划？如何利用零碎时间？</p>
+<h3 id="4-对团队和公司"><a href="#4-对团队和公司" class="headerlink" title="4. 对团队和公司"></a>4. 对团队和公司</h3><p>不单单局限于本身，去思考公司业务运转的流程，我发现技术不是唯一，了解其他合作部门比如测试、产品、运营的 OKR，了解他们重要的评估指标中哪一项需要技术的支持，哪一项依赖于技术，技术怎样可以更好地服务绩效指标，才能发挥自己更大的价值。</p>
+<h2 id="四、2019-规划"><a href="#四、2019-规划" class="headerlink" title="四、2019 规划"></a>四、2019 规划</h2><h3 id="1-自我管理"><a href="#1-自我管理" class="headerlink" title="1. 自我管理"></a>1. 自我管理</h3><ol>
+<li>坚持制定计划，培养复盘习惯<br>纳入计划前问问自己，想清楚这件事情背后的价值和意义了吗？只有这样才能挖掘自己的完成的动力，同时中长期目标需要制定关键事件，作为完成程度的评估。</li>
+<li>提高专注力，严格区分深度工作时间和浮浅时间</li>
+<li>进行主题阅读和对焦练习，进一步培养多维度思考能力</li>
+<li>培养方向性和目的性，避免虚假忙碌</li>
+<li>锻炼</li>
+<li>保护发量（认真脸）</li>
+</ol>
+<h3 id="2-技术成长"><a href="#2-技术成长" class="headerlink" title="2. 技术成长"></a>2. 技术成长</h3><ol>
+<li>提高技术深度，实践跨平台，对新的趋势新的技术保持敏锐度</li>
+<li><p>从零开始实现一个应用</p>
+<p>我想要把所学到的技术或设计都付之实践，平时只是在公司项目的基础上去解决问题，没有锻炼到自己在应用、架构和组织设计这种大方向上的能力，跟着公司项目走，我只是一个跟随者，被别人的源码带领着的。</p>
+</li>
+</ol>
+<h3 id="3-团队"><a href="#3-团队" class="headerlink" title="3. 团队"></a>3. 团队</h3><ol>
+<li>协助更多的团队，提高影响力</li>
+<li>参考更多的开源库和优秀实践，优化项目和工作流</li>
+<li>探索提高团队产出质量的方法</li>
+<li>制定的规范落实并成为团队习惯和团队文化</li>
+<li>养成技术调研输出存档的习惯</li>
+</ol>
+<blockquote>
+<p>本篇完成耗时 12 个番茄钟（300 分钟）</p>
+</blockquote>
+<hr>
+<p>我是 FeelsChaotic，一个写得了代码 p 得了图，剪得了视频画得了画的程序媛，致力于追求代码优雅、架构设计和 T 型成长。</p>
+<p>欢迎关注 FeelsChaotic 的<a href="https://www.jianshu.com/u/79087863dce7" target="_blank" rel="external">简书</a>和<a href="https://juejin.im/user/58130890bf22ec0068821df3" target="_blank" rel="external">掘金</a>，如果我的文章对你哪怕有一点点帮助，欢迎  ❤️！你的鼓励是我写作的最大动力！</p>
+<p>最最重要的，请给出你的建议或意见，有错误请多多指正！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/3167794-0098483ffe9fbe45.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;一、复盘-2017-定下的规划&quot;&gt;&lt;a href=&quot;#一、复盘-2017-定下的规划&quot; class=&quot;headerlink&quot; title=&quot;一、复盘 2017 定下的规划&quot;&gt;&lt;/a&gt;一、复盘 2017 定下的规划&lt;/h2&gt;&lt;p&gt;2017年底，给自己的 2018 定下了 4 项规划：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;制定中长期计划和目标，进行阶段总结反思。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;结果：给10分不能再多，只制定了中期目标，也没有及时复盘，没有照着目标规划来走，可以说是随意生长了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;提高 GitHub 开源贡献&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;结果：给自己打60分，勉强及格，没什么好的思路去开源。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;坚持阅读写作，已经过 1 轮的书籍过第 2 轮，再次消化感悟。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;结果：遗憾没能过第 2 轮，但是本年坚持阅读，阅读量达新高，且做到及时写总结，听书 30 本，阅读 32 本书，完成回顾总结 42 本，给自己打70分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;学习理财知识，增加第二收入。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;结果：80分，阅读理财相关的书籍 4 本，对投资有个完整的认识，用大局观来看股市，并留心观察潜力行业（养老、医疗），付出了实践，也当了一回韭菜。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;和部门团队更多的交流&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;结果：75分，还是有惰性，也比较看心情，但是每次调研都可以主动和同事交流，review 时积极提出不合理之处，算是有改进。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;整体而言，2018 没怎么按之前的规划走，也是和自己规划能力差、没及时复盘有关系。虽然走偏，但连拿 2 个季度 S + 1个季度 A + 年度 S，也体现了开挂般的 2018 。&lt;/p&gt;
+&lt;h2 id=&quot;二、2018：随意生长，收获满满&quot;&gt;&lt;a href=&quot;#二、2018：随意生长，收获满满&quot; class=&quot;headerlink&quot; title=&quot;二、2018：随意生长，收获满满&quot;&gt;&lt;/a&gt;二、2018：随意生长，收获满满&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="T型发展" scheme="http://yoursite.com/tags/T%E5%9E%8B%E5%8F%91%E5%B1%95/"/>
+    
+      <category term="阅读" scheme="http://yoursite.com/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文应用 AOP - 最全选型考量 + 边剖析经典开源库边实践，美滋滋</title>
     <link href="http://yoursite.com/2018/12/17/new/%E4%B8%80%E6%96%87%E5%BA%94%E7%94%A8-AOP---%E6%9C%80%E5%85%A8%E9%80%89%E5%9E%8B%E8%80%83%E9%87%8F-+-%E8%BE%B9%E5%89%96%E6%9E%90%E7%BB%8F%E5%85%B8%E5%BC%80%E6%BA%90%E5%BA%93%E8%BE%B9%E5%AE%9E%E8%B7%B5%EF%BC%8C%E7%BE%8E%E6%BB%8B%E6%BB%8B/"/>
     <id>http://yoursite.com/2018/12/17/new/一文应用-AOP---最全选型考量-+-边剖析经典开源库边实践，美滋滋/</id>
     <published>2018-12-17T12:59:00.000Z</published>
-    <updated>2018-12-18T12:30:22.523Z</updated>
+    <updated>2019-10-19T06:16:08.676Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/3167794-d74bbee5d2e42039.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AOP系列思维导图"></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-01a9ab339f39ed7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -264,11 +1436,11 @@
   </entry>
   
   <entry>
-    <title>一文读懂-AOP---你想要的最全面-AOP-方法探讨</title>
+    <title>一文读懂 AOP---你想要的最全面 AOP 方法探讨</title>
     <link href="http://yoursite.com/2018/11/30/new/%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82-AOP---%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E6%9C%80%E5%85%A8%E9%9D%A2-AOP-%E6%96%B9%E6%B3%95%E6%8E%A2%E8%AE%A8/"/>
     <id>http://yoursite.com/2018/11/30/new/一文读懂-AOP---你想要的最全面-AOP-方法探讨/</id>
     <published>2018-11-30T14:59:00.000Z</published>
-    <updated>2018-12-18T12:30:16.490Z</updated>
+    <updated>2019-10-19T06:15:00.468Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/3167794-597f0435e8aad920.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AOP系列思维导图"></p>
 <h2 id="前前言"><a href="#前前言" class="headerlink" title="前前言"></a>前前言</h2><p>相信大家在入门 AOP 时，常常被繁多的术语、方法和框架绕晕。AOP 好像有点耳熟？Javaseopt 是个什么？Javassist 又是啥？Dexposed、APT 也是 AOP？本篇将辅助你快速理清概念，掌握 AOP 思想，找到最适合自己业务场景的 AOP 方法。</p>
@@ -1017,11 +2189,11 @@
   </entry>
   
   <entry>
-    <title>推荐---Android-完整知识体系脑图</title>
+    <title>推荐 - Android 完整知识体系脑图</title>
     <link href="http://yoursite.com/2018/06/05/new/%E6%8E%A8%E8%8D%90---Android-%E5%AE%8C%E6%95%B4%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E8%84%91%E5%9B%BE/"/>
     <id>http://yoursite.com/2018/06/05/new/推荐---Android-完整知识体系脑图/</id>
     <published>2018-06-05T09:41:00.000Z</published>
-    <updated>2018-12-18T12:25:58.331Z</updated>
+    <updated>2019-10-19T06:29:26.804Z</updated>
     
     <content type="html"><![CDATA[<p>抽个空，把所有知识点整理成脑图，方便构建知识体系，有遗漏的，欢迎在评论区补充。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-d5e778569f292cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -1043,11 +2215,11 @@
   </entry>
   
   <entry>
-    <title>「Android-安全架构」你真的了解权限机制吗？</title>
+    <title>「Android 安全架构」你真的了解权限机制吗？</title>
     <link href="http://yoursite.com/2018/05/26/new/%E3%80%8CAndroid-%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E3%80%8D%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E6%9D%83%E9%99%90%E6%9C%BA%E5%88%B6%E5%90%97%EF%BC%9F/"/>
     <id>http://yoursite.com/2018/05/26/new/「Android-安全架构」你真的了解权限机制吗？/</id>
     <published>2018-05-26T09:49:00.000Z</published>
-    <updated>2018-12-18T12:28:38.410Z</updated>
+    <updated>2019-10-19T06:28:58.596Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Android将安全设计贯穿系统架构的各个层面，覆盖系统内核、虚拟机、应用程序框架层以及应用层各个环节，力求在开放的同时，也最大程度地保护用户的数据、应用程序和设备的安全。Android安全模型主要提供以下几种安全机制：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3167794-6d77a9733cf9b413.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -1383,11 +2555,11 @@
   </entry>
   
   <entry>
-    <title>「拆轮子」Retrofit-整体架构、细节和思考</title>
+    <title>「拆轮子」Retrofit 整体架构、细节和思考</title>
     <link href="http://yoursite.com/2018/01/27/new/%E3%80%8C%E6%8B%86%E8%BD%AE%E5%AD%90%E3%80%8DRetrofit-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E3%80%81%E7%BB%86%E8%8A%82%E5%92%8C%E6%80%9D%E8%80%83/"/>
     <id>http://yoursite.com/2018/01/27/new/「拆轮子」Retrofit-整体架构、细节和思考/</id>
     <published>2018-01-27T11:44:00.000Z</published>
-    <updated>2018-12-18T12:29:01.210Z</updated>
+    <updated>2019-10-19T06:29:03.236Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>阅读源码基本套路：WHW<br>What：能做哪些事？提供了什么功能？<br>How：采用什么方式实现的？由哪些模块组成？<br>Why：为什么有这样的需求？模块这样封装的意图是什么？还有没有更好的方式？</p>
@@ -2129,422 +3301,6 @@
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
       <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「校招季」如何选择公司？</title>
-    <link href="http://yoursite.com/2017/09/30/new/%E3%80%8C%E6%A0%A1%E6%8B%9B%E5%AD%A3%E3%80%8D%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%85%AC%E5%8F%B8%EF%BC%9F/"/>
-    <id>http://yoursite.com/2017/09/30/new/「校招季」如何选择公司？/</id>
-    <published>2017-09-30T09:55:00.000Z</published>
-    <updated>2018-12-18T12:29:24.971Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3167794-6cdd5189378cc6f2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>本文主要适用于非一二线互联网公司 Offer 的选择。希望以下一些简单的方法，可以辅助你去判断一家公司是否靠谱。</p>
-<a id="more"></a>
-<h4 id="是否举办过大规模的宣讲会或校招"><a href="#是否举办过大规模的宣讲会或校招" class="headerlink" title="是否举办过大规模的宣讲会或校招"></a>是否举办过大规模的宣讲会或校招</h4><p>校招最好的途径是参加宣讲会，<strong>能举办宣讲会的企业实力不会太差</strong>，而且对校招这一块会比较重视。</p>
-<h4 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h4><p>Android 开发遇到各种千奇百怪的屏幕尺寸、系统版本的适配也就算了，国内环境还比较复杂，各种定制 ROM，加上普遍公司偏关注 iOS 平台。所以如果这家公司 Android 端的App做的还可以，那么起码说明这家公司不会不那么不靠谱。 </p>
-<h4 id="面试官提问的水平和深度"><a href="#面试官提问的水平和深度" class="headerlink" title="面试官提问的水平和深度"></a>面试官提问的水平和深度</h4><p>很简单的道理，打个比方，两家公司两个面试官。  </p>
-<p>一个简单问你 volatile 关键字的作用，一个深度问到 volatile 关键字的底层实现原理。  </p>
-<p>同时给你 offer，你选哪家？</p>
-<p>面试和被面试本身就是相对的，面试官能问这个问题同时也让面试者感觉到面试官也是一个喜爱研究技术的人，增加了面试者对公司的好感。不要觉得底层问题太吹毛求疵了，越简单的问题越能看出一个人的水平，别人对你技术的考量绝大多数都是以深度优先、广度次之为标准的。 </p>
-<h4 id="行业"><a href="#行业" class="headerlink" title="行业"></a>行业</h4><p><strong>这点很重要</strong>，了解公司所处行业，走下坡路的行业、夕阳产业，尽量不考虑。多考虑朝阳产业，符合时代发展趋势的行业。比如教育、医疗、健康、互联网、物联网、安防、安全、企业服务、金融、保险、电商、游戏、文化、娱乐、体育、旅游、高端制造等，都是不错的行业（个人意见，还有很多其他行业也不错，要自己分析判断）。</p>
-<p>因为夕阳产业，意味着企业的利润空间小。比如传统媒体行业盈利基本全靠广告费，而现在广告实收额下滑超过一半，日渐式微已是不争的事实，《华盛顿邮报》被收购、《读者文摘》申请破产……这些无法与互联网融合、成功转型的传统媒体行业都面临着失去「最后一个铜板」的威胁。但是，即使如此，羊城晚报校招门前，还是排起了长长的大学生求职队伍。（摊手）</p>
-<h4 id="公司业务信息"><a href="#公司业务信息" class="headerlink" title="公司业务信息"></a>公司业务信息</h4><p>了解这些信息：</p>
-<ul>
-<li>主要产品（服务）是什么</li>
-<li>产品（服务）是否解决市场痛点</li>
-<li>产品所在细分市场有多大</li>
-<li>竞品有哪些，有没有做得很好的竞品</li>
-</ul>
-<p><a href="http://black.bhusk.com/index/1/30/1#main" target="_blank" rel="external">IT黑名单</a> 可以作为参考。</p>
-<h4 id="公司研发团队"><a href="#公司研发团队" class="headerlink" title="公司研发团队"></a>公司研发团队</h4><p>作为开发者，加入软件公司前，需要判断这家公司的技术部门是否是核心部门。在核心价值链上的部门和职位，才会有比较好的发展前景。</p>
-<p>如果你到一家房地产公司做网站开发，铁定是边缘化的，因为它是市场驱动型的公司，开发者在里面受重视的程度不如售楼人员。</p>
-<p>技术和产品驱动的公司，对开发者来讲会更好一些。</p>
-<p>怎么判断技术对一家公司是否重要呢？一个简单的方法就是：拿掉这家公司的软件研发团队（采购所需软件或外包出去），看他的主要业务是否还可以正常运转。</p>
-<h4 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h4><p>可以看看大家对公司的评价，途径有：</p>
-<ul>
-<li>搜索</li>
-<li>点评类网站，如看准网等</li>
-<li>脉脉，这里可以匿名问</li>
-<li>知乎，这里也可以匿名问，有人会回答的</li>
-<li>LinkedIn，可以加目标公司的人来问</li>
-<li>在行，约目标公司的人来聊<br>搜集到的评价仅供参考，因为你接触到的样本，他和公司的关系对评价影响很大，评价是个很主观的行为。</li>
-</ul>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>其实大多数中小企业并没有太多可被应聘者在网上查到资料。还是要去面试中多多观察和问相关问题来的实际。</p>
-<p>其实很多时候，offer 差不多的情况下，我会<strong>优先选择前台妹子漂亮的公司</strong>。（斜眼笑）诶，别走啊，这可不是瞎说的，这是有科学依据的，真的！</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3167794-7c81a7d350974caa.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<blockquote>
-<p>关于面试，你可能还想知道：</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/39c7abb13bcf" target="_blank" rel="external">怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？</a></li>
-<li><a href="https://www.jianshu.com/p/9040c32b3f4c" target="_blank" rel="external">校招需要准备什么？需要复习什么知识点？</a></li>
-<li><a href="https://www.jianshu.com/p/d3a476203841" target="_blank" rel="external">值得订阅的公众号、博客和书籍推荐</a></li>
-<li><a href="https://www.jianshu.com/p/c158eb2f7500" target="_blank" rel="external">你还在认为HR面是走流程？</a></li>
-<li><a href="https://www.jianshu.com/p/6351c9eb74ad" target="_blank" rel="external">学习千万不要完美主义</a></li>
-</ul>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3167794-6cdd5189378cc6f2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;本文主要适用于非一二线互联网公司 Offer 的选择。希望以下一些简单的方法，可以辅助你去判断一家公司是否靠谱。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「校招季」学习千万不要完美主义</title>
-    <link href="http://yoursite.com/2017/09/23/new/%E3%80%8C%E6%A0%A1%E6%8B%9B%E5%AD%A3%E3%80%8D%E5%AD%A6%E4%B9%A0%E5%8D%83%E4%B8%87%E4%B8%8D%E8%A6%81%E5%AE%8C%E7%BE%8E%E4%B8%BB%E4%B9%89/"/>
-    <id>http://yoursite.com/2017/09/23/new/「校招季」学习千万不要完美主义/</id>
-    <published>2017-09-23T13:06:00.000Z</published>
-    <updated>2018-12-18T12:29:44.171Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3167794-0007e6aaa96a3c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>路人问：一本数据结构与算法的书，以数组举例，本来数组的概念挺简单的，但是书上写得像一种更广义的数学概念一样，有没有必要去理解？  </p>
-<a id="more"></a>
-<p>智者回答：该不该学，用不用学，这种问题，就是属于让别人没法回答的问题。严格意义讲，所有知识都是有意义的，肯定或者否定的回答都是片面的。但具体对于你现在的阶段需不需要学，是因你而异的。我的建议是，你已经有这个困惑了，其实就是不想学了，那就跳过去，等你以后发现这个知识有用，再回头仔细看，捡起来。学习就好比旅行，任性一点儿没关系，向你喜欢的风景出发。有时候回头看，发现自己错过了什么风景，再回头去追寻并不晚。不用害怕错过，重要的是一直在旅程上。</p>
-<p>以上这个小对话，正对应着我们在学习中的心态问题。</p>
-<!--more-->
-<p>比如在学习数据结构这门课时，很多同学都表示自己对 C 已经遗忘了。甚至有的同学说要回头去重新学 C 。我个人认为大可不必。</p>
-<p>在这里，和大家分享一个我的学习心得。最重要的一条，就是<strong>学习千万不要完美主义</strong>。</p>
-<p>首先，要冲着自己的目标去。数据结构课程就应该把主要精力放在算法思路的学习上。课程中代码实现细节上，可能会存在一些不懂的编程语言的专有概念。其实理解一个大概，知道是干什么的就好。</p>
-<p>第二点就是，学习不要奔着 100 分去。我们不应该过度着眼于我们还不够完美。学习不是要么 0 分，要么 100 分 的。80 分是收获；60 分是收获；20 分也是收获。有收获最重要。但是因为着眼于自己的不完美，最终放弃了，那就是彻底的 0 分 了。</p>
-<p>如果你去听顶级学府，比如斯坦福的课程，就会发现，老师是不可能把所有细节都讲清楚的。大家一定都学过 C 语言，C 语言读取数据 <code>scanf(&quot;%d&quot;,&amp;a)</code>，这个 <code>&amp;a</code>为什么要有个<code>&amp;</code>？可能有的老师会讲什么地址符一类的。但是我认为，顶级的老师会告诉你：先接受它，记下来，scanf 中，变量前面就是先加个 <code>&amp;</code>。因为如果非要介绍什么地址符，相信 99% 的同学在初学的时候根本无法理解，反而头大，搞晕了，挫败感强，觉得这东西好难。但其实这个难度是初学 C 语言没必要接触的难度。等我们真正深入以后，再回头看，就自然而然理解了。千万不要试图一上来就搞懂一切。</p>
-<p>就好像大一刚刚入门 C 语言的时候，很多同学在学习过程中就一直在诉苦，说很难，为什么这里是这样写，为什么那里是那样的。力求从一开始就搞明白一切。这样只会越学越体会不到用处。想要更快入门，就多了解怎么用，而不是为什么这么用。会使用工具才能更好地理解工具。</p>
-<p>我们没有那么多时间去把东西一开始就完美地弄明白，我觉得这也不现实。但能在一开始优雅地用起来，不是更让人有成就感吗？</p>
-<p>所谓的「抓大放小」。如果一时没搞懂，问自己一句，这部分内容是不是当前一定要搞懂的知识。如果是，当然要死磕；但如果不是，记录下来，尝试继续前进，以后回头再看。</p>
-<p>对于学习的知识，不要妄图一次性的完全掌握，所谓<strong>温故而知新</strong>。多给自己一些回头看的机会，相信很多东西都会柳暗花明的。</p>
-<hr>
-<blockquote>
-<p>关于面试，你可能还想知道：</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/1bb9aac42762" target="_blank" rel="external">如何选择公司？</a></li>
-<li><a href="https://www.jianshu.com/p/39c7abb13bcf" target="_blank" rel="external">怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？</a></li>
-<li><a href="https://www.jianshu.com/p/9040c32b3f4c" target="_blank" rel="external">校招需要准备什么？需要复习什么知识点？</a></li>
-<li><a href="https://www.jianshu.com/p/d3a476203841" target="_blank" rel="external">值得订阅的公众号、博客和书籍推荐</a></li>
-<li><a href="https://www.jianshu.com/p/c158eb2f7500" target="_blank" rel="external">你还在认为HR面是走流程？</a></li>
-</ul>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3167794-0007e6aaa96a3c16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;路人问：一本数据结构与算法的书，以数组举例，本来数组的概念挺简单的，但是书上写得像一种更广义的数学概念一样，有没有必要去理解？  &lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？</title>
-    <link href="http://yoursite.com/2017/09/17/%E3%80%8C%E6%A0%A1%E6%8B%9B%E5%AD%A3%E3%80%8D%E6%80%8E%E6%A0%B7%E5%81%9A%E4%B8%80%E4%B8%AA%E6%BC%82%E4%BA%AE%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%20And%20%E9%9D%A2%E8%AF%95%E5%AE%98%E5%88%B0%E5%BA%95%E5%9C%A8%E8%80%83%E5%AF%9F%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
-    <id>http://yoursite.com/2017/09/17/「校招季」怎样做一个漂亮的项目介绍 And 面试官到底在考察什么？/</id>
-    <published>2017-09-17T12:25:00.000Z</published>
-    <updated>2017-09-19T15:17:40.555Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3167794-8809ace0ffc907bf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h4 id="为什么要重视项目介绍？"><a href="#为什么要重视项目介绍？" class="headerlink" title="为什么要重视项目介绍？"></a>为什么要重视项目介绍？</h4><p>你可以尝试着讲一遍你的项目经历。我第一次讲的时候就挺乱的，卡壳、专业词汇匮乏、逻辑混乱、用词不当、没有介绍到项目重点……<br><a id="more"></a></p>
-<p>项目经验面试在面试中占很大比重，面试官通过一些专业性的技术问题来了解你的技术水平，问题从哪来？要么来源于结构化面试题库（每个面试者的问题都一样，多出现在校招一面），要么，就是从你的简历中项目经验来。所以对项目整体而深入复习的重要性不言而喻。</p>
-<p>介绍项目时面试官会考察应聘者的沟通能力和思考能力，我们大部分情况都是做产品的一个功能或一个模块，但是即使是这样，自己有没有把整个系统架构或产品搞清楚，并能介绍清楚，为什么做这个系统？这个系统的价值是什么？这个系统有哪些功能？优缺点有哪些？如果让你重新设计这个系统你会如何设计？这些都是值得你好好思考的。</p>
-<h4 id="项目介绍思路"><a href="#项目介绍思路" class="headerlink" title="项目介绍思路"></a>项目介绍思路</h4><p>这部分技巧对简历上的项目介绍也是通用的。</p>
-<ol>
-<li><p>首先用一句话介绍这个项目做了什么，打个比方，我使用XX 框架实现了一个 XX</p>
-</li>
-<li><p>主要功能  </p>
-<p> 挑亮点和创新点讲，细碎的功能点一句带过。 </p>
-</li>
-<li><p>然后讲基本的实现：主要运用到的技术点有XXX。  </p>
-<p> （这里面试官从你介绍的技术点切入考察，所以要好好回顾复习项目中运用到的技术点细节。）</p>
-</li>
-<li><p>架构</p>
-<p>（面试官还会问一问为什么你选了这样的架构／方法来实现。）</p>
-</li>
-<li><p>我在项目中的角色</p>
-<p> 主要介绍项目中的职责和作用，是多面手 or 组长 or 技术 。这点主要凸显你的工作量和贡献率。</p>
-</li>
-</ol>
-<blockquote>
-<p>注：可以在简历上附上项目github地址，上传重点功能的演示 gif ，让面试官可以很直观地评估你的项目规模和难度。</p>
-</blockquote>
-<h4 id="面试官会考察些什么？"><a href="#面试官会考察些什么？" class="headerlink" title="面试官会考察些什么？"></a>面试官会考察些什么？</h4><p>知己知彼，摸清面试官心理，你才能有针对性去准备。</p>
-<h5 id="1-能力、技术"><a href="#1-能力、技术" class="headerlink" title="1. 能力、技术"></a>1. 能力、技术</h5><ul>
-<li><p>考察深度：深入了解哪个技术？</p>
-<p>整个项目中用到了哪些开源框架？他们的实现思路是什么？你看过他们的源码吗？你不仅仅是要会用开源库和第三方SDK，还需要知道实现原理和技术细节。不然一个都是第三方堆砌起来的App，问这个说不了解，用的第三方框架，问哪个说不了解，用的SDK，你还要面试官问什么？[摊手]</p>
-</li>
-<li><p>考察广度</p>
-<p>在进行技术选型的时候，你有过什么考虑，做过多少调查。详细地了解不同的工具/框架 思想的对比。最后是什么原因，你选定了这个技术。记住一句话：技术没有优劣，只有合不合适。功能点的实现方式有很多，往往选择的是最适合的。</p>
-<p>同时面试官可能会考察你是否关注产品数据，是否关注合理的工作流程，是否关注前后台交互时的相关知识和流程，是否关注测试自动化、持续集成等其他方面。</p>
-</li>
-</ul>
-<h5 id="2-潜力"><a href="#2-潜力" class="headerlink" title="2. 潜力"></a>2. 潜力</h5><ul>
-<li><p>做项目中怎么解决问题？</p>
-<p>主要展示自己解决问题的思路。  </p>
-</li>
-<li><p>举一反三的能力</p>
-<p>面试官会提出和项目技术类似的点，考察你是否能将新知识点联系到已学的技术，然后尝试解决它。</p>
-</li>
-<li><p>优化项目哪些部分</p>
-<p>面试官意在考察你的思考力和动手能力，开源库多多少少都会有坑，你是否在应用中排查出坑并且能埋坑。</p>
-</li>
-<li><p>如何快速学习项目需要的技术点</p>
-<p>首先，找资料顺序是：官网文档-&gt;权威书籍-&gt;google-&gt;StackOverflow-&gt;博客。其次，新技术的学习非常考验基础。打个比方，没学过RxJava，但是如果你知道设计模式的观察者模式，理解起来就很快。</p>
-</li>
-</ul>
-<h5 id="3-细节"><a href="#3-细节" class="headerlink" title="3. 细节"></a>3. 细节</h5><ul>
-<li><p>sdk的细节了解在哪里</p>
-<p>自己造轮子确实费时间，但是你又是否知道SDK做了哪些优化？</p>
-</li>
-<li><p>自定义控件优化</p>
-</li>
-<li><p>作品对比</p>
-<p>自己的项目有没有和市面上的竞品比较过，客观地评价下从别人的作品中学到了什么，基于此你有没有改进自己的作品？</p>
-</li>
-<li><p>算法</p>
-<p>主要是一些坑和解决思路、解决的灵感来源等，在项目中肯定会涉及到数据结构，比如缓存最近100条点击记录，超出100条则移除最早缓存的记录，自己实现。可能你会想到用队列或堆实现，那可以去看看缓存算法Lru算法的原理，用的什么容器，为什么这么设计？</p>
-</li>
-</ul>
-<h5 id="4-主动性"><a href="#4-主动性" class="headerlink" title="4. 主动性"></a>4. 主动性</h5><ul>
-<li>是否做过知识总结、知识沉淀？（这就是平时注重博客积累的好处了）</li>
-<li>是否实践过知识分享？</li>
-<li>是否主动给项目提出过意见或建议？</li>
-</ul>
-<h5 id="5-沟通能力"><a href="#5-沟通能力" class="headerlink" title="5. 沟通能力"></a>5. 沟通能力</h5><p>在面试的过程中，<strong>悄声无息进行的还有另一项考察 —— 沟通能力</strong>。想想自己面谈时是否能让面试官感觉舒服，是否能清晰表达自己的要点，是否能清晰表达自己未来的个人发展规划。可以尝试模拟面试录下音，看是否有过多的语气词表达出的不自信。</p>
-<h5 id="6-例子"><a href="#6-例子" class="headerlink" title="6. 例子"></a>6. 例子</h5><p>说了这么多，搞个直观的例子谈谈。</p>
-<p><strong>问：</strong></p>
-<p>项目中推送是怎么实现的？</p>
-<p><strong>答：</strong></p>
-<p>刚开始做推送的时候，对目前主流的推送方案大致了解了一下。发现推送实现不止一种。  </p>
-<p><strong>（展示技术选型和方案，简单谈下就ok）</strong>  </p>
-<p>（1）GCM服务  </p>
-<p>优点：Google提供的服务、原生、简单，无需实现和部署服务端。  </p>
-<p>缺点：该服务在国内不够稳定、需要用户绑定Google帐号。  </p>
-<p>（2）XMPP：  </p>
-<p>优点：开放性，标准性，可扩展，跨平台，且已有开源项目。  </p>
-<p>缺点：数据冗余（基于XML），不支持二进制数据，协议虽然完整扩展性虽然好，它耗费网络流量很大，跑起来比MQTT慢很多；有高达70%的流量是耗费在XMPP本身的标签和编解码上面。  </p>
-<p>（3）MQTT  </p>
-<p>优点：协议简洁、小巧、可扩展性强、省流量、省电。  </p>
-<p>缺点：不够成熟、实现较复杂、服务端组件rsmb不开源，部署硬件成本较高。  </p>
-<p>（4）HTTP轮循<br>优点：实现简单、可控性强，部署硬件成本低。<br>缺点：实时性差。  </p>
-<p><strong>（体现技术细节）</strong>  </p>
-<p>所以后续选型，我选择了 XMPP + MINA + AndroidPN 来实现推送。  </p>
-<p><strong>（体现项目优化改进之处，体现自己的思考和能力，对开源项目进行改造）</strong></p>
-<p>但是 AndroidPN 开源项目也存在一些不足之处：  </p>
-<ol>
-<li><p>如果将消息从服务器上推送出去，就不再管理了。</p>
-<p> 我的做法是：客户端收到推送后给服务端一个反馈，如果服务端在一定时间内没有收到反馈，则重发。</p>
-</li>
-<li><p>androidpn服务器收到消息后如何知道要发给哪个用户？</p>
-<p> 所以我加了个tag维度来做用户分组</p>
-</li>
-<li><p>一旦服务器重启了，客户端似乎不会自动重连，需要用户自己中断后台Service再重启应用。</p>
-<p> 完善的方法是加上心跳机制和断线重连</p>
-</li>
-<li><p>AndroidPN服务器不保存消息。就是说它一有消息就会发出去，即使客户端根本不在线，它也不会重发。  </p>
-<p>解决方案是让服务端保持对客户端状态的监控</p>
-</li>
-</ol>
-<p><strong>再问：</strong></p>
-<p>怎么不用现有的极光推送？</p>
-<p><strong>答：</strong></p>
-<p>极光推送初始的版本文档不全，接入麻烦，<strong>同时我对推送的原理很感兴趣，所以想自己实践下。</strong></p>
-<h4 id="问题示例"><a href="#问题示例" class="headerlink" title="问题示例"></a>问题示例</h4><p>最后，是面试官针对项目面试可能提出的问题汇总。</p>
-<ul>
-<li><p>你参与的项目是独立完成的还是团队协作完成的，在团队里是什么角色？是负责人还是参与者？</p>
-</li>
-<li><p>项目执行过程中的难题你是怎么处理的？</p>
-</li>
-<li><p>问一些专业性的技术问题来了解你的水平。</p>
-</li>
-<li><p>如果是没有明确结果的项目，你从项目里学到了什么，有什么经验教训？</p>
-<p>  看你的项目经验，还有思维逻辑性，对项目整体的认识，包括技术的选型和架构的设计等等。</p>
-</li>
-<li><p>项目技术点具体的使用场景，比如多线程的控制、性能优化、数据库设计、加密混淆等等。</p>
-</li>
-<li><p>挑一个你最熟悉的项目讲讲吧。</p>
-</li>
-<li><p>讲解你是怎么从0到1对项目进行开发和改造的。</p>
-<p>题目确立 -&gt; 产品需求开发 -&gt;  概要设计 -&gt; 详细设计 -&gt; 测试用例 -&gt; 编码 -&gt; 测试 -&gt; 优化 -&gt; 宣传视频海报的制作。</p>
-</li>
-</ul>
-<h4 id="开放性问题"><a href="#开放性问题" class="headerlink" title="开放性问题"></a>开放性问题</h4><p>当然，存在有的面试官倾向于问一些开放性的问题。主要看重你是如何解决问题的，看你的思维方式是怎么发散的。</p>
-<p>比如面试官问我，你为什么觉得你做的产品就比别人好？你为什么要对你们的产品进行性能优化，主要瓶颈在哪里？你是通过什么方式进行优化？你优化的点是怎么考虑的？你在使用第三方服务是处于什么目的，你对它的评价是什么，它们给你带来的好处是什么？让你去思考如何更好的为开发者提供服务，你觉得还有什么东西是开发者需要的？你对开发工具类产品感兴趣吗？</p>
-<p>可以从这些问题看出，面试官并不仅仅看重你的技术能力，还有你对产品的认识。面试官想找的人不仅仅要在技术上有亮点，还有其他方面能吸引到他们。</p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>最重要的一点：<strong>不知道的技术点不要不懂装懂</strong>。很多时候我们都会遇到一个情况，就是面试官的问题我不会，这时候大多数情况下不要马上说我不会，也不要糊弄回答，要懂得牵引，转移话题往类似的你擅长的技术点方向去，不然当你抱着侥幸心理随便回答出问题后，面试官会一直沿着往下深挖，挖到挖不出来为止，这就很尴尬了。</p>
-<blockquote>
-<p>受限于个人水平，如有错误之处，敬请谅解。<br>筹划面试系列很久，已经草稿6、7篇了，一直拖延症没有整理。这次参加掘金的征文比赛，就相当于催更了，本文是系列一，之后会陆陆续续补全面试其他系列。</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3167794-8809ace0ffc907bf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h4 id=&quot;为什么要重视项目介绍？&quot;&gt;&lt;a href=&quot;#为什么要重视项目介绍？&quot; class=&quot;headerlink&quot; title=&quot;为什么要重视项目介绍？&quot;&gt;&lt;/a&gt;为什么要重视项目介绍？&lt;/h4&gt;&lt;p&gt;你可以尝试着讲一遍你的项目经历。我第一次讲的时候就挺乱的，卡壳、专业词汇匮乏、逻辑混乱、用词不当、没有介绍到项目重点……&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="项目介绍" scheme="http://yoursite.com/tags/%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/"/>
-    
-      <category term="系列文" scheme="http://yoursite.com/tags/%E7%B3%BB%E5%88%97%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_DISPLAY)</title>
-    <link href="http://yoursite.com/2017/07/24/Android-%E2%80%94%E2%80%94-%E7%BD%91%E6%98%93%E6%98%93%E7%9B%BE%E9%AA%8C%E8%AF%81%E7%A0%81%E5%BC%82%E5%B8%B8-libEGL--validate_display-99-error-3008-(EGL_BAD_D/"/>
-    <id>http://yoursite.com/2017/07/24/Android-——-网易易盾验证码异常-libEGL--validate_display-99-error-3008-(EGL_BAD_D/</id>
-    <published>2017-07-24T08:00:00.000Z</published>
-    <updated>2017-08-20T04:27:26.042Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>前提：WebView在 Android 5.1 测试机上正常显示，在 Android 7.0 上无法显示，一直 loading 。（注：url 为 htts 协议）</p>
-</blockquote>
-<p>考虑到验证码的 Webview 和 Listener 都是自己重写，可能漏掉了什么，果然在细细翻看官方源码的时候，发现了 WebViewClient 多复写了 onReceivedSslError 监听，初步判断是遇到证书问题。</p>
-<p>解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebViewClient(new WebViewClient() &#123;</div><div class="line">           @Override</div><div class="line">           public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) &#123;</div><div class="line">               handler.proceed(); // Ignore SSL certificate errors</div><div class="line">           // fix for: SSL Error. Failed to validate the certificate chain </div><div class="line">           //不要调用super.xxxx</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>原因：</p>
-<p>在 Android 中，WebView 可以用来加载 http 和 https 网页到本地应用的控件。在默认情况下，通过 <code>loadUrl(String url)</code> 方法，可以顺利  <code>loadUrl(&quot;http://www.baidu.com&quot;)</code>之类的页面。但是，当 load 通过 ssl 加密的 https 页面，且这个网站的安全证书在 Android 无法得到认证时，WebView就会变成一个空白页，而并不会像自带的浏览器一样弹出提示。因此，我们必须针对这种情况进行处理。</p>
-<p>拓展：</p>
-<p>不过如果在 <code>onReceivedSslError</code> 方法中实现调用了 <code>handler.proceed()</code>来忽略该证书错误，则会受到中间人攻击的威胁，可能导致隐私泄露。可以采用默认的处理方法<code>handler.cancel()</code>，停止加载问题页面。<br>（鉴于项目需求，所以仍然采用<code>handler.proceed();</code>）</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;前提：WebView在 Android 5.1 测试机上正常显示，在 Android 7.0 上无法显示，一直 loading 。（注：url 为 htts 协议）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;考虑到验证码的 Webview 和 Listener 都是自己重写，可能漏掉了什么，果然在细细翻看官方源码的时候，发现了 WebViewClient 多复写了 onReceivedSslError 监听，初步判断是遇到证书问题。&lt;/p&gt;
-&lt;p&gt;解决：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mWebView.setWebViewClient(new WebViewClient() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           @Override&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;               handler.proceed(); // Ignore SSL certificate errors&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           // fix for: SSL Error. Failed to validate the certificate chain &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           //不要调用super.xxxx&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;           &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常</title>
-    <link href="http://yoursite.com/2017/07/20/Android-%E2%80%94%E2%80%94-%E6%89%93%E5%8C%85INSTALL_PARSE_FAILED_NO_CERTIFICATES%E5%BC%82%E5%B8%B8/"/>
-    <id>http://yoursite.com/2017/07/20/Android-——-打包INSTALL_PARSE_FAILED_NO_CERTIFICATES异常/</id>
-    <published>2017-07-20T03:43:00.000Z</published>
-    <updated>2017-08-20T04:28:14.192Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>前提：明明已经签名，在安装时却提示 <code>INSTALL_PARSE_FAILED_NO_CERTIFICATES</code> 异常</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/3167794-6b4e49bade94fed1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="安装失败情形"></p>
-<p>排查：</p>
-<p>安装的测试机系统为 5.0，只采用了 v2 签名</p>
-<a id="more"></a>
-<p>解决：</p>
-<p>改为安装在 7.0 手机或者选择 v1 + v2 签名。</p>
-<p>原因：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3167794-ae621be14c406309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
-<p>在 Android 7.0 以上版本的设备上，APK 可以根据Full Apk Signature（v2 方案） 或者 JAR-signed（ v1方案）进行验证； 而对于7.0以下版本的设备其会忽略 v2 版本的签名，<strong>只验证 v1 签名</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3167794-74f969787e7d154a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="验证的流程.png"></p>
-<p>结论：</p>
-<ul>
-<li>一定可行的方案： 只使用 v1 方案</li>
-<li>不一定可行的方案：同时使用 v1 和 v2 方案</li>
-<li>对 7.0 以下<strong>一定不行</strong>的方案：只使用 v2 方案</li>
-</ul>
-<p>如果要支持 Android 7.0 以下版本，那么尽量同时选择两种签名方式，但是一旦遇到签名问题，可以只使用 v1 签名方案</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;前提：明明已经签名，在安装时却提示 &lt;code&gt;INSTALL_PARSE_FAILED_NO_CERTIFICATES&lt;/code&gt; 异常&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3167794-6b4e49bade94fed1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;安装失败情形&quot;&gt;&lt;/p&gt;
-&lt;p&gt;排查：&lt;/p&gt;
-&lt;p&gt;安装的测试机系统为 5.0，只采用了 v2 签名&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kotlin 和Java的型变</title>
-    <link href="http://yoursite.com/2017/07/13/Kotlin-%E5%92%8CJava%E7%9A%84%E5%9E%8B%E5%8F%98/"/>
-    <id>http://yoursite.com/2017/07/13/Kotlin-和Java的型变/</id>
-    <published>2017-07-13T07:25:00.000Z</published>
-    <updated>2017-09-03T09:00:10.599Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-Java-的型变"><a href="#1-Java-的型变" class="headerlink" title="1. Java 的型变"></a>1. Java 的型变</h3><p>如果 Parent 是 Child 的父类，那么 <code>List&lt;Parent&gt;</code> 和<code>List&lt;Child&gt;</code> 的关系是什么呢？对于 Java 来说，没有关系。<br><a id="more"></a><br>也就是说下面的代码是无法编译的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;Number&gt; numbers = new ArrayList&lt;Integer&gt;(); //ERROR!</div></pre></td></tr></table></figure>
-<p>不过 numbers 中可以添加 Number 类型的对象，所以我添加个 Integer 可以不呢？可以的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">numbers.add(1);</div></pre></td></tr></table></figure></p>
-<p>那么我要想添加一堆 Integer 呢？用 addAll 是吧？注意看下 addAll 的签名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">boolean addAll(Collection&lt;? extends E&gt; c);</div></pre></td></tr></table></figure></p>
-<p>这个泛型参数又是什么鬼？如果我把这个签名写成下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">boolean addAll(Collection&lt;E&gt; c);</div></pre></td></tr></table></figure></p>
-<p>我想要在 numbers 当中<code>addAll</code> 一个 <code>ArrayList&lt;Integer&gt;</code>，那就不可能了，因为我们说过，<code>ArrayList&lt;Number&gt;</code> 和 <code>ArrayList&lt;Integer&gt;</code>是两个不同的类型，毛关系都没有。</p>
-<p><code>? extends E</code> 其实就是使用点协变，允许传入的参数可以是泛型参数类型为<code>Number</code> 子类的任意类型。</p>
-<p>当然，也有 <code>? super E</code>的用法，这表示元素类型为<code>E</code> 及其父类，这个通常也叫作逆变。</p>
-<h3 id="2-Kotlin-的型变"><a href="#2-Kotlin-的型变" class="headerlink" title="2. Kotlin 的型变"></a>2. Kotlin 的型变</h3><blockquote>
-<p>型变包括协变、逆变、不变三种</p>
-</blockquote>
-<p>下面我们看看 Kotlin 是怎么支持这个特性的。Kotlin 支持声明点型变，我们直接看 Collection 接口的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Collection&lt;out E&gt; : Iterable&lt;E&gt; &#123; </div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>out E</code> 就是型变的定义，表明 Collection 的元素类型是协变的，即 <code>Collection&lt;Number&gt;</code> 也是 <code>Collection&lt;Int&gt;</code> 的父类。</p>
-<p>而对于 <code>MutableList</code> 来说，它的元素类型就是不变的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface MutableCollection&lt;E&gt; : Collection&lt;E&gt;, MutableIterable&lt;E&gt; &#123; </div><div class="line">   ... </div><div class="line">   public fun addAll(elements: Collection&lt;E&gt;): Boolean </div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>换言之，<code>MutableCollection&lt;Number&gt;</code> 与<code>MutableCollection&lt;Int&gt;</code> 没有什么关系。</p>
-<p>那么请注意看 addAll 的声明，参数是 <code>Collection&lt;E&gt;</code>，而 Collection 是协变的，所以传入的参数可以是任意 E 或者其子类的集合。</p>
-<p>逆变的写法也简单一些： <code>Collection&lt;in E&gt;</code>。</p>
-<p>那么 Kotlin 是否支持使用点型变呢？当然支持。</p>
-<p>我们刚才说 <code>MutableCollection</code> 是不变的，那么如果下面的参数改成这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public fun addAll(elements: MutableCollection&lt;E&gt;): Boolean</div></pre></td></tr></table></figure>
-<p>结果就是，当 E 为 Number 时，addAll 无法接类受似<code>ArrayList&lt;Int&gt;</code>的参数。而为了接受这样的参数，我们可以修改一下签名：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public fun addAll(elements: MutableCollection&lt;out E&gt;): Boolean</div></pre></td></tr></table></figure>
-<p>这其实就与 Java 的型变完全一致了。</p>
-<h3 id="3-UnsafeVariance"><a href="#3-UnsafeVariance" class="headerlink" title="3. @UnsafeVariance"></a>3. @UnsafeVariance</h3><p>型变是一个让人费解的话题，很多人接触这东西的时候一开始都会比较晕，我们来看看下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class MyCollection&lt;out T&gt;&#123; </div><div class="line">    fun add(t: T)&#123; // ERROR! </div><div class="line">       ... </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>为什么会报错呢？因为 T 是协变的，所以外部传入的参数类型如果是 T 的话，会出问题，不信你看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var myList: MyCollection&lt;Number&gt; = MyCollection&lt;Int&gt;() </div><div class="line">myList.add(3.0)</div></pre></td></tr></table></figure></p>
-<p>上面的代码毫无疑问可以编译，但运行时就会比较尴尬，因为 <code>MyCollection&lt;Int&gt;</code> 希望接受的是 <code>Int</code>，没想到来了一个 <code>Double</code>。。</p>
-<p>对于协变的类型，通常我们是不允许将泛型类型作为传入参数的类型的，或者说，对于协变类型，我们通常是不允许其涉及泛型参数的部分被改变的。这也很容易解释为什么 MutableCollection 是不变的，而 Collection 是协变的，因为在 Kotlin 当中，前者是可被修改的，后者是不可被修改的。</p>
-<p>逆变的情形正好相反，即不可以将泛型参数作为方法的返回值。</p>
-<p>但实际上有些情况下，我们不得已需要在协变的情况下使用泛型参数类型作为方法参数的类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface Collection&lt;out E&gt; : Iterable&lt;E&gt; &#123; </div><div class="line">   ... </div><div class="line">    public operator fun contains(element: @UnsafeVariance E): Boolean </div><div class="line">   ... </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>比如这种情形，为了让编译器放过一马，我们就可以用 @UnsafeVariance 来告诉编译器：“我知道我在干啥，保证不会出错，你不用担心”。</p>
-<p>最后再给大家提一个点，现在你们知道为什么 in 表示逆变，out 表示协变了吗？</p>
-<blockquote>
-<p>节选自：<a href="https://mp.weixin.qq.com/s/WUoanF3_OAP0dRoxBQu_bQ" target="_blank" rel="external">https://mp.weixin.qq.com/s/WUoanF3_OAP0dRoxBQu_bQ</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-Java-的型变&quot;&gt;&lt;a href=&quot;#1-Java-的型变&quot; class=&quot;headerlink&quot; title=&quot;1. Java 的型变&quot;&gt;&lt;/a&gt;1. Java 的型变&lt;/h3&gt;&lt;p&gt;如果 Parent 是 Child 的父类，那么 &lt;code&gt;List&amp;lt;Parent&amp;gt;&lt;/code&gt; 和&lt;code&gt;List&amp;lt;Child&amp;gt;&lt;/code&gt; 的关系是什么呢？对于 Java 来说，没有关系。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-      <category term="Kotlin" scheme="http://yoursite.com/tags/Kotlin/"/>
     
   </entry>
   
